@@ -1,0 +1,2016 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>塑料材料与改性培训实验室</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed="true"],
+  [aria-selected="true"],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type="file"]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type="color"] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="time"],
+    [type="week"]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+</head>
+<body>
+<div id="plastic-material-lab">
+  <style>
+    #plastic-material-lab { color: var(--foreground); width: 100%; }
+    #plastic-material-lab * { box-sizing: border-box; }
+    #plastic-material-lab .topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+    #plastic-material-lab .topline h2 { margin: 0; }
+    #plastic-material-lab .mode-switch { display: flex; gap: 6px; flex-wrap: wrap; }
+    #plastic-material-lab .controls { margin-bottom: 14px; }
+    #plastic-material-lab .flow-overview { margin: 12px 0 18px; }
+    #plastic-material-lab .flow-overview-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+    #plastic-material-lab .stage-track { display: grid; grid-template-columns: repeat(13, max-content); align-items: center; gap: 6px; overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x proximity; }
+    #plastic-material-lab .stage-track .btn { min-width: 106px; white-space: normal; scroll-snap-align: start; }
+    #plastic-material-lab .stage-arrow { color: var(--muted-foreground); font-weight: 500; }
+    #plastic-material-lab .stage-num { display: block; opacity: .68; }
+    #plastic-material-lab .checkpoint-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 4px 0 0; }
+    #plastic-material-lab .checkpoint { padding: 10px 12px; background: color-mix(in srgb, var(--muted) 52%, transparent); }
+    #plastic-material-lab .checkpoint strong { display: block; margin-bottom: 4px; }
+    #plastic-material-lab .main-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(220px, .8fr); gap: 18px; align-items: start; }
+    #plastic-material-lab .visual-field { min-width: 0; }
+    #plastic-material-lab .scene { width: 100%; min-height: 330px; display: block; }
+    #plastic-material-lab .scene text { fill: var(--foreground); font-size: 12px; font-family: inherit; }
+    #plastic-material-lab .scene .muted-svg { fill: var(--muted-foreground); }
+    #plastic-material-lab .scene .structure { stroke: var(--border); stroke-width: 2; fill: none; }
+    #plastic-material-lab .scene .feed { fill: color-mix(in srgb, var(--viz-series-1) 20%, transparent); stroke: var(--viz-series-1); stroke-width: 1.5; }
+    #plastic-material-lab .scene .active-fill { fill: color-mix(in srgb, var(--viz-series-1) 28%, transparent); stroke: var(--viz-series-1); stroke-width: 2; }
+    #plastic-material-lab .scene .secondary-fill { fill: color-mix(in srgb, var(--viz-series-2) 24%, transparent); stroke: var(--viz-series-2); stroke-width: 1.5; }
+    #plastic-material-lab .scene .hot-fill { fill: color-mix(in srgb, var(--viz-series-3) 26%, transparent); stroke: var(--viz-series-3); stroke-width: 1.5; }
+    #plastic-material-lab .scene .pellet { fill: var(--viz-series-1); }
+    #plastic-material-lab .scene .polymer { stroke: var(--viz-series-1); stroke-width: 4; fill: none; stroke-linecap: round; }
+    #plastic-material-lab .scene .bond { stroke: var(--viz-series-2); stroke-width: 2; }
+    #plastic-material-lab .scene .arrow { stroke: var(--muted-foreground); stroke-width: 2; fill: none; marker-end: url(#lab-arrow); }
+    #plastic-material-lab .scene .motion { animation: lab-drift 1.7s ease-in-out infinite alternate; }
+    #plastic-material-lab .scene .spin { transform-origin: center; animation: lab-spin 4s linear infinite; }
+    #plastic-material-lab .scene .pulse { animation: lab-pulse 1.2s ease-in-out infinite alternate; }
+    #plastic-material-lab .scene .flow-dot { animation: lab-flow 2.5s linear infinite; }
+    #plastic-material-lab .detail { display: grid; gap: 12px; }
+    #plastic-material-lab .detail h3 { margin-top: 0; }
+    #plastic-material-lab .detail dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; }
+    #plastic-material-lab .detail dt { color: var(--muted-foreground); }
+    #plastic-material-lab .detail dd { margin: 0; }
+    #plastic-material-lab .step-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    #plastic-material-lab .hidden { display: none !important; }
+    #plastic-material-lab .lab-grid { display: grid; grid-template-columns: minmax(240px, .86fr) minmax(0, 1.35fr); gap: 20px; align-items: start; }
+    #plastic-material-lab .material-grid { display: grid; grid-template-columns: repeat(3, minmax(70px, 1fr)); gap: 6px; }
+    #plastic-material-lab .material-grid .btn { min-width: 0; }
+    #plastic-material-lab .slider-stack { display: grid; gap: 12px; margin-top: 14px; }
+    #plastic-material-lab .slider-head { display: flex; justify-content: space-between; gap: 12px; }
+    #plastic-material-lab .sample-wrap { min-width: 0; }
+    #plastic-material-lab .sample-svg { display: block; width: 100%; min-height: 220px; }
+    #plastic-material-lab .sample-svg text { fill: var(--foreground); font-size: 12px; font-family: inherit; }
+    #plastic-material-lab .sample-svg .grip { fill: var(--muted); stroke: var(--border); }
+    #plastic-material-lab .sample-svg .sample { fill: color-mix(in srgb, var(--viz-series-1) 28%, transparent); stroke: var(--viz-series-1); stroke-width: 2; }
+    #plastic-material-lab .sample-svg .force { stroke: var(--viz-series-3); stroke-width: 3; marker-end: url(#force-arrow); }
+    #plastic-material-lab .meter-row { display: grid; grid-template-columns: 72px 1fr 74px; gap: 10px; align-items: center; margin: 9px 0; }
+    #plastic-material-lab .meter { height: 10px; background: color-mix(in srgb, var(--muted) 80%, transparent); overflow: hidden; }
+    #plastic-material-lab .meter > span { display: block; height: 100%; background: var(--viz-series-1); transition: width .35s ease; }
+    #plastic-material-lab .state-line { margin: 10px 0 0; min-height: 1.5em; }
+    #plastic-material-lab .facts { margin-top: 14px; }
+    #plastic-material-lab .fact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    #plastic-material-lab .fact-grid .card { min-width: 0; }
+    #plastic-material-lab .legend-line { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 8px; color: var(--muted-foreground); }
+    #plastic-material-lab .legend-line span { display: inline-flex; gap: 6px; align-items: center; }
+    #plastic-material-lab .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--viz-series-1); display: inline-block; }
+    #plastic-material-lab .dot.alt { background: var(--viz-series-2); }
+    #plastic-material-lab .dot.hot { background: var(--viz-series-3); }
+    #plastic-material-lab .knowledge-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    #plastic-material-lab .knowledge-area { min-height: 430px; }
+    #plastic-material-lab .knowledge-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    #plastic-material-lab .knowledge-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #plastic-material-lab .knowledge-grid .card { min-width: 0; }
+    #plastic-material-lab .knowledge-grid h3 { margin-top: 0; }
+    #plastic-material-lab .knowledge-grid ul { padding-left: 20px; margin-bottom: 0; }
+    #plastic-material-lab .knowledge-grid li + li { margin-top: 6px; }
+    #plastic-material-lab .formula { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 18px 0; }
+    #plastic-material-lab .formula-arrow { color: var(--muted-foreground); }
+    #plastic-material-lab .choice-grid { display: grid; grid-template-columns: repeat(4, minmax(76px, 1fr)); gap: 6px; margin: 12px 0; }
+    #plastic-material-lab .choice-grid .btn { min-width: 0; white-space: normal; }
+    #plastic-material-lab .selected-detail { margin-top: 12px; }
+    #plastic-material-lab .selected-detail h3 { margin-top: 0; }
+    #plastic-material-lab .process-line { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: center; text-align: center; margin: 18px 0; }
+    #plastic-material-lab .process-node { padding: 12px 8px; background: color-mix(in srgb, var(--viz-series-1) 16%, transparent); }
+    #plastic-material-lab .note-line { padding-left: 12px; border-left: 3px solid var(--viz-series-3); margin-top: 12px; }
+    #plastic-material-lab .compare-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+    #plastic-material-lab .compare-row:last-child { border-bottom: 0; }
+    #plastic-material-lab .tag-cloud { display: flex; gap: 8px; flex-wrap: wrap; }
+    #plastic-material-lab .material-path { width: 100%; display: block; min-height: 210px; }
+    #plastic-material-lab .material-path text { fill: var(--foreground); font-size: 12px; font-family: inherit; }
+    #plastic-material-lab .material-path .branch { stroke: var(--border); stroke-width: 2; fill: none; }
+    #plastic-material-lab .material-path .node-a { fill: color-mix(in srgb, var(--viz-series-1) 22%, transparent); stroke: var(--viz-series-1); }
+    #plastic-material-lab .material-path .node-b { fill: color-mix(in srgb, var(--viz-series-2) 22%, transparent); stroke: var(--viz-series-2); }
+    #plastic-material-lab .training-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr); gap: 16px; align-items: start; }
+    #plastic-material-lab .quiz-options { display: grid; gap: 8px; margin: 14px 0; }
+    #plastic-material-lab .quiz-options .btn { text-align: left; white-space: normal; }
+    #plastic-material-lab .quiz-status { min-height: 1.5em; }
+    #plastic-material-lab .notes-box textarea { min-height: 260px; resize: vertical; }
+    #plastic-material-lab .note-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    #plastic-material-lab .save-status { min-height: 1.5em; margin-top: 8px; }
+    #plastic-material-lab .table-toolbar { display: grid; grid-template-columns: minmax(170px, .55fr) minmax(240px, 1fr); gap: 10px; margin-bottom: 12px; }
+    #plastic-material-lab .dynamic-table th button { width: 100%; justify-content: flex-start; text-align: left; white-space: nowrap; }
+    #plastic-material-lab .dynamic-table tbody tr.is-selected { background: color-mix(in srgb, var(--accent) 70%, transparent); }
+    #plastic-material-lab .table-link { border: 0; background: transparent; color: var(--foreground); padding: 0; font: inherit; font-weight: 500; text-align: left; cursor: pointer; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--foreground) 35%, transparent); text-underline-offset: 3px; }
+    #plastic-material-lab .table-detail { margin-top: 12px; }
+    #plastic-material-lab .table-detail dl { display: grid; grid-template-columns: 130px 1fr; gap: 8px 12px; margin: 0; }
+    #plastic-material-lab .table-detail dt { color: var(--muted-foreground); }
+    #plastic-material-lab .table-detail dd { margin: 0; }
+    @keyframes lab-drift { from { transform: translateY(-4px); } to { transform: translateY(5px); } }
+    @keyframes lab-spin { to { transform: rotate(360deg); } }
+    @keyframes lab-pulse { from { opacity: .45; } to { opacity: 1; } }
+    @keyframes lab-flow { from { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { transform: translateX(260px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      #plastic-material-lab .motion, #plastic-material-lab .spin, #plastic-material-lab .pulse, #plastic-material-lab .flow-dot { animation: none; }
+      #plastic-material-lab .meter > span { transition: none; }
+    }
+    @media (max-width: 660px) {
+      #plastic-material-lab .main-grid, #plastic-material-lab .lab-grid { grid-template-columns: 1fr; }
+      #plastic-material-lab .scene { min-height: 275px; }
+      #plastic-material-lab .fact-grid { grid-template-columns: 1fr; }
+      #plastic-material-lab .sample-svg { min-height: 180px; }
+      #plastic-material-lab .knowledge-grid, #plastic-material-lab .knowledge-grid.two { grid-template-columns: 1fr; }
+      #plastic-material-lab .choice-grid { grid-template-columns: repeat(2, minmax(78px, 1fr)); }
+      #plastic-material-lab .process-line { grid-template-columns: 1fr; }
+      #plastic-material-lab .formula-arrow { transform: rotate(90deg); }
+      #plastic-material-lab .compare-row { grid-template-columns: 1fr; gap: 4px; }
+      #plastic-material-lab .training-grid { grid-template-columns: 1fr; }
+      #plastic-material-lab .checkpoint-grid, #plastic-material-lab .table-toolbar { grid-template-columns: 1fr; }
+      #plastic-material-lab .table-detail dl { grid-template-columns: 1fr; gap: 3px; }
+    }
+    @media (max-width: 380px) {
+      #plastic-material-lab .material-grid { grid-template-columns: repeat(2, minmax(72px, 1fr)); }
+      #plastic-material-lab .meter-row { grid-template-columns: 66px 1fr 64px; gap: 7px; }
+    }
+  </style>
+
+  <div class="topline">
+    <div>
+      <h2>塑料材料与改性培训实验室</h2>
+      <div class="text-small text-muted">生产、改性、成型、性能与产品知识</div>
+    </div>
+    <div class="mode-switch" aria-label="学习模式">
+      <button type="button" class="btn btn-primary" data-mode="flow" aria-pressed="true">生产流程</button>
+      <button type="button" class="btn" data-mode="lab" aria-pressed="false">性能实验</button>
+      <button type="button" class="btn" data-mode="classify" aria-pressed="false">塑料分类</button>
+      <button type="button" class="btn" data-mode="modified" aria-pressed="false">改性与助剂</button>
+      <button type="button" class="btn" data-mode="forming" aria-pressed="false">成型工艺</button>
+      <button type="button" class="btn" data-mode="table" aria-pressed="false">动态表格</button>
+      <button type="button" class="btn" data-mode="training" aria-pressed="false">复习笔记</button>
+    </div>
+  </div>
+
+  <section id="lab-flow-view" aria-label="塑料生产流程">
+    <div class="viz-controls controls">
+      <label class="form-label">跟随一种塑料
+        <select id="lab-route-material" class="form-select">
+          <option value="PP">PP 聚丙烯</option>
+          <option value="PET">PET 聚酯</option>
+          <option value="HDPE">HDPE 高密度聚乙烯</option>
+          <option value="LDPE">LDPE 低密度聚乙烯</option>
+          <option value="PVC">PVC 聚氯乙烯</option>
+          <option value="PS">PS 聚苯乙烯</option>
+          <option value="ABS">ABS 树脂</option>
+          <option value="PA6">PA6 尼龙6</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="flow-overview">
+      <div class="flow-overview-head"><strong>完整生产闭环</strong><span class="text-small text-muted">点击任一步，查看变化、风险与检查重点</span></div>
+      <div class="stage-track" id="lab-stage-track" aria-label="完整生产流程步骤"></div>
+      <div class="checkpoint-grid" aria-live="polite">
+        <div class="checkpoint"><strong>本步容易出现的问题</strong><span id="lab-step-risk"></span></div>
+        <div class="checkpoint"><strong>现场应检查什么</strong><span id="lab-step-check"></span></div>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <div class="visual-field">
+        <svg id="lab-process-scene" class="scene" viewBox="0 0 620 340" role="img" aria-labelledby="lab-scene-title lab-scene-desc">
+          <title id="lab-scene-title">塑料生产动态示意</title>
+          <desc id="lab-scene-desc">选择流程步骤后，这里显示相应的原料、反应、颗粒、成型、使用或回收过程。</desc>
+          <defs>
+            <marker id="lab-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="var(--muted-foreground)"></path></marker>
+          </defs>
+          <g id="lab-scene-content"></g>
+        </svg>
+        <div class="legend-line" aria-label="图例">
+          <span><i class="dot"></i>当前材料</span>
+          <span><i class="dot alt"></i>反应物／辅料</span>
+          <span><i class="dot hot"></i>能量／作用力</span>
+        </div>
+      </div>
+      <aside class="detail card" aria-live="polite">
+        <div>
+          <div class="text-small text-muted" id="lab-step-kicker"></div>
+          <h3 id="lab-step-title"></h3>
+          <div id="lab-step-explain"></div>
+        </div>
+        <dl>
+          <dt>输入</dt><dd id="lab-step-input"></dd>
+          <dt>变化</dt><dd id="lab-step-change"></dd>
+          <dt>输出</dt><dd id="lab-step-output"></dd>
+        </dl>
+        <div class="step-actions">
+          <button type="button" class="btn" id="lab-prev">上一步</button>
+          <button type="button" class="btn btn-primary" id="lab-next">下一步</button>
+          <button type="button" class="btn btn-ghost" id="lab-play" aria-pressed="false"><i data-lucide="play" aria-hidden="true"></i> 自动播放</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="lab-property-view" class="hidden" aria-label="塑料性能实验">
+    <div class="lab-grid">
+      <div>
+        <div class="material-grid" id="lab-material-grid" aria-label="选择塑料"></div>
+        <div class="slider-stack">
+          <label class="form-label" for="lab-temp">
+            <span class="slider-head"><span>环境温度</span><strong id="lab-temp-value" class="tabular-nums">25 °C</strong></span>
+            <input id="lab-temp" class="form-range" type="range" min="-40" max="180" value="25" step="5">
+          </label>
+          <label class="form-label" for="lab-load">
+            <span class="slider-head"><span>拉伸载荷</span><strong id="lab-load-value" class="tabular-nums">35%</strong></span>
+            <input id="lab-load" class="form-range" type="range" min="0" max="100" value="35" step="1">
+          </label>
+        </div>
+        <p class="state-line" id="lab-state-line" aria-live="polite"></p>
+      </div>
+
+      <div class="sample-wrap">
+        <svg id="lab-sample-svg" class="sample-svg" viewBox="0 0 640 240" role="img" aria-labelledby="lab-sample-title lab-sample-desc">
+          <title id="lab-sample-title">塑料试样拉伸模拟</title>
+          <desc id="lab-sample-desc">试样形状会随所选塑料、温度和载荷变化，展示刚硬、韧性变形、软化或断裂趋势。</desc>
+          <defs>
+            <marker id="force-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--viz-series-3)"></path></marker>
+          </defs>
+          <rect class="grip" x="30" y="62" width="90" height="116" rx="8"></rect>
+          <rect class="grip" x="520" y="62" width="90" height="116" rx="8"></rect>
+          <path id="lab-specimen" class="sample" d="M120 75 L220 75 Q245 75 250 105 L390 105 Q395 75 420 75 L520 75 L520 165 L420 165 Q395 165 390 135 L250 135 Q245 165 220 165 L120 165 Z"></path>
+          <line id="lab-force-left" class="force" x1="112" y1="120" x2="42" y2="120"></line>
+          <line id="lab-force-right" class="force" x1="528" y1="120" x2="598" y2="120"></line>
+          <text x="30" y="35" class="muted-svg">夹具</text>
+          <text id="lab-sample-label" x="320" y="210" text-anchor="middle"></text>
+        </svg>
+
+        <div aria-label="相对性能">
+          <div class="meter-row"><span>刚度</span><div class="meter"><span id="lab-meter-stiffness"></span></div><strong id="lab-val-stiffness" class="tabular-nums"></strong></div>
+          <div class="meter-row"><span>韧性</span><div class="meter"><span id="lab-meter-toughness"></span></div><strong id="lab-val-toughness" class="tabular-nums"></strong></div>
+          <div class="meter-row"><span>耐热余量</span><div class="meter"><span id="lab-meter-heat"></span></div><strong id="lab-val-heat" class="tabular-nums"></strong></div>
+          <div class="meter-row"><span>阻隔性</span><div class="meter"><span id="lab-meter-barrier"></span></div><strong id="lab-val-barrier" class="tabular-nums"></strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact-grid">
+        <div class="card viz-stat"><div class="text-small text-muted">密度</div><div id="lab-density" class="viz-stat-value tabular-nums"></div><div class="text-small">g/cm³</div></div>
+        <div class="card viz-stat"><div class="text-small text-muted">典型连续使用温度</div><div id="lab-service" class="viz-stat-value tabular-nums"></div><div class="text-small">近似范围</div></div>
+        <div class="card viz-stat"><div class="text-small text-muted">回收识别码</div><div id="lab-recycle" class="viz-stat-value tabular-nums"></div><div id="lab-structure" class="text-small"></div></div>
+      </div>
+      <div class="text-small text-muted">模拟展示趋势；真实性能会随牌号、结晶度、添加剂、含水率和加工历史改变。</div>
+    </div>
+  </section>
+
+  <section id="lab-knowledge-view" class="hidden" aria-label="塑料知识地图">
+    <div class="knowledge-nav" id="lab-knowledge-nav" aria-label="知识主题"></div>
+    <div id="lab-knowledge-content" class="knowledge-area" aria-live="polite"></div>
+  </section>
+
+  <section id="lab-table-view" class="hidden" aria-label="可操作的动态知识表格">
+    <div class="table-toolbar">
+      <label class="form-label" for="lab-table-type">表格内容
+        <select id="lab-table-type" class="form-select">
+          <option value="materials">材料对比</option>
+          <option value="processes">成型工艺</option>
+          <option value="additives">助剂作用</option>
+        </select>
+      </label>
+      <label class="form-label" for="lab-table-search">筛选关键词
+        <input id="lab-table-search" class="form-control" type="search" placeholder="输入材料、产品、工艺或特性，例如：薄膜、阻燃、ABS">
+      </label>
+    </div>
+    <div class="text-small text-muted" id="lab-table-count" aria-live="polite"></div>
+    <div class="table-responsive">
+      <table class="table table-sm dynamic-table">
+        <thead id="lab-table-head"></thead>
+        <tbody id="lab-table-body"></tbody>
+      </table>
+    </div>
+    <div id="lab-table-detail" class="card table-detail" aria-live="polite"></div>
+  </section>
+
+  <section id="lab-training-view" class="hidden" aria-label="培训复习与笔记">
+    <div class="training-grid">
+      <article class="card" aria-live="polite">
+        <div class="text-small" id="lab-quiz-count"></div>
+        <h3 id="lab-quiz-question"></h3>
+        <div class="quiz-options" id="lab-quiz-options"></div>
+        <div id="lab-quiz-status" class="quiz-status"></div>
+        <button type="button" class="btn btn-primary" id="lab-quiz-next">下一题</button>
+      </article>
+      <div class="notes-box">
+        <label class="form-label" for="lab-notes">培训笔记（自动保存在当前浏览器）</label>
+        <textarea id="lab-notes" class="form-control" placeholder="例如：压延主要用于 PVC 薄膜；低碳塑料不等于不含碳……"></textarea>
+        <div class="note-actions">
+          <button type="button" class="btn btn-primary" id="lab-note-save">保存笔记</button>
+          <button type="button" class="btn" id="lab-note-download"><i data-lucide="download" aria-hidden="true"></i> 下载 TXT</button>
+          <button type="button" class="btn btn-ghost" id="lab-note-clear">清空</button>
+        </div>
+        <div id="lab-save-status" class="text-small text-muted save-status" aria-live="polite">笔记会自动保存；再次打开本网页时会恢复。</div>
+        <div class="text-small text-muted">建议记录：材料 → 特性 → 工艺 → 产品 → 注意事项。自动保存仅限当前浏览器；下载文件可用于备份或带到其他设备。</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const root = document.getElementById('plastic-material-lab');
+      if (!root) return;
+
+      const materials = {
+        PP:   {name:'PP 聚丙烯', short:'PP', feed:'石脑油 / 天然气', monomer:'丙烯 C₃H₆', reaction:'加成聚合', pellet:'PP 颗粒', form:'注塑 / 挤出 / 纤维', product:'餐具、托盘、文具、汽车件', recycle:'5', density:0.90, service:'0–100 °C', structure:'半结晶', stiffness:58, toughness:72, barrier:38, tg:-10, soften:135, fail:175, elasticity:0.72, note:'轻、耐疲劳，铰链可反复弯折；低温下会变脆。'},
+        PET:  {name:'PET 聚酯', short:'PET', feed:'对二甲苯 + 乙二醇', monomer:'PTA + MEG', reaction:'缩聚', pellet:'PET 切片', form:'注塑拉伸吹塑 / 纤维', product:'饮料瓶、涤纶纤维、薄膜', recycle:'1', density:1.38, service:'-20–70 °C', structure:'可结晶聚酯', stiffness:76, toughness:58, barrier:78, tg:75, soften:105, fail:245, elasticity:0.52, note:'透明、强度高、气体阻隔较好；加工前通常要充分干燥。'},
+        HDPE: {name:'HDPE 高密度聚乙烯', short:'HDPE', feed:'石脑油 / 天然气', monomer:'乙烯 C₂H₄', reaction:'加成聚合', pellet:'HDPE 颗粒', form:'吹塑 / 挤出 / 注塑', product:'奶瓶、管道、清洁剂瓶', recycle:'2', density:0.95, service:'-50–80 °C', structure:'高结晶', stiffness:52, toughness:86, barrier:55, tg:-120, soften:105, fail:135, elasticity:0.92, note:'耐化学性和冲击性好，吸水少；表面能低，粘接较难。'},
+        LDPE: {name:'LDPE 低密度聚乙烯', short:'LDPE', feed:'石脑油 / 天然气', monomer:'乙烯 C₂H₄', reaction:'高压自由基聚合', pellet:'LDPE 颗粒', form:'吹膜 / 流延 / 挤出涂覆', product:'农膜、包装膜、土工膜', recycle:'4', density:0.92, service:'-50–70 °C', structure:'低结晶', stiffness:24, toughness:90, barrier:42, tg:-110, soften:82, fail:115, elasticity:1.05, note:'柔韧、热封性好、耐低温；刚度和耐热性较低。'},
+        PVC:  {name:'PVC 聚氯乙烯（硬质）', short:'PVC', feed:'乙烯 + 盐', monomer:'氯乙烯 VCM', reaction:'加成聚合', pellet:'PVC 配混料', form:'挤出 / 压延 / 注塑', product:'管材、窗框、电缆护套', recycle:'3', density:1.40, service:'-10–60 °C', structure:'无定形', stiffness:82, toughness:42, barrier:70, tg:82, soften:92, fail:160, elasticity:0.34, note:'阻燃、耐候、可软可硬；热稳定性差，加工依赖稳定剂。'},
+        PS:   {name:'PS 聚苯乙烯', short:'PS', feed:'乙烯 + 苯', monomer:'苯乙烯', reaction:'加成聚合', pellet:'PS 颗粒', form:'注塑 / 挤出发泡', product:'透明盒、保温泡沫、模型', recycle:'6', density:1.05, service:'0–70 °C', structure:'无定形', stiffness:84, toughness:24, barrier:32, tg:100, soften:102, fail:145, elasticity:0.22, note:'刚硬、透明、易成型，但缺口敏感且较脆。'},
+        ABS:  {name:'ABS 树脂', short:'ABS', feed:'丙烯腈 + 丁二烯 + 苯乙烯', monomer:'三种单体 / 接枝体系', reaction:'共聚与接枝聚合', pellet:'ABS 颗粒', form:'注塑 / 挤出 / 热成型', product:'汽车内外饰、吹风机和电子产品外壳', recycle:'7', density:1.05, service:'-20–85 °C', structure:'无定形多相体系', stiffness:70, toughness:82, barrier:40, tg:105, soften:108, fail:150, elasticity:0.62, note:'兼具刚性、韧性和外观；耐候性与耐溶剂性需按场景改性。'},
+        PA6:  {name:'PA6 尼龙6', short:'PA6', feed:'苯 / 环己酮路线', monomer:'己内酰胺', reaction:'开环聚合', pellet:'PA6 颗粒', form:'注塑 / 纺丝 / 挤出', product:'齿轮、扎带、纤维', recycle:'7', density:1.13, service:'-30–120 °C', structure:'半结晶', stiffness:74, toughness:80, barrier:62, tg:50, soften:170, fail:215, elasticity:0.68, note:'强韧、耐磨；吸湿后尺寸与刚度会变化。'}
+      };
+
+      const steps = [
+        {title:'原料准备', kicker:'01 · 碳从哪里来', explain:'塑料不是“从石油直接变成瓶子”，而是先取得适合制造小分子的碳源。', input:m=>m.feed, change:'分离、净化并准备化工原料', output:m=>m.monomer, risk:'原料组成波动、杂质或水分超标，会把问题带到后续反应。', check:'核对来源、纯度、含水率、储存条件和批次一致性。'},
+        {title:'制造单体', kicker:'02 · 得到积木块', explain:'裂解或化学转化把大分子原料变成反应性强的小分子“积木”。', input:m=>m.feed, change:m=>m.short==='PET'?'氧化与酯化原料制备':m.short==='PVC'?'氯化并裂解生成 VCM':m.short==='PA6'?'多步合成己内酰胺':'裂解与分离', output:m=>m.monomer, risk:'反应不完全、副产物过多或分离不彻底，会影响单体质量。', check:'监控温度、压力、转化率、纯度和副产物含量。'},
+        {title:'聚合反应', kicker:'03 · 小分子连成长链', explain:'单体在催化剂、温度与压力控制下连接成长链；链结构决定材料性格。', input:m=>m.monomer, change:m=>m.reaction, output:m=>m.name+' 树脂', risk:'温度失控、催化剂比例偏差，会造成分子量和性能波动。', check:'控制温度、压力、反应时间、分子量分布与残余单体。'},
+        {title:'改性配混与造粒', kicker:'04 · 用配方改变材料性格', explain:'基础树脂加入助剂、填料或增强纤维，经熔融混炼得到改性塑料，再切成便于加工的颗粒。', input:m=>m.name+' 树脂 + 助剂 / 填料 / 纤维', change:'计量 → 混合 → 双螺杆熔融混炼 → 冷却切粒', output:m=>m.pellet+'或改性专用料', risk:'计量错误、分散不均、含水或过热降解，会出现色差、脆化、气泡和颗粒异常。', check:'核对配方比例、干燥状态、扭矩、熔体温度、分散和颗粒外观。'},
+        {title:'成型加工', kicker:'05 · 形状被“冻结”', explain:'依据制品形态选择注塑、挤出、吹塑、压延、热成型、滚塑、模压或发泡等工艺。', input:m=>m.pellet, change:m=>m.form, output:m=>m.product, risk:'温度、压力、速度和冷却不匹配，容易产生缩水、翘曲、气泡、水纹或烧焦。', check:'检查干燥、料温、模温、压力、速度、冷却时间和制品尺寸。'},
+        {title:'使用阶段', kicker:'06 · 结构服务于功能', explain:'分子链、结晶区、添加剂与制品几何共同决定刚度、韧性、阻隔和寿命。', input:m=>m.product, change:'承受温度、载荷、光照与化学环境', output:'功能 + 逐步老化', risk:'长期热、光、氧、化学介质和持续载荷会引起老化、蠕变或开裂。', check:'核对使用温度、载荷、接触介质、户外寿命和安全余量。'},
+        {title:'回收或终端处理', kicker:'07 · 材料走向下一站', explain:'先收集和分选；洁净单一料流更适合机械回收，混杂或降解材料更难循环。', input:'使用后的制品', change:'分选 → 清洗 → 粉碎 → 再造粒', output:'再生料 / 化学原料 / 能源回收', risk:'混料、污染、标签和多层结构会降低再生质量，反复受热也会使材料降解。', check:'识别树脂种类、分选纯度、污染程度、熔融指数和再生用途。'}
+      ];
+
+      let routeKey = 'PP';
+      let stepIndex = 0;
+      let selectedKey = 'PP';
+      let timer = null;
+
+      const $ = s => root.querySelector(s);
+      const $$ = s => [...root.querySelectorAll(s)];
+      const esc = v => String(v).replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
+
+      function sceneMarkup(i, m) {
+        const label = esc(m.short);
+        const monomer = esc(m.monomer);
+        if (i === 0) return `
+          <path class="structure" d="M70 270 C160 220 190 115 285 105 C370 96 410 173 545 78"></path>
+          <path class="secondary-fill" d="M56 266 Q105 214 153 268 Q110 293 56 266Z"></path>
+          <circle class="feed motion" cx="285" cy="105" r="45"></circle><text x="285" y="110" text-anchor="middle">碳源</text>
+          <circle class="active-fill motion" cx="498" cy="90" r="36" style="animation-delay:.35s"></circle><text x="498" y="95" text-anchor="middle">${label}</text>
+          <path class="arrow" d="M160 245 C210 220 218 162 253 132"></path><path class="arrow" d="M328 104 C382 105 416 98 457 93"></path>
+          <text x="65" y="305" class="muted-svg">石化、天然气或生物质路线</text>`;
+        if (i === 1) return `
+          <rect class="secondary-fill" x="72" y="70" width="120" height="180" rx="18"></rect><text x="132" y="165" text-anchor="middle">原料转化</text>
+          <path class="arrow" d="M205 160 H390"></path>
+          <g class="spin"><circle class="hot-fill" cx="300" cy="110" r="15"></circle><circle class="hot-fill" cx="345" cy="160" r="15"></circle><circle class="hot-fill" cx="300" cy="210" r="15"></circle></g>
+          <circle class="active-fill pulse" cx="485" cy="160" r="68"></circle><text x="485" y="153" text-anchor="middle">单体</text><text x="485" y="176" text-anchor="middle" class="muted-svg">${monomer}</text>`;
+        if (i === 2) return `
+          <g class="motion"><circle class="secondary-fill" cx="85" cy="85" r="23"></circle><circle class="secondary-fill" cx="85" cy="160" r="23"></circle><circle class="secondary-fill" cx="85" cy="235" r="23"></circle></g>
+          <path class="arrow" d="M125 160 H225"></path><circle class="hot-fill pulse" cx="270" cy="160" r="38"></circle><text x="270" y="165" text-anchor="middle">催化</text>
+          <path class="polymer" d="M350 220 C375 80 405 80 430 220 S485 360 510 220 S565 80 590 220"></path>
+          <text x="470" y="60" text-anchor="middle">单体连接成长链</text>`;
+        if (i === 3) return `
+          <rect class="secondary-fill" x="70" y="58" width="120" height="92" rx="10"></rect><text x="130" y="109" text-anchor="middle">树脂</text>
+          <rect class="hot-fill" x="70" y="190" width="120" height="92" rx="10"></rect><text x="130" y="241" text-anchor="middle">添加剂</text>
+          <path class="arrow" d="M205 105 C245 112 250 140 278 151"></path><path class="arrow" d="M205 235 C245 228 250 190 278 178"></path>
+          <g class="spin"><circle class="active-fill" cx="330" cy="165" r="65"></circle><path class="bond" d="M290 130 L370 200 M370 130 L290 200"></path></g>
+          <path class="arrow" d="M400 165 H500"></path>
+          <g class="pulse"><circle class="pellet" cx="530" cy="120" r="11"></circle><circle class="pellet" cx="565" cy="145" r="11"></circle><circle class="pellet" cx="528" cy="170" r="11"></circle><circle class="pellet" cx="560" cy="205" r="11"></circle></g>
+          <text x="530" y="255" text-anchor="middle">${label} 颗粒</text>`;
+        if (i === 4) return `
+          <g><circle class="pellet flow-dot" cx="100" cy="100" r="9"></circle><circle class="pellet flow-dot" cx="60" cy="132" r="9" style="animation-delay:.6s"></circle><circle class="pellet flow-dot" cx="20" cy="164" r="9" style="animation-delay:1.2s"></circle></g>
+          <path class="structure" d="M50 70 H365 L450 115 V205 L365 250 H50Z"></path>
+          <path class="hot-fill pulse" d="M120 105 H330 V215 H120Z"></path><text x="225" y="165" text-anchor="middle">加热 + 剪切</text>
+          <path class="arrow" d="M365 160 H458"></path>
+          <path class="active-fill" d="M470 88 H560 V232 H470 Q445 160 470 88Z"></path><text x="515" y="165" text-anchor="middle">模具</text>
+          <text x="315" y="302" text-anchor="middle">颗粒熔融 → 流动充模 → 冷却定形</text>`;
+        if (i === 5) return `
+          <path class="active-fill" d="M145 80 H475 Q515 80 515 120 V220 Q515 260 475 260 H145 Q105 260 105 220 V120 Q105 80 145 80Z"></path>
+          <path class="structure" d="M190 120 H430 V220 H190Z"></path><circle class="secondary-fill" cx="310" cy="170" r="36"></circle>
+          <path class="hot-fill pulse" d="M75 46 H190 V72 H75Z"></path><text x="132" y="38" text-anchor="middle">温度 / 光照</text>
+          <path class="arrow" d="M132 76 V110"></path><path class="arrow" d="M548 115 V205"></path>
+          <text x="566" y="105" text-anchor="middle">载荷</text><text x="310" y="309" text-anchor="middle">结构、环境和时间一起决定寿命</text>`;
+        return `
+          <path class="arrow" d="M105 92 C245 8 445 22 530 112"></path><path class="arrow" d="M530 220 C398 322 200 315 96 218"></path>
+          <circle class="secondary-fill" cx="102" cy="155" r="58"></circle><text x="102" y="150" text-anchor="middle">收集</text><text x="102" y="172" text-anchor="middle">分选</text>
+          <circle class="hot-fill" cx="315" cy="75" r="58"></circle><text x="315" y="70" text-anchor="middle">清洗</text><text x="315" y="92" text-anchor="middle">粉碎</text>
+          <circle class="active-fill pulse" cx="530" cy="165" r="58"></circle><text x="530" y="160" text-anchor="middle">再造粒</text><text x="530" y="182" text-anchor="middle">${label} 再生料</text>
+          <circle class="active-fill" cx="315" cy="270" r="42"></circle><text x="315" y="275" text-anchor="middle">再制品</text>`;
+      }
+
+      function renderSteps() {
+        const track = $('#lab-stage-track');
+        track.innerHTML = steps.map((s,i)=>`<button type="button" class="btn${i===stepIndex?' btn-primary':''}" data-step="${i}" aria-pressed="${i===stepIndex}"><span class="stage-num">${String(i+1).padStart(2,'0')}</span>${s.title}</button>${i<steps.length-1?'<span class="stage-arrow" aria-hidden="true">→</span>':''}`).join('');
+        track.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>{ stopPlay(); stepIndex=+b.dataset.step; renderFlow(); saveLearningState(); }));
+      }
+
+      function renderFlow() {
+        const m = materials[routeKey];
+        const s = steps[stepIndex];
+        renderSteps();
+        $('#lab-scene-content').innerHTML = sceneMarkup(stepIndex,m);
+        $('#lab-step-kicker').textContent = s.kicker;
+        $('#lab-step-title').textContent = s.title;
+        $('#lab-step-explain').textContent = s.explain;
+        $('#lab-step-input').textContent = typeof s.input==='function'?s.input(m):s.input;
+        $('#lab-step-change').textContent = typeof s.change==='function'?s.change(m):s.change;
+        $('#lab-step-output').textContent = typeof s.output==='function'?s.output(m):s.output;
+        $('#lab-step-risk').textContent = s.risk;
+        $('#lab-step-check').textContent = s.check;
+        $('#lab-prev').disabled = stepIndex===0;
+        $('#lab-next').textContent = stepIndex===steps.length-1?'回到起点':'下一步';
+      }
+
+      function stopPlay() {
+        if (timer) clearInterval(timer);
+        timer = null;
+        const b=$('#lab-play'); b.setAttribute('aria-pressed','false'); b.innerHTML='<i data-lucide="play" aria-hidden="true"></i> 自动播放';
+        if (window.lucide) lucide.createIcons({attrs:{width:16,height:16}});
+      }
+
+      function renderMaterialButtons() {
+        $('#lab-material-grid').innerHTML = Object.entries(materials).map(([k,m])=>`<button type="button" class="btn${k===selectedKey?' btn-primary':''}" data-material="${k}" aria-pressed="${k===selectedKey}">${m.short}</button>`).join('');
+        $('#lab-material-grid').querySelectorAll('[data-material]').forEach(b=>b.addEventListener('click',()=>{selectedKey=b.dataset.material; renderMaterialButtons(); renderProperties(); saveLearningState();}));
+      }
+
+      function clamp(v,min,max){ return Math.max(min,Math.min(max,v)); }
+      function level(v){ return v>=75?'高':v>=48?'中':'低'; }
+      function renderProperties() {
+        const m=materials[selectedKey];
+        const temp=+$('#lab-temp').value;
+        const load=+$('#lab-load').value;
+        $('#lab-temp-value').textContent=`${temp} °C`;
+        $('#lab-load-value').textContent=`${load}%`;
+        const warm=Math.max(0,(temp-m.tg)/Math.max(20,m.soften-m.tg));
+        const cold=temp<m.tg-25;
+        const heat=clamp((m.soften-temp)/(m.soften+40)*100,0,100);
+        const stiffness=clamp(m.stiffness*(1-0.42*warm)+(cold?9:0),5,100);
+        const toughness=clamp(m.toughness*(1+0.32*Math.min(warm,1))-(cold?24:0),5,100);
+        const deform=clamp(load*(1.05-stiffness/150)*m.elasticity*(1+warm*1.5),0,115);
+        const risk=load>toughness*1.05 || temp>=m.fail;
+        const soft=temp>=m.soften;
+        let state=risk?'可能断裂或发生不可逆失效':soft?'明显软化，尺寸稳定性下降':cold&&m.tg>-80?'玻璃态更明显，刚硬但冲击开裂风险上升':deform>40?'发生较明显的延伸变形':'处于相对稳定的弹性变形区';
+        $('#lab-state-line').textContent=`${m.name}：${state}。`;
+        $('#lab-density').textContent=m.density.toFixed(2);
+        $('#lab-service').textContent=m.service;
+        $('#lab-recycle').textContent=m.recycle;
+        $('#lab-structure').textContent=m.structure;
+        const metrics={stiffness, toughness, heat, barrier:m.barrier};
+        Object.entries(metrics).forEach(([k,v])=>{ const n=Math.round(v); $(`#lab-meter-${k}`).style.width=`${n}%`; $(`#lab-val-${k}`).textContent=level(n); });
+        const extension=clamp(deform,0,88);
+        const neck=clamp(30-extension*.23,9,30);
+        const left=250-extension*.65, right=390+extension*.65;
+        const farLeft=220-extension, farRight=420+extension;
+        const broken=risk;
+        const path=broken
+          ? `M120 75 L${farLeft} 75 Q${left} 75 ${left+10} ${120-neck} L305 ${120-neck} L305 120 L${left+10} ${120+neck} Q${left} 165 ${farLeft} 165 L120 165Z M520 75 L${farRight} 75 Q${right} 75 ${right-10} ${120-neck} L335 ${120-neck} L335 120 L${right-10} ${120+neck} Q${right} 165 ${farRight} 165 L520 165Z`
+          : `M120 75 L${farLeft} 75 Q${left} 75 ${left+10} ${120-neck} L${right-10} ${120-neck} Q${right} 75 ${farRight} 75 L520 75 L520 165 L${farRight} 165 Q${right} 165 ${right-10} ${120+neck} L${left+10} ${120+neck} Q${left} 165 ${farLeft} 165 L120 165Z`;
+        $('#lab-specimen').setAttribute('d',path);
+        $('#lab-specimen').style.opacity=soft?'.62':'1';
+        $('#lab-force-left').style.opacity=load===0?'0':String(.35+load/155);
+        $('#lab-force-right').style.opacity=load===0?'0':String(.35+load/155);
+        $('#lab-sample-label').textContent=`${m.short} · ${m.note}`;
+      }
+
+      const knowledgeTopics = [
+        {key:'classify', label:'塑料分类'},
+        {key:'modified', label:'改性与助剂'},
+        {key:'forming', label:'成型工艺'},
+        {key:'polymers', label:'高分子家族'},
+        {key:'products', label:'产品与新材料'},
+        {key:'concepts', label:'概念与优缺点'}
+      ];
+      const additiveData = {
+        plasticizer:{name:'增塑剂', action:'降低分子链间作用力和玻璃化温度，使材料更柔软、更易流动。', use:'软质 PVC、电缆料、薄膜', caution:'需关注迁移、挥发、耐久与法规要求。'},
+        stabilizer:{name:'稳定剂', action:'抑制加工或使用中的热、光、酸等因素导致的分解。', use:'PVC 热稳定、户外耐候体系', caution:'稳定剂要和树脂、温度及法规匹配。'},
+        lubricant:{name:'润滑剂', action:'降低熔体与设备、以及材料内部的摩擦，改善脱模和表面。', use:'挤出、注塑、PVC 配混', caution:'过量可能析出，并削弱印刷或粘接。'},
+        colorant:{name:'着色剂', action:'赋予颜色、遮盖或特殊光学效果。', use:'色母粒、颜料、染料', caution:'需评估耐热、耐候、迁移和分散性。'},
+        filler:{name:'填充剂', action:'降低成本或改变刚度、收缩、尺寸稳定、导热等性能。', use:'碳酸钙、滑石粉、玻纤', caution:'填充越多不一定越好，可能损失韧性和表面。'},
+        antioxidant:{name:'抗氧剂', action:'捕获自由基或分解过氧化物，延缓热氧老化。', use:'PE、PP 等聚烯烃加工与长期使用', caution:'常由主抗氧剂与辅助抗氧剂协同。'},
+        foaming:{name:'发泡剂', action:'在材料内产生气体形成泡孔，降低密度并提供缓冲或保温。', use:'EPS、EVA、PE、PVC 发泡', caution:'泡孔尺寸与均匀性取决于温度、压力和成核。'},
+        flame:{name:'阻燃剂', action:'降低点燃倾向、减慢火焰传播或促进成炭。', use:'电子电器、建筑、交通材料', caution:'阻燃等级、烟毒、力学性能和法规需一起评估。'}
+      };
+      const processData = {
+        injection:{name:'注塑', input:'颗粒熔体', action:'螺杆塑化并高压注入闭合模具', output:'复杂三维制件', examples:'餐具、托盘、ABS 外壳、汽车件'},
+        extrusion:{name:'挤出', input:'连续供料', action:'螺杆推进熔体通过固定口模', output:'连续截面制品', examples:'管材、型材、片材、电线包覆'},
+        blow:{name:'吹塑', input:'热型坯或预制坯', action:'压缩空气使型坯贴合模腔', output:'中空制品', examples:'PE 日化瓶、PET 饮料瓶'},
+        calender:{name:'压延', input:'塑化料团', action:'经过多组加热辊筒反复挤压和延展', output:'连续薄膜或片材', examples:'PVC 薄膜、地板革、人造革'},
+        thermo:{name:'热成型', input:'挤出片材', action:'加热软化后用真空或压力贴模', output:'薄壁壳体', examples:'食品托盒、杯盖、包装内托'},
+        rotation:{name:'滚塑', input:'树脂粉末', action:'封闭模具加热并沿多轴旋转', output:'大型无缝中空件', examples:'水箱、浮筒、游乐设施'},
+        compression:{name:'模压', input:'预定量料坯', action:'在热模中加压固化或定形', output:'厚壁或复合制件', examples:'热固性电器件、橡胶件、SMC 车身件'},
+        foam:{name:'发泡成型', input:'树脂 + 发泡体系', action:'气体成核、膨胀并稳定泡孔', output:'多孔轻质材料', examples:'EPS 保温板、EVA 鞋材、缓冲包装'}
+      };
+      const materialScopes = {PP:'通用塑料', PET:'工程/包装塑料', HDPE:'通用塑料', LDPE:'通用塑料', PVC:'通用塑料', PS:'通用塑料', ABS:'通用/工程塑料', PA6:'工程塑料'};
+      const tableConfigs = {
+        materials:{
+          columns:[['name','材料'],['scope','应用范围'],['structure','结晶形态'],['density','密度 g/cm³'],['service','连续使用温度'],['form','常见工艺'],['product','典型产品']],
+          rows:()=>Object.entries(materials).map(([key,m])=>({key,...m,scope:materialScopes[key]}))
+        },
+        processes:{
+          columns:[['name','成型工艺'],['input','输入'],['action','核心动作'],['output','输出形态'],['examples','典型产品']],
+          rows:()=>Object.entries(processData).map(([key,p])=>({key,...p}))
+        },
+        additives:{
+          columns:[['name','助剂'],['action','主要作用'],['use','常见场景'],['caution','使用提醒']],
+          rows:()=>Object.entries(additiveData).map(([key,a])=>({key,...a}))
+        }
+      };
+      let tableType = 'materials';
+      let tableQuery = '';
+      let tableSortKey = 'name';
+      let tableSortDir = 1;
+      let tableSelectedKey = '';
+
+      function tableDetailMarkup(row) {
+        if (!row) return '<p class="text-muted">没有符合条件的记录。</p>';
+        if (tableType==='materials') return `<h3>${esc(row.name)}</h3><dl><dt>材料要点</dt><dd>${esc(row.note)}</dd><dt>分类</dt><dd>${esc(row.scope)} · ${esc(row.structure)}</dd><dt>常用成型</dt><dd>${esc(row.form)}</dd><dt>典型产品</dt><dd>${esc(row.product)}</dd></dl>`;
+        if (tableType==='processes') return `<h3>${esc(row.name)}</h3><dl><dt>流程</dt><dd>${esc(row.input)} → ${esc(row.action)} → ${esc(row.output)}</dd><dt>典型产品</dt><dd>${esc(row.examples)}</dd><dt>判断重点</dt><dd>先看原料形态、是否连续生产，再看模具与施力方式。</dd></dl>`;
+        return `<h3>${esc(row.name)}</h3><dl><dt>作用</dt><dd>${esc(row.action)}</dd><dt>常见场景</dt><dd>${esc(row.use)}</dd><dt>配方提醒</dt><dd>${esc(row.caution)}</dd></dl>`;
+      }
+
+      function renderDynamicTable() {
+        const config=tableConfigs[tableType];
+        const query=tableQuery.trim().toLocaleLowerCase('zh-CN');
+        const rows=config.rows().filter(row=>!query||Object.values(row).some(v=>String(v).toLocaleLowerCase('zh-CN').includes(query)));
+        rows.sort((a,b)=>{
+          const av=a[tableSortKey], bv=b[tableSortKey];
+          if(typeof av==='number'&&typeof bv==='number') return (av-bv)*tableSortDir;
+          return String(av??'').localeCompare(String(bv??''),'zh-CN',{numeric:true})*tableSortDir;
+        });
+        if(!rows.some(r=>r.key===tableSelectedKey)) tableSelectedKey=rows[0]?.key||'';
+        $('#lab-table-count').textContent=`共 ${rows.length} 条；点击表头可排序，点击第一列可展开要点。`;
+        $('#lab-table-head').innerHTML=`<tr>${config.columns.map(([key,label])=>`<th scope="col"><button type="button" class="btn btn-ghost" data-table-sort="${key}" aria-label="按${label}排序">${label}${tableSortKey===key?(tableSortDir===1?' ↑':' ↓'):''}</button></th>`).join('')}</tr>`;
+        $('#lab-table-body').innerHTML=rows.length?rows.map(row=>`<tr class="${row.key===tableSelectedKey?'is-selected':''}">${config.columns.map(([key],index)=>`<td>${index===0?`<button type="button" class="table-link" data-table-row="${esc(row.key)}">${esc(row[key])}</button>`:esc(row[key])}</td>`).join('')}</tr>`).join(''):'<tr><td colspan="8">没有符合条件的记录，请换一个关键词。</td></tr>';
+        $('#lab-table-detail').innerHTML=tableDetailMarkup(rows.find(r=>r.key===tableSelectedKey));
+        $('#lab-table-head').querySelectorAll('[data-table-sort]').forEach(button=>button.addEventListener('click',()=>{
+          const key=button.dataset.tableSort;
+          if(tableSortKey===key) tableSortDir*=-1; else {tableSortKey=key;tableSortDir=1;}
+          renderDynamicTable(); saveLearningState();
+        }));
+        $('#lab-table-body').querySelectorAll('[data-table-row]').forEach(button=>button.addEventListener('click',()=>{tableSelectedKey=button.dataset.tableRow;renderDynamicTable();saveLearningState();}));
+      }
+      const quizData = [
+        {q:'热固性塑料固化以后，哪种说法更准确？', options:['可以像 PE 一样反复熔融成型','不能再次熔融，但仍可能粉碎、热解或化学回收','完全没有任何回收路径'], answer:1, explain:'交联网络不会再次熔融；“不可重熔”不等于所有回收路线都不存在。'},
+        {q:'无定形塑料受热时最典型的特征是什么？', options:['有单一固定熔点','在 Tg 附近逐渐软化，没有晶体熔点','任何温度下都不软化'], answer:1, explain:'PS、ABS、PC 等无定形塑料主要表现玻璃化和软化行为。'},
+        {q:'“压延”最符合哪一描述？', options:['把熔体高压注入闭模','塑化料经过多组辊筒形成连续膜片','在中空型坯内吹入空气'], answer:1, explain:'压延特别常见于 PVC 薄膜、片材、人造革等连续制品。'},
+        {q:'改性塑料最核心的含义是什么？', options:['所有回收塑料','基础树脂通过共混、填充、增强等获得目标性能','只加入颜色的塑料'], answer:1, explain:'着色只是改性的一种；改性还包括增强、增韧、阻燃、合金化等。'},
+        {q:'比强度用于比较什么？', options:['单位重量能够承受的强度水平','材料的绝对重量','材料熔化的速度'], answer:0, explain:'比强度 = 强度 ÷ 密度，是轻量化选材的重要指标。'},
+        {q:'关于“低碳塑料”，哪种说法正确？', options:['塑料分子完全不含碳','重点是降低生命周期碳排放','必然可以在自然环境快速降解'], answer:1, explain:'低碳描述碳足迹目标，不等于无碳，也不自动等于可降解。'},
+        {q:'除水母料更适合被理解为什么？', options:['长期替代所有烘干工艺','受潮原料出现气泡水纹时的配方补救之一','任何失效母料都能继续使用'], answer:1, explain:'使用比例、保存期和开封时限都应以具体供应商的 TDS 为准。'},
+        {q:'以下哪组更符合功能高分子材料？', options:['PE 膜、PP 托盘、ABS 外壳','离子交换树脂、导电高分子、高吸水树脂','钢、玻璃、陶瓷'], answer:1, explain:'功能高分子强调电、光、离子、生物等专门功能。'}
+      ];
+      let knowledgeTopic = 'classify';
+      let activeAdditive = 'plasticizer';
+      let activeProcess = 'calender';
+      let quizIndex = 0;
+      let quizAnswered = false;
+      let activeMode = 'flow';
+      let noteSaveTimer = null;
+      const storageKey = 'plastic-material-lab-learning-state-v2';
+
+      function readLearningState() {
+        try { return JSON.parse(localStorage.getItem(storageKey)||'null'); }
+        catch (error) { return null; }
+      }
+
+      function saveLearningState(message='已自动保存') {
+        const payload={
+          notes:$('#lab-notes')?.value||'', mode:activeMode, routeKey, stepIndex, selectedKey,
+          temp:$('#lab-temp')?.value, load:$('#lab-load')?.value, knowledgeTopic,
+          activeAdditive, activeProcess, quizIndex, tableType, tableQuery,
+          tableSortKey, tableSortDir, tableSelectedKey, savedAt:new Date().toISOString()
+        };
+        try {
+          localStorage.setItem(storageKey,JSON.stringify(payload));
+          const status=$('#lab-save-status');
+          if(status) status.textContent=`${message} · ${new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`;
+        } catch (error) {
+          const status=$('#lab-save-status');
+          if(status) status.textContent='当前浏览器无法自动保存，请使用“下载 TXT”备份。';
+        }
+      }
+
+      function downloadNotes() {
+        const content=$('#lab-notes').value.trim();
+        const heading='塑料材料与改性培训笔记';
+        const text=`${heading}\n保存时间：${new Date().toLocaleString('zh-CN')}\n\n${content||'（暂无笔记）'}\n`;
+        const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+        const url=URL.createObjectURL(blob);
+        const link=document.createElement('a');
+        link.href=url;
+        link.download=`塑料培训笔记-${new Date().toISOString().slice(0,10)}.txt`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        $('#lab-save-status').textContent='笔记已下载为 TXT 文件。';
+      }
+
+      function renderKnowledgeNav() {
+        $('#lab-knowledge-nav').innerHTML=knowledgeTopics.map(t=>`<button type="button" class="btn${t.key===knowledgeTopic?' btn-primary':''}" data-topic="${t.key}" aria-pressed="${t.key===knowledgeTopic}">${t.label}</button>`).join('');
+        $('#lab-knowledge-nav').querySelectorAll('[data-topic]').forEach(b=>b.addEventListener('click',()=>{knowledgeTopic=b.dataset.topic;renderKnowledgeNav();renderKnowledge();saveLearningState();}));
+      }
+
+      function classificationMarkup() {
+        return `<div class="knowledge-grid">
+          <article class="card"><h3>按应用范围</h3><div class="compare-row"><strong>通用塑料</strong><span>用量大、成本较低、加工成熟：PE、PP、PVC、PS；ABS 在不同教材中可能归入通用塑料或工程塑料。</span></div><div class="compare-row"><strong>工程塑料</strong><span>可承担结构和工程功能，综合力学、耐热和尺寸稳定性较高：PA、PC、POM、PBT、PPO。</span></div><div class="compare-row"><strong>特种塑料</strong><span>包括部分特种工程塑料与高性能树脂，面向高温、耐腐蚀或特殊功能：PEEK、PPS、PI、PTFE、LCP。</span></div></article>
+          <article class="card"><h3>按物理化学性能：受热行为</h3><div class="compare-row"><strong>热塑性</strong><span>加热可软化或熔融，冷却后再次定形；洁净、单一且未严重降解的料流通常可机械回收，如 PE、PP、PET、ABS。</span></div><div class="compare-row"><strong>热固性</strong><span>固化后形成三维交联网络，不能再次熔融成型，如环氧、酚醛、不饱和聚酯。</span></div><div class="note-line">培训速记可写“热塑性可重熔、热固性不可重熔”。热固性仍可能通过粉碎作填料、热解或化学方法回收，因此不宜绝对写成“完全不可回收”。</div></article>
+          <article class="card"><h3>按结晶形态</h3><div class="compare-row"><strong>半结晶塑料</strong><span>同时含晶区和非晶区，有较明确的熔融峰与熔融温区 Tm：PE、PP、PA、POM、PET。</span></div><div class="compare-row"><strong>无定形塑料</strong><span>没有晶体熔点，主要在玻璃化温度 Tg 附近逐渐软化：PS、ABS、PC、PMMA、硬 PVC。</span></div><div class="note-line">培训速记：“结晶型有熔融峰/温区，非结晶型没有晶体熔点”。聚合物通常不是在绝对固定的单一温度瞬间熔化。</div></article>
+        </div>`;
+      }
+
+      function modifiedMarkup() {
+        const a=additiveData[activeAdditive];
+        return `<div class="formula" aria-label="改性塑料配方路径"><span class="viz-badge">基础树脂</span><span>＋</span><span class="viz-badge">助剂</span><span>＋</span><span class="viz-badge">填料 / 纤维</span><span class="formula-arrow">→</span><span class="viz-badge">熔融混炼</span><span class="formula-arrow">→</span><strong>改性塑料</strong></div>
+          <div class="knowledge-grid two"><article class="card"><h3>什么是改性塑料</h3><p>通过共混、填充、增强、增韧、阻燃、合金化等方法，让基础树脂获得目标性能，并降低加工难度或综合成本。</p><div class="tag-cloud"><span class="viz-badge">玻纤增强</span><span class="viz-badge">矿物填充</span><span class="viz-badge">增韧</span><span class="viz-badge">阻燃</span><span class="viz-badge">耐候</span><span class="viz-badge">导电</span></div></article><article class="card"><h3>助剂的核心作用</h3><p>为材料赋予特性、保护材料，或改善流动、分散、脱模等加工行为。配方效果取决于相容性、用量和加工窗口。</p><div class="note-line">助剂常有副作用和协同效应：例如填料提高刚度与尺寸稳定性，但过量可能降低韧性。</div></article></div>
+          <div class="choice-grid" id="lab-additive-grid">${Object.entries(additiveData).map(([k,v])=>`<button type="button" class="btn${k===activeAdditive?' btn-primary':''}" data-additive="${k}" aria-pressed="${k===activeAdditive}">${v.name}</button>`).join('')}</div>
+          <div class="card selected-detail"><h3>${a.name}</h3><dl><dt>作用</dt><dd>${a.action}</dd><dt>常见场景</dt><dd>${a.use}</dd><dt>配方提醒</dt><dd>${a.caution}</dd></dl></div>`;
+      }
+
+      function formingMarkup() {
+        const p=processData[activeProcess];
+        return `<div class="choice-grid" id="lab-process-grid">${Object.entries(processData).map(([k,v])=>`<button type="button" class="btn${k===activeProcess?' btn-primary':''}" data-process="${k}" aria-pressed="${k===activeProcess}">${v.name}</button>`).join('')}</div>
+          <div class="process-line" aria-label="${p.name}流程"><div class="process-node">${p.input}</div><span class="formula-arrow">→</span><div class="process-node">${p.action}</div><span class="formula-arrow">→</span><div class="process-node">${p.output}</div></div>
+          <div class="card selected-detail"><h3>${p.name}</h3><dl><dt>基本原理</dt><dd>${p.action}</dd><dt>典型产品</dt><dd>${p.examples}</dd><dt>识别方式</dt><dd>${p.output}；观察制品形状和是否连续生产，可以初步判断工艺。</dd></dl>${activeProcess==='calender'?'<div class="note-line">“延压”在塑料加工中的规范名称通常写作“压延”。PVC 是最典型的压延材料之一。</div>':''}</div>`;
+      }
+
+      function polymersMarkup() {
+        return `<svg class="material-path" viewBox="0 0 760 230" role="img" aria-label="高分子材料家族图"><path class="branch" d="M380 42 V82 M380 82 H190 V116 M380 82 H570 V116"></path><rect class="node-a" x="300" y="12" width="160" height="52" rx="10"></rect><text x="380" y="43" text-anchor="middle">高分子材料</text><rect class="node-a" x="105" y="116" width="170" height="52" rx="10"></rect><text x="190" y="147" text-anchor="middle">常见高分子材料</text><rect class="node-b" x="485" y="116" width="170" height="52" rx="10"></rect><text x="570" y="147" text-anchor="middle">功能高分子材料</text><text x="190" y="205" text-anchor="middle">结构、成型与日常功能</text><text x="570" y="205" text-anchor="middle">电、光、离子、生物等特定功能</text></svg>
+          <div class="knowledge-grid two"><article class="card"><h3>常见高分子材料</h3><div class="tag-cloud"><span class="viz-badge">塑料</span><span class="viz-badge">橡胶</span><span class="viz-badge">纤维</span><span class="viz-badge">胶黏剂</span><span class="viz-badge">涂料</span></div><p>分类角度不同会有交叉：同一种聚合物可以做塑料，也可以纺成纤维或制成涂层。</p></article><article class="card"><h3>功能高分子材料</h3><div class="tag-cloud"><span class="viz-badge">离子交换树脂</span><span class="viz-badge">导电高分子</span><span class="viz-badge">感光高分子</span><span class="viz-badge">高吸水树脂</span><span class="viz-badge">医用高分子</span><span class="viz-badge">液晶高分子</span></div><p>其价值来自可设计的专门功能，而不只来自承载或成型。</p></article></div>`;
+      }
+
+      function productsMarkup() {
+        return `<div class="knowledge-grid">
+          <article class="card"><h3>PE 常见产品</h3><ul><li>农膜</li><li>包装膜</li><li>土工膜</li></ul><p>薄膜多采用吹膜或流延；不同密度和共聚结构决定柔韧、强度与热封性。</p></article>
+          <article class="card"><h3>PP 常见产品</h3><ul><li>餐具</li><li>托盘</li><li>文具</li></ul><p>常用注塑、挤出与纺丝；密度低、耐疲劳、耐热通常优于 PE。</p></article>
+          <article class="card"><h3>ABS 常见产品</h3><ul><li>汽车内外饰与部分外壳</li><li>吹风机外壳</li><li>电子产品外壳</li></ul><p>常通过注塑成型，兼顾刚性、韧性、表面外观和尺寸稳定。</p></article>
+          <article class="card"><h3>除水母料</h3><p><strong>特点：</strong>常利用活性吸水组分与水反应，分散较容易，可按供应商建议比例直接加入。</p><p><strong>适用：</strong>聚烯烃等原料轻度受潮，制品有气泡或水纹，又无法先烘干时的临时工艺补救。</p><p><strong>限制：</strong>不能普遍替代 PET、PA、PC 等吸湿性工程塑料的规范干燥；吸湿失效后可能出现白颗粒、结团、变大或变白，不宜预热“炒料”。“保存 6 个月、开封 8 小时”应以具体供应商 TDS 为准。</p></article>
+          <article class="card"><h3>纳米填料改性塑料</h3><div class="compare-row"><strong>培训要点</strong><span>提高光泽、降低成本、改善力学性能和收缩，适合强化、降本、美观需求。</span></div><div class="compare-row"><strong>技术注释</strong><span>效果取决于纳米填料种类、粒径、界面处理和分散；更准确名称是“纳米填料改性塑料/母料”，不同于环境污染语境中的“纳米塑料”。</span></div></article>
+          <article class="card"><h3>低碳塑料</h3><div class="compare-row"><strong>培训要点</strong><span>降低成本、强调环保，并尽量维持普通塑料产品品质。</span></div><div class="compare-row"><strong>技术修正</strong><span>“低碳塑料”不是单一树脂类别，而是碳足迹较低的产品表述，需要以 LCA、产品碳足迹或认证数据支持；它不等于“不含碳”。若资料写“不含碳”，可能是“不含炭黑”，应核对原始规格。</span></div><p><strong>适用：</strong>碳足迹、环保采购和减排需求。</p></article>
+          <article class="card"><h3>竹塑材料</h3><div class="compare-row"><strong>培训要点</strong><span>分散性好、有竹香、材料易取得、外观特殊，面向环保需求，日本等市场存在相关需求。</span></div><div class="compare-row"><strong>技术修正</strong><span>竹粉可降低石化树脂用量，但能否自然降解取决于树脂基体；竹粉加入 PE、PP 后不会自动变成可完全降解材料。</span></div></article>
+          <article class="card"><h3>新料 / 原生料</h3><p>由石化或其他原料首次聚合得到、尚未经历制品回收再加工的树脂。行业口语中“新料”常与再生料相对。</p><div class="note-line">“没有经过二次熔融混炼、造粒、改性”可作为单一原生树脂的描述，但改性新料仍可使用全新的原生树脂和助剂经过配混造粒。</div></article>
+        </div>`;
+      }
+
+      function conceptsMarkup() {
+        return `<div class="knowledge-grid">
+          <article class="card"><h3>相对密度</h3><p>材料密度与参考物质密度之比；固体和液体通常以约 4 °C 的水为参考，因此没有单位。</p><div class="formula"><strong>相对密度 = 材料密度 ÷ 水的密度</strong></div></article>
+          <article class="card"><h3>强度</h3><p>材料抵抗外力导致破坏或规定变形的能力。需说明类型，如拉伸强度、弯曲强度、压缩强度、冲击强度。</p><div class="note-line">“强度高”必须和载荷方式、温度、速度、缺口及试样方向一起理解。</div></article>
+          <article class="card"><h3>比强度</h3><p>强度与密度的比值，用来比较“单位重量能承受多少”。比强度高，通常意味着更适合轻量化结构。</p><div class="formula"><strong>比强度 = 强度 ÷ 密度</strong></div></article>
+          <article class="card"><h3>塑料的优势</h3><ul><li>密度低，容易实现轻量化</li><li>易加工成复杂形状，生产效率高</li><li>耐腐蚀、绝缘、可透明或着色</li><li>通过改性可兼顾强度、韧性与功能</li></ul></article>
+          <article class="card"><h3>塑料的局限</h3><ul><li>多数品种耐热低于金属和陶瓷</li><li>受载后可能蠕变，尺寸精度受收缩影响</li><li>光、热、氧和化学环境会促进老化</li><li>回收受混料、污染、添加剂与降解限制</li></ul></article>
+          <article class="card"><h3>一句话判断</h3><p>“又轻又结实、稳定易加工”是塑料的典型价值；“耐热较差、易收缩蠕变和老化”是设计时常见限制。</p><div class="note-line">不能笼统说所有塑料“熔点低”：无定形塑料没有晶体熔点，特种工程塑料的耐热也可能很高。</div></article>
+        </div>`;
+      }
+
+      function renderKnowledge() {
+        const content=$('#lab-knowledge-content');
+        content.innerHTML=knowledgeTopic==='classify'?classificationMarkup():knowledgeTopic==='modified'?modifiedMarkup():knowledgeTopic==='forming'?formingMarkup():knowledgeTopic==='polymers'?polymersMarkup():knowledgeTopic==='products'?productsMarkup():conceptsMarkup();
+        content.querySelectorAll('[data-additive]').forEach(b=>b.addEventListener('click',()=>{activeAdditive=b.dataset.additive;renderKnowledge();saveLearningState();}));
+        content.querySelectorAll('[data-process]').forEach(b=>b.addEventListener('click',()=>{activeProcess=b.dataset.process;renderKnowledge();saveLearningState();}));
+      }
+
+      function renderQuiz() {
+        const item=quizData[quizIndex];
+        quizAnswered=false;
+        $('#lab-quiz-count').textContent=`第 ${quizIndex+1} / ${quizData.length} 题`;
+        $('#lab-quiz-question').textContent=item.q;
+        $('#lab-quiz-status').textContent='';
+        $('#lab-quiz-options').innerHTML=item.options.map((o,i)=>`<button type="button" class="btn" data-answer="${i}" aria-pressed="false">${o}</button>`).join('');
+        $('#lab-quiz-options').querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{
+          if(quizAnswered) return;
+          quizAnswered=true;
+          const picked=+b.dataset.answer;
+          $('#lab-quiz-options').querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;if(+x.dataset.answer===item.answer){x.classList.add('btn-primary');x.setAttribute('aria-pressed','true');}});
+          $('#lab-quiz-status').textContent=`${picked===item.answer?'回答正确。':'答案需要修正。'} ${item.explain}`;
+        }));
+      }
+
+      function setMode(mode,persist=true,preserveTopic=false) {
+        activeMode=mode;
+        $$('.mode-switch [data-mode]').forEach(b=>{const on=b.dataset.mode===mode;b.classList.toggle('btn-primary',on);b.setAttribute('aria-pressed',String(on));});
+        if(['classify','modified','forming'].includes(mode)&&!preserveTopic) knowledgeTopic=mode;
+        if(['classify','modified','forming'].includes(mode)){renderKnowledgeNav();renderKnowledge();}
+        $('#lab-flow-view').classList.toggle('hidden',mode!=='flow');
+        $('#lab-property-view').classList.toggle('hidden',mode!=='lab');
+        $('#lab-knowledge-view').classList.toggle('hidden',!['classify','modified','forming'].includes(mode));
+        $('#lab-table-view').classList.toggle('hidden',mode!=='table');
+        $('#lab-training-view').classList.toggle('hidden',mode!=='training');
+        if(mode!=='flow') stopPlay();
+        if(persist) saveLearningState();
+      }
+
+      $$('.mode-switch [data-mode]').forEach(btn=>btn.addEventListener('click',()=>setMode(btn.dataset.mode)));
+      $('#lab-route-material').addEventListener('change',e=>{routeKey=e.target.value;renderFlow();saveLearningState();});
+      $('#lab-prev').addEventListener('click',()=>{stopPlay();stepIndex=Math.max(0,stepIndex-1);renderFlow();saveLearningState();});
+      $('#lab-next').addEventListener('click',()=>{stopPlay();stepIndex=(stepIndex+1)%steps.length;renderFlow();saveLearningState();});
+      $('#lab-play').addEventListener('click',()=>{
+        if(timer){stopPlay();return;}
+        const b=$('#lab-play'); b.setAttribute('aria-pressed','true'); b.innerHTML='<i data-lucide="pause" aria-hidden="true"></i> 暂停';
+        if(window.lucide) lucide.createIcons({attrs:{width:16,height:16}});
+        timer=setInterval(()=>{stepIndex=(stepIndex+1)%steps.length;renderFlow();},2400);
+      });
+      $('#lab-temp').addEventListener('input',()=>{renderProperties();saveLearningState();});
+      $('#lab-load').addEventListener('input',()=>{renderProperties();saveLearningState();});
+      $('#lab-quiz-next').addEventListener('click',()=>{quizIndex=(quizIndex+1)%quizData.length;renderQuiz();saveLearningState();});
+      $('#lab-table-type').addEventListener('change',e=>{tableType=e.target.value;tableSortKey='name';tableSortDir=1;tableSelectedKey='';renderDynamicTable();saveLearningState();});
+      $('#lab-table-search').addEventListener('input',e=>{tableQuery=e.target.value;renderDynamicTable();clearTimeout(noteSaveTimer);noteSaveTimer=setTimeout(()=>saveLearningState(),350);});
+      $('#lab-notes').addEventListener('input',()=>{clearTimeout(noteSaveTimer);$('#lab-save-status').textContent='正在记录更改…';noteSaveTimer=setTimeout(()=>saveLearningState(),450);});
+      $('#lab-note-save').addEventListener('click',()=>saveLearningState('笔记已保存'));
+      $('#lab-note-download').addEventListener('click',downloadNotes);
+      $('#lab-note-clear').addEventListener('click',()=>{
+        if(!window.confirm('确定要清空当前笔记吗？下载备份后再清空会更安全。')) return;
+        $('#lab-notes').value='';
+        saveLearningState('笔记已清空');
+      });
+
+      const saved=readLearningState();
+      if(saved){
+        if(saved.routeKey&&materials[saved.routeKey]) routeKey=saved.routeKey;
+        if(Number.isInteger(saved.stepIndex)) stepIndex=clamp(saved.stepIndex,0,steps.length-1);
+        if(saved.selectedKey&&materials[saved.selectedKey]) selectedKey=saved.selectedKey;
+        if(saved.knowledgeTopic&&knowledgeTopics.some(t=>t.key===saved.knowledgeTopic)) knowledgeTopic=saved.knowledgeTopic;
+        if(saved.activeAdditive&&additiveData[saved.activeAdditive]) activeAdditive=saved.activeAdditive;
+        if(saved.activeProcess&&processData[saved.activeProcess]) activeProcess=saved.activeProcess;
+        if(Number.isInteger(saved.quizIndex)) quizIndex=clamp(saved.quizIndex,0,quizData.length-1);
+        if(saved.tableType&&tableConfigs[saved.tableType]) tableType=saved.tableType;
+        tableQuery=typeof saved.tableQuery==='string'?saved.tableQuery:'';
+        tableSortKey=typeof saved.tableSortKey==='string'?saved.tableSortKey:'name';
+        tableSortDir=saved.tableSortDir===-1?-1:1;
+        tableSelectedKey=typeof saved.tableSelectedKey==='string'?saved.tableSelectedKey:'';
+        if(typeof saved.temp==='string') $('#lab-temp').value=saved.temp;
+        if(typeof saved.load==='string') $('#lab-load').value=saved.load;
+        if(typeof saved.notes==='string') $('#lab-notes').value=saved.notes;
+        if(saved.mode&&$$('.mode-switch [data-mode]').some(b=>b.dataset.mode===saved.mode)) activeMode=saved.mode;
+        if(saved.savedAt) $('#lab-save-status').textContent=`已恢复上次记录 · ${new Date(saved.savedAt).toLocaleString('zh-CN')}`;
+      }
+      $('#lab-route-material').value=routeKey;
+      $('#lab-table-type').value=tableType;
+      $('#lab-table-search').value=tableQuery;
+      renderFlow(); renderMaterialButtons(); renderProperties(); renderKnowledgeNav(); renderKnowledge(); renderDynamicTable(); renderQuiz(); setMode(activeMode,false,true);
+    })();
+  </script>
+</div>
+
+
+
+<script>
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) => {
+    lastPointerWasTouch =
+      event.type === "pointerdown" && event.pointerType === "touch";
+  };
+  const handleTouchClick = (event) => {
+    const isTouch = event.pointerType === "touch" || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch && activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() => {
+      if (activeTrigger === trigger && !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) => {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerdown", handlePointer);
+    document.removeEventListener("pointercancel", handlePointer);
+    document.removeEventListener("click", handleTouchClick);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerdown", handlePointer);
+  document.addEventListener("pointercancel", handlePointer);
+  document.addEventListener("click", handleTouchClick);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+
+<script>
+(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+
+</body>
+</html>
+
