@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>塑料材料与改性培训实验室</title>
 
-<meta name="application-version" content="20260913-compat1">
+<meta name="application-version" content="20260914-visual1">
 <style>#plastic-material-lab {
   color: #1a1c1f;
   width: 100%;
@@ -1194,6 +1194,318 @@ textarea.form-control {
   fill: #39a55e;
 }
 
+.novice-head, .novice-controls, .novice-step-list, .novice-part-list, .product-group-switch, .product-picks, .company-product-list {
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+}
+
+.novice-controls > *, .novice-step-list > *, .novice-part-list > *, .product-group-switch > *, .product-picks > *, .company-product-list > * {
+  margin: 4px 8px 4px 0;
+}
+
+.novice-head {
+  justify-content: space-between;
+}
+
+.novice-lesson {
+  background: #fff;
+  border: 2px solid #1976cf;
+  margin: 12px 0;
+  padding: 20px;
+}
+
+.novice-story {
+  border-left: 4px solid #1976cf;
+  margin: 12px 0;
+  padding: 8px 16px;
+}
+
+.novice-story > span {
+  color: #626d79;
+  font-size: 14px;
+}
+
+.novice-story h4 {
+  margin: 4px 0 6px;
+  font-size: 22px;
+}
+
+.novice-story p {
+  margin: 0;
+}
+
+.novice-stage {
+  background: #102b46;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.novice-stage canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.novice-stage p {
+  color: #fff;
+  padding: 12px;
+}
+
+.novice-state {
+  flex-wrap: wrap;
+  padding: 12px 0;
+  display: flex;
+}
+
+.novice-state strong {
+  color: #1976cf;
+  margin-right: 14px;
+}
+
+.novice-controls {
+  margin: 8px 0;
+}
+
+.novice-controls > .form-label {
+  flex: 190px;
+  min-width: 0;
+}
+
+.novice-controls input[type="checkbox"] {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.novice-part-explain {
+  background: #e5f2ff;
+  border-radius: 12px;
+  min-height: 64px;
+  margin: 10px 0;
+  padding: 14px;
+}
+
+.novice-options {
+  margin: 12px 0;
+}
+
+details > summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+  font-weight: 600;
+}
+
+details > p {
+  margin-top: 8px;
+}
+
+.product-group-switch {
+  margin-bottom: 16px;
+}
+
+.product-group-switch .btn {
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.company-product-list .btn {
+  flex: 150px;
+  min-height: 54px;
+}
+
+.product-focus {
+  margin: 12px 0 24px;
+}
+
+.product-route, .product-examples {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+  display: grid;
+}
+
+.product-route > span {
+  background: #fff;
+  border: 1px solid #d7dee6;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.product-route small {
+  color: #1976cf;
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  display: block;
+}
+
+.product-examples {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-examples > div {
+  background: #e5f2ff;
+  border-left: 4px solid #1976cf;
+  padding: 16px;
+}
+
+.product-need {
+  flex-wrap: wrap;
+  margin: 8px 0;
+  display: flex;
+}
+
+.product-need strong {
+  color: #1976cf;
+  margin-right: 12px;
+}
+
+.product-principle {
+  width: 100%;
+  height: auto;
+  margin: 12px 0;
+  display: block;
+}
+
+.product-principle text {
+  fill: #1a1c1f;
+  font-family: inherit;
+  font-size: 20px;
+}
+
+.product-zone {
+  fill: #fff;
+  stroke: #d7dee6;
+}
+
+.product-resin {
+  fill: #339cff;
+}
+
+.product-add {
+  fill: #e88c3b;
+}
+
+.product-composite {
+  fill: #39a55e;
+}
+
+.product-diagram-scroll {
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.product-principle {
+  min-width: 580px;
+}
+
+.product-fiber {
+  fill: none;
+  stroke: #39a55e;
+  stroke-width: 5px;
+}
+
+.product-matrix {
+  fill: #339cff;
+  fill-opacity: .2;
+  stroke: #d7dee6;
+}
+
+.origin-comparison {
+  border-top: 1px solid #d7dee6;
+  margin: 28px 0 12px;
+  padding-top: 20px;
+}
+
+.origin-route {
+  text-align: center;
+  background: #fff;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  padding: 16px;
+}
+
+.origin-route > * {
+  display: block;
+}
+
+.origin-route b {
+  color: #626d79;
+}
+
+#mix-explorer, #strength-explorer {
+  margin: 16px 0 24px;
+}
+
+.mix-stack {
+  border: 1px solid #d7dee6;
+  border-radius: 10px;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  overflow: hidden;
+}
+
+.mix-stack span {
+  height: 100%;
+  display: block;
+}
+
+#mix-virgin-bar {
+  background: #318bd4;
+}
+
+#mix-recycled-bar {
+  background: #35a88c;
+}
+
+.mix-results {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 0;
+  display: flex;
+}
+
+.mix-results span {
+  margin: 4px 12px 4px 0;
+  font-weight: 600;
+}
+
+.mix-grains {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  display: block;
+}
+
+.learning-bar-row {
+  grid-template-columns: 75px minmax(0, 1fr) 65px;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+  display: grid;
+}
+
+.learning-bar-track {
+  background: #e8edf2;
+  border-radius: 6px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.learning-bar-track span {
+  background: #339cff;
+  height: 100%;
+  display: block;
+}
+
+#strength-b-bar {
+  background: #e88c3b;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     --lightningcss-light: ;
@@ -1243,6 +1555,41 @@ textarea.form-control {
   #plastic-material-lab .table-responsive .table {
     min-width: 660px;
   }
+
+  .novice-lesson {
+    padding: 12px;
+  }
+
+  .novice-story {
+    padding: 6px 10px;
+  }
+
+  .novice-step-list > .btn {
+    flex: 120px;
+    min-height: 48px;
+  }
+
+  .novice-part-list > .btn {
+    flex: 125px;
+    min-height: 48px;
+  }
+
+  .product-route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-examples {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-bar-row {
+    grid-template-columns: 60px minmax(0, 1fr) 55px;
+    gap: 6px;
+  }
+
+  .product-group-switch .btn {
+    width: 100%;
+  }
 }
 
 @supports not (display: grid) {
@@ -1261,6 +1608,24 @@ textarea.form-control {
 
   #plastic-material-lab .choice-grid .btn, #plastic-material-lab .forming-steps .btn, #plastic-material-lab .material-grid .btn {
     margin: 4px;
+  }
+
+  .product-route, .product-examples {
+    display: block;
+  }
+
+  .product-route > span, .product-examples > div {
+    margin: 8px 0;
+    display: block;
+  }
+
+  .learning-bar-row {
+    display: flex;
+  }
+
+  .learning-bar-track {
+    flex: 1;
+    margin: 0 12px;
   }
 }
 
@@ -2450,6 +2815,318 @@ textarea.form-control {
   fill: #74d58b;
 }
 
+.novice-head, .novice-controls, .novice-step-list, .novice-part-list, .product-group-switch, .product-picks, .company-product-list {
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+}
+
+.novice-controls > *, .novice-step-list > *, .novice-part-list > *, .product-group-switch > *, .product-picks > *, .company-product-list > * {
+  margin: 4px 8px 4px 0;
+}
+
+.novice-head {
+  justify-content: space-between;
+}
+
+.novice-lesson {
+  background: #181a1d;
+  border: 2px solid #83c3ff;
+  margin: 12px 0;
+  padding: 20px;
+}
+
+.novice-story {
+  border-left: 4px solid #83c3ff;
+  margin: 12px 0;
+  padding: 8px 16px;
+}
+
+.novice-story > span {
+  color: #b1bdc9;
+  font-size: 14px;
+}
+
+.novice-story h4 {
+  margin: 4px 0 6px;
+  font-size: 22px;
+}
+
+.novice-story p {
+  margin: 0;
+}
+
+.novice-stage {
+  background: #102b46;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.novice-stage canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.novice-stage p {
+  color: #fff;
+  padding: 12px;
+}
+
+.novice-state {
+  flex-wrap: wrap;
+  padding: 12px 0;
+  display: flex;
+}
+
+.novice-state strong {
+  color: #83c3ff;
+  margin-right: 14px;
+}
+
+.novice-controls {
+  margin: 8px 0;
+}
+
+.novice-controls > .form-label {
+  flex: 190px;
+  min-width: 0;
+}
+
+.novice-controls input[type="checkbox"] {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.novice-part-explain {
+  background: #203d59;
+  border-radius: 12px;
+  min-height: 64px;
+  margin: 10px 0;
+  padding: 14px;
+}
+
+.novice-options {
+  margin: 12px 0;
+}
+
+details > summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 10px 0;
+  font-weight: 600;
+}
+
+details > p {
+  margin-top: 8px;
+}
+
+.product-group-switch {
+  margin-bottom: 16px;
+}
+
+.product-group-switch .btn {
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.company-product-list .btn {
+  flex: 150px;
+  min-height: 54px;
+}
+
+.product-focus {
+  margin: 12px 0 24px;
+}
+
+.product-route, .product-examples {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+  display: grid;
+}
+
+.product-route > span {
+  background: #181a1d;
+  border: 1px solid #48525e;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.product-route small {
+  color: #83c3ff;
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  display: block;
+}
+
+.product-examples {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-examples > div {
+  background: #203d59;
+  border-left: 4px solid #83c3ff;
+  padding: 16px;
+}
+
+.product-need {
+  flex-wrap: wrap;
+  margin: 8px 0;
+  display: flex;
+}
+
+.product-need strong {
+  color: #83c3ff;
+  margin-right: 12px;
+}
+
+.product-principle {
+  width: 100%;
+  height: auto;
+  margin: 12px 0;
+  display: block;
+}
+
+.product-principle text {
+  fill: #f2f4f8;
+  font-family: inherit;
+  font-size: 20px;
+}
+
+.product-zone {
+  fill: #181a1d;
+  stroke: #48525e;
+}
+
+.product-resin {
+  fill: #83c3ff;
+}
+
+.product-add {
+  fill: #f59a56;
+}
+
+.product-composite {
+  fill: #74d58b;
+}
+
+.product-diagram-scroll {
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.product-principle {
+  min-width: 580px;
+}
+
+.product-fiber {
+  fill: none;
+  stroke: #74d58b;
+  stroke-width: 5px;
+}
+
+.product-matrix {
+  fill: #83c3ff;
+  fill-opacity: .2;
+  stroke: #48525e;
+}
+
+.origin-comparison {
+  border-top: 1px solid #48525e;
+  margin: 28px 0 12px;
+  padding-top: 20px;
+}
+
+.origin-route {
+  text-align: center;
+  background: #181a1d;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  padding: 16px;
+}
+
+.origin-route > * {
+  display: block;
+}
+
+.origin-route b {
+  color: #b1bdc9;
+}
+
+#mix-explorer, #strength-explorer {
+  margin: 16px 0 24px;
+}
+
+.mix-stack {
+  border: 1px solid #48525e;
+  border-radius: 10px;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  overflow: hidden;
+}
+
+.mix-stack span {
+  height: 100%;
+  display: block;
+}
+
+#mix-virgin-bar {
+  background: #318bd4;
+}
+
+#mix-recycled-bar {
+  background: #35a88c;
+}
+
+.mix-results {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 0;
+  display: flex;
+}
+
+.mix-results span {
+  margin: 4px 12px 4px 0;
+  font-weight: 600;
+}
+
+.mix-grains {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  display: block;
+}
+
+.learning-bar-row {
+  grid-template-columns: 75px minmax(0, 1fr) 65px;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+  display: grid;
+}
+
+.learning-bar-track {
+  background: #353d47;
+  border-radius: 6px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.learning-bar-track span {
+  background: #83c3ff;
+  height: 100%;
+  display: block;
+}
+
+#strength-b-bar {
+  background: #f59a56;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     --lightningcss-light: ;
@@ -2499,6 +3176,41 @@ textarea.form-control {
   #plastic-material-lab .table-responsive .table {
     min-width: 660px;
   }
+
+  .novice-lesson {
+    padding: 12px;
+  }
+
+  .novice-story {
+    padding: 6px 10px;
+  }
+
+  .novice-step-list > .btn {
+    flex: 120px;
+    min-height: 48px;
+  }
+
+  .novice-part-list > .btn {
+    flex: 125px;
+    min-height: 48px;
+  }
+
+  .product-route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-examples {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-bar-row {
+    grid-template-columns: 60px minmax(0, 1fr) 55px;
+    gap: 6px;
+  }
+
+  .product-group-switch .btn {
+    width: 100%;
+  }
 }
 
 @supports not (display: grid) {
@@ -2517,6 +3229,24 @@ textarea.form-control {
 
   #plastic-material-lab .choice-grid .btn, #plastic-material-lab .forming-steps .btn, #plastic-material-lab .material-grid .btn {
     margin: 4px;
+  }
+
+  .product-route, .product-examples {
+    display: block;
+  }
+
+  .product-route > span, .product-examples > div {
+    margin: 8px 0;
+    display: block;
+  }
+
+  .learning-bar-row {
+    display: flex;
+  }
+
+  .learning-bar-track {
+    flex: 1;
+    margin: 0 12px;
   }
 }
 
@@ -2552,6 +3282,7 @@ textarea.form-control {
       <button type="button" class="btn" data-mode="classify" aria-pressed="false">塑料分类</button>
       <button type="button" class="btn" data-mode="modified" aria-pressed="false">改性与助剂</button>
       <button type="button" class="btn" data-mode="forming" aria-pressed="false">成型工艺</button>
+      <button type="button" class="btn" data-mode="products" aria-pressed="false">产品与新材料</button>
       <button type="button" class="btn" data-mode="table" aria-pressed="false">动态表格</button>
       <button type="button" class="btn" data-mode="training" aria-pressed="false">复习笔记</button>
     </div>
@@ -2750,6 +3481,232 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+(function () {
+    'use strict';
+    var timer = null, state = { time: 0, playing: false, speed: 1, angle: 55, inside: true, close: false, part: 0 }, host = null;
+    var duration = 5000, total = 35000;
+    var story = [
+        ['颗粒进入', '颗粒从上面的料斗落进料筒。此时它还是一粒粒的固体。', '固体颗粒', '料斗：储存并向下供料'],
+        ['加热、向前输送', '加热圈供热，螺杆转动并剪切材料，让颗粒逐渐成为能流动的熔体。', '能流动的熔体', '螺杆：转动时输送、混合和塑化'],
+        ['推入模具', '模具先闭紧。螺杆像活塞一样向前推进，把熔体推过喷嘴、填入模腔。', '熔体正在充满模腔', '注射时主要是螺杆向前推进，不是继续靠旋转挤入'],
+        ['继续补料', '材料冷却时会收缩。在浇口封冻之前保持压力，补入少量熔体，帮助减小凹陷。', '模腔基本填满', '保压：补偿早期收缩；不是无限补料'],
+        ['在模内冷却', '冷却水带走热量。材料留在模腔里逐渐定形，外壳的形状来自模腔。', '逐渐定形的制品', '水路：带走热量，不与塑料混在一起'],
+        ['打开模具', '制品足够稳定后，动模向后退。此时外壳通常仍留在模具一侧。', '已经定形的外壳', '开模：先分开模具，还没有完成顶出'],
+        ['顶出外壳', '顶针把外壳从模具上推开，制品取走，机器再进入下一循环。', '取出的外壳', '顶针：帮助制品脱离模具']
+    ];
+    var parts = [['料斗', '装颗粒的入口。颗粒从这里往下落。'], ['螺杆与料筒', '螺杆在筒内转动，输送、混合并塑化；注射时再向前推进。'], ['加热圈', '给料筒供热。塑化也包含螺杆剪切产生的热。'], ['喷嘴', '连接料筒与模具，让熔体进入模腔。'], ['模具与水路', '模腔决定外形；独立的冷却水路带走热量。'], ['顶针', '开模后，把已经定形的制品推离模具。']];
+    function q(id) { return host && host.querySelector('#' + id); }
+    function injectionMarkup() {
+        return '<section class="novice-lesson card" id="novice-injection" aria-label="注塑入门立体剖面动画">' +
+            '<div class="novice-head"><h3>一颗塑料，怎样变成外壳？</h3><span class="viz-badge">注塑入门</span></div>' +
+            '<div class="novice-story" aria-live="polite"><span id="novice-number"></span><h4 id="novice-title"></h4><p id="novice-explain"></p></div>' +
+            '<div class="novice-stage"><canvas id="novice-canvas" width="1000" height="500" role="img" aria-label="注塑机立体剖面，展示材料输送、充模、冷却、开模和顶出"></canvas><p class="text-small" id="novice-canvas-fallback">若此浏览器不支持动画，仍可用下面的步骤按钮阅读过程。</p></div>' +
+            '<div class="novice-state"><strong>此时的材料</strong><span id="novice-material"></span></div>' +
+            '<div class="novice-controls"><button type="button" class="btn btn-primary" id="novice-play">播放动画</button><button type="button" class="btn" id="novice-prev">上一步</button><button type="button" class="btn" id="novice-next">下一步</button><button type="button" class="btn" id="novice-reset">从头看</button><button type="button" class="btn" id="novice-close">放大所选部件</button><label class="form-label">播放速度<select class="form-select" id="novice-speed"><option value="0.5">慢放 ½ 倍</option><option value="1" selected>正常</option><option value="2">快放 2 倍</option></select></label></div>' +
+            '<label class="form-label" for="novice-progress">拖动进度，看任意时刻<input type="range" class="form-range" id="novice-progress" min="0" max="1000" step="1" value="0"></label>' +
+            '<div class="novice-step-list">' + story.map(function (s, i) { return '<button type="button" class="btn" data-novice-step="' + i + '">' + (i + 1) + ' · ' + s[0] + '</button>'; }).join('') + '</div>' +
+            '<details class="novice-options"><summary>看里面 / 调整视角</summary><div class="novice-controls"><label><input type="checkbox" id="novice-inside" checked> 透明料筒与剖开模具</label><label class="form-label">立体视角<input type="range" class="form-range" id="novice-angle" min="0" max="100" value="55"></label></div></details>' +
+            '<div class="novice-part-list" aria-label="点击认识机器部件">' + parts.map(function (p, i) { return '<button type="button" class="btn" data-novice-part="' + i + '">' + (i + 1) + ' · ' + p[0] + '</button>'; }).join('') + '</div><p class="novice-part-explain" id="novice-part-explain"></p>' +
+            '<details class="novice-options"><summary>学完以后，再看工艺术语</summary><p id="novice-technical"></p><p class="text-small text-muted">这是便于入门的立体剖面示意，不是可任意旋转的 CAD 模型。供料、塑化和冷却在实际循环中可能重叠；这里为理解材料变化分开演示。没有提供生产温度、压力或配方设置。</p></details></section>';
+    }
+    function disposeInjection() { if (timer !== null)
+        clearInterval(timer); timer = null; state.playing = false; host = null; }
+    function mountInjection(node) {
+        disposeInjection();
+        if (!node)
+            return;
+        host = node;
+        var canvas = q('novice-canvas'), ctx = null;
+        try {
+            ctx = canvas && canvas.getContext && canvas.getContext('2d');
+        }
+        catch (ignore) { }
+        if (ctx)
+            q('novice-canvas-fallback').style.display = 'none';
+        var last = Date.now(), lastStep = -1;
+        function update() {
+            if (!host)
+                return;
+            var step = Math.min(6, Math.floor(state.time / duration)), f = (state.time - step * duration) / duration;
+            q('novice-progress').value = Math.round(state.time / (total - 1) * 1000);
+            q('novice-play').textContent = state.playing ? '暂停动画' : '播放动画';
+            q('novice-play').setAttribute('aria-pressed', String(state.playing));
+            q('novice-prev').disabled = step === 0;
+            q('novice-next').disabled = step === 6;
+            q('novice-close').textContent = state.close ? '返回整机' : '放大所选部件';
+            if (step !== lastStep) {
+                q('novice-number').textContent = '第 ' + (step + 1) + ' / 7 步';
+                q('novice-title').textContent = story[step][0];
+                q('novice-explain').textContent = story[step][1];
+                q('novice-material').textContent = story[step][2];
+                q('novice-technical').textContent = story[step][3];
+                node.querySelectorAll('[data-novice-step]').forEach(function (b) { var on = +b.dataset.noviceStep === step; b.classList.toggle('btn-primary', on); b.setAttribute('aria-pressed', String(on)); });
+                state.part = step === 0 ? 0 : step === 1 ? 1 : step === 2 ? 3 : step === 6 ? 5 : 4;
+                lastStep = step;
+            }
+            node.querySelectorAll('[data-novice-part]').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.novicePart === state.part)); });
+            q('novice-part-explain').textContent = parts[state.part][0] + '：' + parts[state.part][1];
+            if (ctx)
+                drawInjection(ctx, step, f);
+        }
+        function stop() { state.playing = false; last = Date.now(); }
+        node.querySelectorAll('[data-novice-step]').forEach(function (b) { b.addEventListener('click', function () { stop(); state.time = +b.dataset.noviceStep * duration + duration * .6; update(); }); });
+        node.querySelectorAll('[data-novice-part]').forEach(function (b) { b.addEventListener('click', function () { state.part = +b.dataset.novicePart; state.close = true; update(); }); });
+        q('novice-play').addEventListener('click', function () { if (state.time >= total - 1)
+            state.time = 0; state.playing = !state.playing; last = Date.now(); update(); });
+        q('novice-prev').addEventListener('click', function () { stop(); state.time = Math.max(0, Math.floor(state.time / duration) - 1) * duration + duration * .6; update(); });
+        q('novice-next').addEventListener('click', function () { stop(); state.time = Math.min(6, Math.floor(state.time / duration) + 1) * duration + duration * .6; update(); });
+        q('novice-reset').addEventListener('click', function () { stop(); state.time = 0; update(); });
+        q('novice-progress').addEventListener('input', function () { stop(); state.time = +this.value / 1000 * (total - 1); update(); });
+        q('novice-speed').value = state.speed;
+        q('novice-speed').addEventListener('change', function () { state.speed = +this.value; });
+        q('novice-inside').checked = state.inside;
+        q('novice-inside').addEventListener('change', function () { state.inside = this.checked; update(); });
+        q('novice-angle').value = state.angle;
+        q('novice-angle').addEventListener('input', function () { state.angle = +this.value; update(); });
+        q('novice-close').addEventListener('click', function () { state.close = !state.close; update(); });
+        update();
+        timer = setInterval(function () { var now = Date.now(), elapsed = Math.min(100, now - last); last = now; if (state.playing && !document.hidden) {
+            state.time = Math.min(total - 1, state.time + elapsed * state.speed);
+            if (state.time >= total - 1)
+                state.playing = false;
+            update();
+        } }, 40);
+    }
+    function drawInjection(ctx, step, f) {
+        var a = state.angle / 100, zoom = state.close ? 2.25 : 1;
+        var centers = [[185, 126], [350, 270], [370, 270], [594, 270], [740, 270], [817, 290]];
+        var center = state.close ? centers[state.part] : [500, 250];
+        ctx.clearRect(0, 0, 1000, 500);
+        ctx.fillStyle = '#102b46';
+        ctx.fillRect(0, 0, 1000, 500);
+        function project(x, y, z) { z = z || 0; return [(x + z * (.2 + a * .3) - center[0]) * zoom + 500, (y - z * (.15 + a * .3) - center[1]) * zoom + 250]; }
+        function poly(points, fill, stroke) { ctx.beginPath(); points.forEach(function (v, i) { var p = project(v[0], v[1], v[2]); if (i)
+            ctx.lineTo(p[0], p[1]);
+        else
+            ctx.moveTo(p[0], p[1]); }); ctx.closePath(); if (fill) {
+            ctx.fillStyle = fill;
+            ctx.fill();
+        } if (stroke) {
+            ctx.strokeStyle = stroke;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        } }
+        function line(points, color, width) { ctx.beginPath(); points.forEach(function (v, i) { var p = project(v[0], v[1], v[2]); if (i)
+            ctx.lineTo(p[0], p[1]);
+        else
+            ctx.moveTo(p[0], p[1]); }); ctx.strokeStyle = color; ctx.lineWidth = (width || 3) * zoom; ctx.stroke(); }
+        function box(x, y, w, h, d, front, top, side) { poly([[x, y, 0], [x + w, y, 0], [x + w, y + h, 0], [x, y + h, 0]], front, '#aac5dc'); poly([[x, y, 0], [x, y, d], [x + w, y, d], [x + w, y, 0]], top || front, '#aac5dc'); poly([[x + w, y, 0], [x + w, y, d], [x + w, y + h, d], [x + w, y + h, 0]], side || front, '#aac5dc'); }
+        function dot(x, y, r, color, z) { var p = project(x, y, z); ctx.beginPath(); ctx.arc(p[0], p[1], r * zoom, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill(); }
+        function arrow(x, y, x2, y2, color) { line([[x, y, 0], [x2, y2, 0]], color, 4); var dx = x2 - x, dy = y2 - y, l = Math.sqrt(dx * dx + dy * dy) || 1; poly([[x2, y2, 0], [x2 - dx / l * 14 - dy / l * 7, y2 - dy / l * 14 + dx / l * 7, 0], [x2 - dx / l * 14 + dy / l * 7, y2 - dy / l * 14 - dx / l * 7, 0]], color); }
+        box(95, 364, 790, 43, 75, '#28465e', '#3b607c', '#20394e');
+        line([[610, 339, 0], [909, 339, 0]], '#749ab7', 7);
+        line([[610, 171, 40], [909, 171, 40]], '#749ab7', 7);
+        poly([[143, 89, 0], [222, 89, 0], [206, 198, 0], [164, 198, 0]], 'rgba(161,194,215,.28)', '#aac5dc');
+        poly([[143, 89, 0], [143, 89, 47], [222, 89, 47], [222, 89, 0]], '#5c809b', '#aac5dc');
+        box(163, 198, 42, 39, 32, '#739bb7', '#9fc1d6', '#406681');
+        for (var n = 0; n < 16; n++) {
+            var dx = (n % 4) * 15, dy = Math.floor(n / 4) * 16;
+            dot(160 + dx, 110 + dy, 5, '#80d3ff');
+        }
+        if (step === 0)
+            for (var n = 0; n < 5; n++) {
+                var travel = (f + n * .19) % 1;
+                dot(180 + (n % 2) * 9, 173 + travel * 89, 6, '#80d3ff');
+            }
+        var push = step === 2 ? Math.min(1, f * 1.8) * 39 : step === 3 ? 39 : 0;
+        box(117, 245, 440, 58, 58, state.inside ? 'rgba(108,161,193,.1)' : '#668aa5', 'rgba(151,194,220,.26)', 'rgba(90,143,177,.3)');
+        if (state.inside) {
+            line([[134 + push, 273, 13], [536 + push, 273, 13]], '#d3e8f7', 9);
+            var offset = step === 1 ? f * Math.PI * 4 : 0, helix = [];
+            for (var n = 0; n <= 140; n++) {
+                var x = 144 + n * 2.8 + push, theta = n / 10 * Math.PI * 2 + offset;
+                helix.push([x, 273 + 19 * Math.cos(theta), 26 + 19 * Math.sin(theta)]);
+            }
+            line(helix, '#9cb9cf', 5);
+            if (step >= 1) {
+                var start = step === 1 ? 298 : 151;
+                poly([[start, 285, 9], [548, 285, 9], [548, 299, 9], [start, 299, 9]], '#ffac61');
+                for (var n = 0; n < 9; n++) {
+                    var x = start + ((f + n / 9) % 1) * (548 - start);
+                    line([[x, 292, 9], [Math.min(x + 10, 548), 292, 9]], '#ffe3b8', 2);
+                }
+            }
+            if (step < 2)
+                for (var n = 0; n < 16; n++) {
+                    var t = (f + n / 16) % 1, x = 155 + t * (step === 0 ? 385 : 131);
+                    dot(x, 286 + (n % 2) * 8, 4, '#80d3ff', 9);
+                }
+        }
+        for (var n = 0; n < 4; n++) {
+            var x = 244 + n * 73;
+            poly([[x, 245, 0], [x, 245, 58], [x + 19, 245, 58], [x + 19, 245, 0]], step === 1 ? '#ff8e42' : '#6c7e89', '#b3d0e3');
+            line([[x, 245, 0], [x, 261, 0]], step === 1 ? '#ffb157' : '#a5bfd2', 6);
+            line([[x, 287, 0], [x, 303, 0]], step === 1 ? '#ffb157' : '#a5bfd2', 6);
+        }
+        poly([[557, 253, 0], [616, 266, 0], [616, 285, 0], [557, 302, 0]], '#aac2d5', '#d3e8f7');
+        if (step === 1) {
+            arrow(191, 327, 488, 327, '#ffb157');
+            for (var n = 0; n < 3; n++)
+                arrow(280 + n * 90, 220, 280 + n * 90, 245, '#ffb157');
+        }
+        var opening = step >= 5 ? Math.min(1, (step === 5 ? f * 1.8 : 1)) * 102 : 0;
+        box(629, 173, 107, 167, 83, state.inside ? 'rgba(136,177,203,.18)' : '#7897ad', '#729cb9', '#527893');
+        box(736 + opening, 173, 98, 167, 83, state.inside ? 'rgba(136,177,203,.18)' : '#7897ad', '#729cb9', '#527893');
+        if (state.inside) {
+            poly([[696, 223, 0], [736, 223, 0], [736, 313, 0], [696, 313, 0]], 'rgba(15,28,40,.9)', '#d3e8f7');
+            poly([[736 + opening, 223, 0], [773 + opening, 223, 0], [773 + opening, 313, 0], [736 + opening, 313, 0]], 'rgba(15,28,40,.9)', '#d3e8f7');
+            var filled = step < 2 ? 0 : step === 2 ? Math.min(1, f * 1.55) : 1;
+            var cooling = step === 4 ? f : step > 4 ? 1 : 0;
+            var resinColor = cooling > .65 ? '#8fd6ff' : cooling > .3 ? '#d2c4a7' : '#ffac61';
+            if (step < 6 && filled > 0) {
+                box(706 + opening * (step >= 5 ? 1 : 0), 233, 54 * filled, 69, 18, resinColor, resinColor, '#5299bc');
+                poly([[713 + opening * (step >= 5 ? 1 : 0), 242, 0], [752 + opening * (step >= 5 ? 1 : 0), 242, 0], [752 + opening * (step >= 5 ? 1 : 0), 290, 0], [713 + opening * (step >= 5 ? 1 : 0), 290, 0]], '#203b51');
+            }
+            if (step === 2 || step === 3) {
+                line([[612, 276, 0], [705, 276, 0]], '#ffac61', 7);
+                if (step === 2)
+                    for (var n = 0; n < 8; n++)
+                        dot(615 + ((f + n / 8) % 1) * 95, 276, 4, '#fff0c9');
+                arrow(474 + push, 272, 538 + push, 272, '#fff0c9');
+            }
+            line([[649, 192, 8], [679, 192, 8], [679, 324, 8], [649, 324, 8]], '#61d8eb', 7);
+            line([[803 + opening, 191, 5], [781 + opening, 191, 5], [781 + opening, 326, 5], [803 + opening, 326, 5]], '#61d8eb', 7);
+            if (step === 4)
+                for (var n = 0; n < 6; n++) {
+                    dot(679, 200 + ((f + n / 6) % 1) * 118, 4, '#e6ffff', 8);
+                    dot(781, 324 - ((f + n / 6) % 1) * 118, 4, '#e6ffff', 5);
+                }
+        }
+        if (step === 5)
+            arrow(837, 365, 924, 365, '#8fd6ff');
+        if (step === 6) {
+            var lift = Math.min(1, f * 1.6);
+            var ex = 804 - lift * 101, ey = 246 + lift * 66;
+            line([[832 + opening, 253, 0], [ex + 46, 253, 0]], '#e6edf3', 5);
+            line([[832 + opening, 295, 0], [ex + 46, 295, 0]], '#e6edf3', 5);
+            box(ex, ey, 58, 67, 22, '#8fd6ff', '#b9e8ff', '#3d88b4');
+            poly([[ex + 8, ey + 8, 0], [ex + 50, ey + 8, 0], [ex + 50, ey + 48, 0], [ex + 8, ey + 48, 0]], '#203b51');
+            arrow(879, 281, 828, 281, '#8fd6ff');
+        }
+        var spots = [[180, 72], [354, 351], [380, 208], [595, 228], [730 + opening / 2, 139], [905, 353]];
+        spots.forEach(function (v, i) { var p = project(v[0], v[1], 0); ctx.beginPath(); ctx.arc(p[0], p[1], 18, 0, Math.PI * 2); ctx.fillStyle = i === state.part ? '#ffba66' : '#234d6e'; ctx.fill(); ctx.strokeStyle = '#b9dfff'; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = i === state.part ? '#172d42' : '#ffffff'; ctx.font = 'bold 19px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(i + 1), p[0], p[1]); });
+    }
+    function strengthMarkup() { return '<article class="card" id="strength-explorer"><h3>一样结实，哪种更轻？</h3><p>改变假设材料 A 的密度和强度，与材料 B 比较“单位重量的承载能力”。</p><div class="novice-controls"><label class="form-label">A 的密度：<strong id="strength-density-label"></strong><input class="form-range" id="strength-density" type="range" min="0.8" max="8" value="1" step="0.1"></label><label class="form-label">A 的拉伸强度：<strong id="strength-load-label"></strong><input class="form-range" id="strength-load" type="range" min="10" max="500" value="80" step="10"></label></div><div class="learning-bar-row"><span>材料 A</span><div class="learning-bar-track"><span id="strength-a-bar"></span></div><strong id="strength-a-result"></strong></div><div class="learning-bar-row"><span>材料 B</span><div class="learning-bar-track"><span id="strength-b-bar"></span></div><strong id="strength-b-result"></strong></div><p id="strength-verdict" aria-live="polite"></p><p class="text-small text-muted">示例 B：密度 2.7 g/cm³，强度 150 MPa。A、B 都是假设材料，不是具体树脂或金属牌号。比强度＝强度÷密度；数值大不代表所有用途都更好。</p></article>'; }
+    function mountStrength(node) { if (!node)
+        return; function get(id) { return node.querySelector('#' + id); } function render() { var density = +get('strength-density').value, load = +get('strength-load').value, a = load / density, b = 150 / 2.7, max = Math.max(a, b); get('strength-density-label').textContent = density.toFixed(1) + ' g/cm³'; get('strength-load-label').textContent = load + ' MPa'; get('strength-a-bar').style.width = a / max * 100 + '%'; get('strength-b-bar').style.width = b / max * 100 + '%'; get('strength-a-result').textContent = a.toFixed(1); get('strength-b-result').textContent = b.toFixed(1); get('strength-verdict').textContent = a > b ? 'A 的比强度较高：按这组假设数据，单位重量的承载能力更大。' : a < b ? 'B 的比强度较高。只看强度高低，可能会忽略重量的影响。' : '两者比强度相同，但尺寸、耐热、刚度等仍需另外比较。'; } get('strength-density').addEventListener('input', render); get('strength-load').addEventListener('input', render); render(); }
+    var mix = { ratio: 30, total: 50, source: 'factory' };
+    function mixMarkup() { return '<article class="card" id="mix-explorer"><h3>动手配一份：新料与回料</h3><p>只做质量比例演示：拖动滑块，看同一批材料的组成如何变化。</p><div class="novice-controls"><label class="form-label">回料比例：<strong id="mix-ratio-label"></strong><input class="form-range" id="mix-ratio" type="range" min="0" max="100" step="5" value="30"></label><label class="form-label">总质量：<strong id="mix-total-label"></strong><input class="form-range" id="mix-total" type="range" min="10" max="100" step="10" value="50"></label><label class="form-label">回料从哪里来？<select class="form-select" id="mix-source"><option value="factory">工厂生产边角料</option><option value="consumer">使用后的回收制品</option></select></label></div><div class="mix-stack" role="img" id="mix-stack" aria-label="新料与回料的质量组成"><span id="mix-virgin-bar"></span><span id="mix-recycled-bar"></span></div><div class="mix-results" aria-live="polite"><span id="mix-virgin-result"></span><span id="mix-recycled-result"></span></div><svg class="mix-grains" id="mix-grains" viewBox="0 0 600 135" role="img" aria-label="100 个标记表示配方质量百分比，不代表实际颗粒数量"></svg><p id="mix-source-explain"></p><details><summary>为什么图里不预测强度与环保效果？</summary><p>仅凭新料与回料比例，无法可靠预测强度、外观或碳足迹。需要具体牌号、来源、污染和热历史、相容性及实测数据。这不是生产配方建议，也不表示两种材料可以任意混用。</p></details></article>'; }
+    function mountMix(node) { if (!node)
+        return; function get(id) { return node.querySelector('#' + id); } function render() { mix.ratio = +get('mix-ratio').value; mix.total = +get('mix-total').value; mix.source = get('mix-source').value; var recycled = mix.total * mix.ratio / 100, virgin = mix.total - recycled; get('mix-ratio-label').textContent = mix.ratio + '%'; get('mix-total-label').textContent = mix.total + ' kg'; get('mix-virgin-bar').style.width = (100 - mix.ratio) + '%'; get('mix-recycled-bar').style.width = mix.ratio + '%'; get('mix-stack').setAttribute('aria-label', '新料 ' + (100 - mix.ratio) + '%，回料 ' + mix.ratio + '%'); get('mix-virgin-result').textContent = '新料 ' + virgin.toFixed(1) + ' kg · ' + (100 - mix.ratio) + '%'; get('mix-recycled-result').textContent = '回料 ' + recycled.toFixed(1) + ' kg · ' + mix.ratio + '%'; var circles = ''; for (var n = 0; n < 100; n++)
+        circles += '<circle cx="' + (15 + (n % 25) * 24) + '" cy="' + (20 + Math.floor(n / 25) * 31) + '" r="8" fill="' + (n < mix.ratio ? '#35a88c' : '#318bd4') + '"/>'; get('mix-grains').innerHTML = circles; get('mix-source-explain').textContent = mix.source === 'factory' ? '工厂边角料：例如切下的边、浇口和不合格品；来路可能较清楚，但仍需确认混杂与热历史。' : '使用后回收料：经历使用、收集与处理；更需要追溯来源，确认分选、清洁和批次稳定性。'; } get('mix-ratio').value = mix.ratio; get('mix-total').value = mix.total; get('mix-source').value = mix.source; get('mix-ratio').addEventListener('input', render); get('mix-total').addEventListener('input', render); get('mix-source').addEventListener('change', render); render(); }
+    document.addEventListener('visibilitychange', function () { if (document.hidden && host) {
+        state.playing = false;
+        q('novice-play').textContent = '播放动画';
+        q('novice-play').setAttribute('aria-pressed', 'false');
+    } });
+    window.PlasticVisualLab = { injectionMarkup: injectionMarkup, mountInjection: mountInjection, disposeInjection: disposeInjection, strengthMarkup: strengthMarkup, mountStrength: mountStrength, mixMarkup: mixMarkup, mountMix: mountMix };
+})();
 (function () {
     var root = document.getElementById('plastic-material-lab');
     if (!root)
@@ -3424,10 +4381,10 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     function formingMarkup() {
         var p = processData[activeProcess];
         var available = shapeRoutes[formingShape] || Object.keys(processData);
-        return "<div class=\"forming-head\"><h3>\u6210\u578B\u5DE5\u827A \u00B7 \u52A8\u6001\u56FE\u89E3</h3><span class=\"text-small text-muted\">\u57F9\u8BAD\u8D44\u6599\u5DF2\u878D\u5165 \u00B7 2026-09-13</span></div>\n          <p>\u5148\u770B\u4EA7\u54C1\u5F62\u72B6\uFF0C\u518D\u6BD4\u8F83\u539F\u6599\u3001\u8BBE\u5907\u548C\u6210\u578B\u52A8\u4F5C\u3002\u70B9\u51FB\u6B65\u9AA4\u6216\u64AD\u653E\uFF0C\u770B\u6750\u6599\u5982\u4F55\u53D8\u6210\u5236\u54C1\u3002</p>\n          <div class=\"forming-selector\">\n            <label class=\"form-label\">\u6309\u4EA7\u54C1\u5F62\u72B6\u627E\u5DE5\u827A<select class=\"form-select\" id=\"forming-shape\">".concat(Object.entries(shapeLabels).map(function (_a) {
+        return "<div class=\"forming-head\"><h3>\u6210\u578B\u5DE5\u827A \u00B7 \u52A8\u6001\u56FE\u89E3</h3><button type=\"button\" class=\"btn\" id=\"forming-open-beginner\">\u4ECE\u96F6\u770B\u6CE8\u5851\u52A8\u753B</button></div>\n          <p>".concat(p.family === 'injection' ? '第一次学注塑？先跟着一颗塑料，看它如何变成外壳。' : '先选产品形状，再逐步看材料如何变成制品。', "</p>\n          <div class=\"forming-selector\">\n            <label class=\"form-label\">\u6309\u4EA7\u54C1\u5F62\u72B6\u627E\u5DE5\u827A<select class=\"form-select\" id=\"forming-shape\">").concat(Object.entries(shapeLabels).map(function (_a) {
             var k = _a[0], v = _a[1];
             return "<option value=\"".concat(k, "\"").concat(k === formingShape ? ' selected' : '', ">").concat(v, "</option>");
-        }).join(''), "</select></label>\n            <label class=\"form-label\">\u9009\u62E9\u5DE5\u827A<select class=\"form-select\" id=\"forming-process\">").concat(available.map(function (k) { return "<option value=\"".concat(k, "\"").concat(k === activeProcess ? ' selected' : '', ">").concat(esc(processData[k].name), "</option>"); }).join(''), "</select></label>\n          </div>\n          <div id=\"forming-player\"></div>\n          <div class=\"knowledge-grid two forming-more\"><article class=\"card\"><h3>\u4F18\u52BF\u4E0E\u9002\u7528\u573A\u666F</h3><p>").concat(esc(p.advantage), "</p><p><strong>\u5E38\u89C1\u6750\u6599\uFF1A</strong>").concat(esc(p.resins), "</p><p><strong>\u4EA7\u54C1\uFF1A</strong>").concat(esc(p.examples), "</p></article>\n          <article class=\"card\"><h3>\u5C40\u9650\u4E0E\u5224\u65AD\u63D0\u9192</h3><p>").concat(esc(p.limitation), "</p><div class=\"note-line\">").concat(esc(p.caution), "</div></article></div>\n          <div class=\"forming-actions\"><button type=\"button\" class=\"btn\" id=\"forming-to-note\">\u628A\u672C\u5DE5\u827A\u8981\u70B9\u52A0\u5165\u7B14\u8BB0</button><button type=\"button\" class=\"btn btn-ghost\" id=\"forming-to-table\">\u6253\u5F00\u5DE5\u827A\u5BF9\u6BD4\u8868</button></div><p class=\"text-small\" id=\"forming-note-status\" role=\"status\"></p>\n          <details class=\"forming-more\"><summary>\u8584\u819C\u600E\u4E48\u9009\uFF1FCPP / BOPP / IPP \u5BF9\u7167</summary>").concat(filmTableMarkup(), "<button type=\"button\" class=\"btn\" id=\"forming-film-table\">\u5728\u52A8\u6001\u8868\u683C\u4E2D\u7B5B\u9009\u8584\u819C</button></details>\n          <details class=\"forming-more\"><summary>\u6750\u6599\u751F\u4EA7\u3001\u6210\u578B\u52A0\u5DE5\u4E0E\u4E8C\u6B21\u6210\u578B</summary><div class=\"industry-map\"><div><strong>\u6811\u8102\u751F\u4EA7</strong><span>\u539F\u6599 \u2192 \u5355\u4F53 \u2192 \u805A\u5408</span></div><b>\u2192</b><div><strong>\u5851\u6599\u914D\u6DF7</strong><span>\u6811\u8102 \uFF0B \u52A9\u5242 \u2192 \u914D\u6DF7\u6599</span></div><b>\u2192</b><div><strong>\u5851\u6599\u5236\u54C1\u751F\u4EA7</strong><span>\u6210\u578B \u2192 \u540E\u5904\u7406 \u2192 \u68C0\u6D4B</span></div></div><p>\u6CE8\u5851\u4E0E\u6324\u51FA\u662F\u5E38\u89C1\u7684\u7194\u4F53\u6210\u578B\u8DEF\u7EBF\uFF1B\u7247\u6750\u53EF\u518D\u70ED\u6210\u578B\uFF0C\u57FA\u819C\u53EF\u518D\u62C9\u4F38\u53D6\u5411\uFF0C\u578B\u576F\u53EF\u518D\u5439\u80C0\u3002\u4E0D\u540C\u8DEF\u7EBF\u53EF\u4EE5\u7EC4\u5408\uFF0C\u800C\u975E\u6240\u6709\u4EA7\u54C1\u90FD\u8D70\u540C\u4E00\u6761\u7EBF\u3002</p><p>\u6CE8\u5851\u5236\u4EF6\u6309\u9700\u8981\u8FDB\u884C\u9000\u706B\u3001\u8C03\u6E7F\u3001\u53BB\u6D47\u53E3\u3001\u4FEE\u8FB9\u6216\u88C5\u9970\uFF1B\u5E76\u975E\u6BCF\u4EF6\u4EA7\u54C1\u90FD\u8981\u505A\u5168\u90E8\u540E\u5904\u7406\u3002</p></details>\n          <details class=\"forming-more\"><summary>\u8D44\u6599\u6821\u6B63\u3001\u8303\u56F4\u8BF4\u660E\u4E0E\u6838\u5BF9\u6765\u6E90</summary><p>\u672C\u6A21\u5757\u4F9D\u636E\u4F60\u63D0\u4F9B\u7684\u300A\u5E38\u89C1\u5851\u6599\u6210\u578B\u5DE5\u827A\u57F9\u8BAD\u300B\u622A\u56FE\u5F52\u7EB3\u91CD\u7ED8\uFF0C\u6CA1\u6709\u516C\u5F00\u4E0A\u4F20\u539F\u59CB\u516C\u53F8\u622A\u56FE\u3002\u56FE\u662F\u539F\u7406\u793A\u610F\uFF0C\u4E0D\u662F\u8BBE\u5907\u64CD\u4F5C\u89C4\u7A0B\uFF0C\u4E5F\u4E0D\u63D0\u4F9B\u751F\u4EA7\u8BBE\u5B9A\u503C\u3002</p><ul><li>\u201C\u5EF6\u538B\u201D\u89C4\u8303\u5199\u4F5C\u201C\u538B\u5EF6\u201D\uFF1B\u5E73\u53E3\u6A21\u6324\u51FA\u540E\u7528\u4E09\u8F8A\u538B\u5149\uFF0C\u4E0D\u7B49\u4E8E\u4F20\u7EDF\u591A\u8F8A\u538B\u5EF6\u3002</li><li>\u819C / \u7247 / \u677F\u7684\u539A\u5EA6\u754C\u9650\u56E0\u884C\u4E1A\u4E0E\u6807\u51C6\u800C\u5F02\u3002\u8D44\u6599\u7684 0.25 mm\u30011 mm \u53EF\u4F5C\u901F\u8BB0\u793A\u4F8B\uFF1B\u53E6\u9875 0.025 mm \u5B58\u5728\u4E0D\u4E00\u81F4\uFF0C\u4E0D\u4F5C\u4E3A\u7EDF\u4E00\u6807\u51C6\u3002</li><li>\u8D44\u6599\u4E2D\u7684\u4EA7\u91CF\u5360\u6BD4\u3001\u6700\u5927\u5BBD\u5EA6\u3001\u901F\u5EA6\u548C\u539A\u5EA6\u8303\u56F4\u662F\u5386\u53F2\u6216\u7279\u5B9A\u8BBE\u5907\u793A\u4F8B\uFF0C\u672A\u5F53\u6210\u901A\u7528\u5DE5\u827A\u53C2\u6570\u3002</li><li>\u4E0D\u662F\u6240\u6709\u6C1F\u5851\u6599\u90FD\u4E0D\u80FD\u6324\u51FA\uFF1AFEP\u3001PFA \u53EF\u7194\u878D\u6324\u51FA\uFF1BPTFE \u901A\u5E38\u9700\u8981\u7279\u6B8A\u52A0\u5DE5\u8DEF\u5F84\u3002</li><li>CPP \u84B8\u716E\u6027\u80FD\u3001BOPP \u70ED\u5C01\u4E0E\u963B\u9694\u6027\u80FD\u90FD\u9700\u6838\u5BF9\u5177\u4F53\u724C\u53F7\u3001\u5C42\u7ED3\u6784\u53CA\u6D4B\u8BD5\u6761\u4EF6\u3002</li></ul><div class=\"source-links\">").concat(trainingReferences.map(function (r) { return "<a href=\"".concat(esc(r.url), "\" target=\"_blank\" rel=\"noopener noreferrer\">").concat(esc(r.label), "</a>"); }).join(''), "</div></details>");
+        }).join(''), "</select></label>\n            <label class=\"form-label\">\u9009\u62E9\u5DE5\u827A<select class=\"form-select\" id=\"forming-process\">").concat(available.map(function (k) { return "<option value=\"".concat(k, "\"").concat(k === activeProcess ? ' selected' : '', ">").concat(esc(processData[k].name), "</option>"); }).join(''), "</select></label>\n          </div>\n          ").concat(p.family === 'injection' && window.PlasticVisualLab ? window.PlasticVisualLab.injectionMarkup() : '', "\n          ").concat(p.family === 'injection' ? '<details class="forming-more"><summary>工艺步骤与质量检查（进阶）</summary>' : '', "<div id=\"forming-player\"></div>").concat(p.family === 'injection' ? '</details>' : '', "\n          <div class=\"knowledge-grid two forming-more\"><article class=\"card\"><h3>\u4F18\u52BF\u4E0E\u9002\u7528\u573A\u666F</h3><p>").concat(esc(p.advantage), "</p><p><strong>\u5E38\u89C1\u6750\u6599\uFF1A</strong>").concat(esc(p.resins), "</p><p><strong>\u4EA7\u54C1\uFF1A</strong>").concat(esc(p.examples), "</p></article>\n          <article class=\"card\"><h3>\u5C40\u9650\u4E0E\u5224\u65AD\u63D0\u9192</h3><p>").concat(esc(p.limitation), "</p><div class=\"note-line\">").concat(esc(p.caution), "</div></article></div>\n          <div class=\"forming-actions\"><button type=\"button\" class=\"btn\" id=\"forming-to-note\">\u628A\u672C\u5DE5\u827A\u8981\u70B9\u52A0\u5165\u7B14\u8BB0</button><button type=\"button\" class=\"btn btn-ghost\" id=\"forming-to-table\">\u6253\u5F00\u5DE5\u827A\u5BF9\u6BD4\u8868</button></div><p class=\"text-small\" id=\"forming-note-status\" role=\"status\"></p>\n          <details class=\"forming-more\"><summary>\u8584\u819C\u600E\u4E48\u9009\uFF1FCPP / BOPP / IPP \u5BF9\u7167</summary>").concat(filmTableMarkup(), "<button type=\"button\" class=\"btn\" id=\"forming-film-table\">\u5728\u52A8\u6001\u8868\u683C\u4E2D\u7B5B\u9009\u8584\u819C</button></details>\n          <details class=\"forming-more\"><summary>\u6750\u6599\u751F\u4EA7\u3001\u6210\u578B\u52A0\u5DE5\u4E0E\u4E8C\u6B21\u6210\u578B</summary><div class=\"industry-map\"><div><strong>\u6811\u8102\u751F\u4EA7</strong><span>\u539F\u6599 \u2192 \u5355\u4F53 \u2192 \u805A\u5408</span></div><b>\u2192</b><div><strong>\u5851\u6599\u914D\u6DF7</strong><span>\u6811\u8102 \uFF0B \u52A9\u5242 \u2192 \u914D\u6DF7\u6599</span></div><b>\u2192</b><div><strong>\u5851\u6599\u5236\u54C1\u751F\u4EA7</strong><span>\u6210\u578B \u2192 \u540E\u5904\u7406 \u2192 \u68C0\u6D4B</span></div></div><p>\u6CE8\u5851\u4E0E\u6324\u51FA\u662F\u5E38\u89C1\u7684\u7194\u4F53\u6210\u578B\u8DEF\u7EBF\uFF1B\u7247\u6750\u53EF\u518D\u70ED\u6210\u578B\uFF0C\u57FA\u819C\u53EF\u518D\u62C9\u4F38\u53D6\u5411\uFF0C\u578B\u576F\u53EF\u518D\u5439\u80C0\u3002\u4E0D\u540C\u8DEF\u7EBF\u53EF\u4EE5\u7EC4\u5408\uFF0C\u800C\u975E\u6240\u6709\u4EA7\u54C1\u90FD\u8D70\u540C\u4E00\u6761\u7EBF\u3002</p><p>\u6CE8\u5851\u5236\u4EF6\u6309\u9700\u8981\u8FDB\u884C\u9000\u706B\u3001\u8C03\u6E7F\u3001\u53BB\u6D47\u53E3\u3001\u4FEE\u8FB9\u6216\u88C5\u9970\uFF1B\u5E76\u975E\u6BCF\u4EF6\u4EA7\u54C1\u90FD\u8981\u505A\u5168\u90E8\u540E\u5904\u7406\u3002</p></details>\n          <details class=\"forming-more\"><summary>\u8D44\u6599\u6821\u6B63\u3001\u8303\u56F4\u8BF4\u660E\u4E0E\u6838\u5BF9\u6765\u6E90</summary><p>\u672C\u6A21\u5757\u4F9D\u636E\u4F60\u63D0\u4F9B\u7684\u300A\u5E38\u89C1\u5851\u6599\u6210\u578B\u5DE5\u827A\u57F9\u8BAD\u300B\u622A\u56FE\u5F52\u7EB3\u91CD\u7ED8\uFF0C\u6CA1\u6709\u516C\u5F00\u4E0A\u4F20\u539F\u59CB\u516C\u53F8\u622A\u56FE\u3002\u56FE\u662F\u539F\u7406\u793A\u610F\uFF0C\u4E0D\u662F\u8BBE\u5907\u64CD\u4F5C\u89C4\u7A0B\uFF0C\u4E5F\u4E0D\u63D0\u4F9B\u751F\u4EA7\u8BBE\u5B9A\u503C\u3002</p><ul><li>\u201C\u5EF6\u538B\u201D\u89C4\u8303\u5199\u4F5C\u201C\u538B\u5EF6\u201D\uFF1B\u5E73\u53E3\u6A21\u6324\u51FA\u540E\u7528\u4E09\u8F8A\u538B\u5149\uFF0C\u4E0D\u7B49\u4E8E\u4F20\u7EDF\u591A\u8F8A\u538B\u5EF6\u3002</li><li>\u819C / \u7247 / \u677F\u7684\u539A\u5EA6\u754C\u9650\u56E0\u884C\u4E1A\u4E0E\u6807\u51C6\u800C\u5F02\u3002\u8D44\u6599\u7684 0.25 mm\u30011 mm \u53EF\u4F5C\u901F\u8BB0\u793A\u4F8B\uFF1B\u53E6\u9875 0.025 mm \u5B58\u5728\u4E0D\u4E00\u81F4\uFF0C\u4E0D\u4F5C\u4E3A\u7EDF\u4E00\u6807\u51C6\u3002</li><li>\u8D44\u6599\u4E2D\u7684\u4EA7\u91CF\u5360\u6BD4\u3001\u6700\u5927\u5BBD\u5EA6\u3001\u901F\u5EA6\u548C\u539A\u5EA6\u8303\u56F4\u662F\u5386\u53F2\u6216\u7279\u5B9A\u8BBE\u5907\u793A\u4F8B\uFF0C\u672A\u5F53\u6210\u901A\u7528\u5DE5\u827A\u53C2\u6570\u3002</li><li>\u4E0D\u662F\u6240\u6709\u6C1F\u5851\u6599\u90FD\u4E0D\u80FD\u6324\u51FA\uFF1AFEP\u3001PFA \u53EF\u7194\u878D\u6324\u51FA\uFF1BPTFE \u901A\u5E38\u9700\u8981\u7279\u6B8A\u52A0\u5DE5\u8DEF\u5F84\u3002</li><li>CPP \u84B8\u716E\u6027\u80FD\u3001BOPP \u70ED\u5C01\u4E0E\u963B\u9694\u6027\u80FD\u90FD\u9700\u6838\u5BF9\u5177\u4F53\u724C\u53F7\u3001\u5C42\u7ED3\u6784\u53CA\u6D4B\u8BD5\u6761\u4EF6\u3002</li></ul><div class=\"source-links\">").concat(trainingReferences.map(function (r) { return "<a href=\"".concat(esc(r.url), "\" target=\"_blank\" rel=\"noopener noreferrer\">").concat(esc(r.label), "</a>"); }).join(''), "</div></details>");
     }
     var shapeLabels = { all: '全部工艺', complex: '复杂三维实体 / 外壳', continuous: '连续固定截面：管、型、板', hollow: '中空容器 / 大型水箱', film: '薄膜与连续片材', tray: '薄壁托盘 / 包装内托', thermoset: '热固性 / 增强复合材料' };
     var shapeRoutes = { complex: ['injection', 'compression'], continuous: ['extrusion', 'pipe', 'profile', 'sheet'], hollow: ['blow', 'rotation'], film: ['blownfilm', 'cast', 'haul', 'stretch', 'calender', 'sheet'], tray: ['thermo', 'injection'], thermoset: ['compression', 'lamination'] };
@@ -3547,6 +4504,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     function bindForming() {
         renderFormingPlayer();
+        if (window.PlasticVisualLab && activeProcess === 'injection')
+            window.PlasticVisualLab.mountInjection($('#novice-injection'));
+        $('#forming-open-beginner').addEventListener('click', function () { formingShape = 'all'; selectFormingProcess('injection'); });
         $('#forming-shape').addEventListener('change', function (e) { formingShape = e.target.value; var available = shapeRoutes[formingShape] || Object.keys(processData); selectFormingProcess(available.includes(activeProcess) ? activeProcess : available[0]); });
         $('#forming-process').addEventListener('change', function (e) { return selectFormingProcess(e.target.value); });
         $('#forming-to-note').addEventListener('click', function () { var p = currentFormingData(), notes = $('#lab-notes'); notes.value += (notes.value.trim() ? '\n\n' : '') + "\u3010".concat(p.name).concat(p.family === 'stretch' ? (formingVariant === 'uniaxial' ? ' · 单向' : ' · 双向') : '', "\u3011\n\u6D41\u7A0B\uFF1A").concat(p.steps.map(function (s) { return s.name; }).join(' → '), "\n\u6750\u6599\uFF1A").concat(p.resins, "\n\u4EA7\u54C1\uFF1A").concat(p.examples, "\n\u4F18\u52BF\uFF1A").concat(p.advantage, "\n\u5C40\u9650\uFF1A").concat(p.limitation, "\n\u63D0\u9192\uFF1A").concat(p.caution); saveLearningState('工艺要点已加入笔记'); $('#forming-note-status').textContent = '已追加到“复习笔记”，原有内容保留；可在那里保存或下载 TXT。'; });
@@ -3556,13 +4516,51 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     function polymersMarkup() {
         return "<svg class=\"material-path\" viewBox=\"0 0 760 230\" role=\"img\" aria-label=\"\u9AD8\u5206\u5B50\u6750\u6599\u5BB6\u65CF\u56FE\"><path class=\"branch\" d=\"M380 42 V82 M380 82 H190 V116 M380 82 H570 V116\"></path><rect class=\"node-a\" x=\"300\" y=\"12\" width=\"160\" height=\"52\" rx=\"10\"></rect><text x=\"380\" y=\"43\" text-anchor=\"middle\">\u9AD8\u5206\u5B50\u6750\u6599</text><rect class=\"node-a\" x=\"105\" y=\"116\" width=\"170\" height=\"52\" rx=\"10\"></rect><text x=\"190\" y=\"147\" text-anchor=\"middle\">\u5E38\u89C1\u9AD8\u5206\u5B50\u6750\u6599</text><rect class=\"node-b\" x=\"485\" y=\"116\" width=\"170\" height=\"52\" rx=\"10\"></rect><text x=\"570\" y=\"147\" text-anchor=\"middle\">\u529F\u80FD\u9AD8\u5206\u5B50\u6750\u6599</text><text x=\"190\" y=\"205\" text-anchor=\"middle\">\u7ED3\u6784\u3001\u6210\u578B\u4E0E\u65E5\u5E38\u529F\u80FD</text><text x=\"570\" y=\"205\" text-anchor=\"middle\">\u7535\u3001\u5149\u3001\u79BB\u5B50\u3001\u751F\u7269\u7B49\u7279\u5B9A\u529F\u80FD</text></svg>\n          <div class=\"knowledge-grid two\"><article class=\"card\"><h3>\u5E38\u89C1\u9AD8\u5206\u5B50\u6750\u6599</h3><div class=\"tag-cloud\"><span class=\"viz-badge\">\u5851\u6599</span><span class=\"viz-badge\">\u6A61\u80F6</span><span class=\"viz-badge\">\u7EA4\u7EF4</span><span class=\"viz-badge\">\u80F6\u9ECF\u5242</span><span class=\"viz-badge\">\u6D82\u6599</span></div><p>\u5206\u7C7B\u89D2\u5EA6\u4E0D\u540C\u4F1A\u6709\u4EA4\u53C9\uFF1A\u540C\u4E00\u79CD\u805A\u5408\u7269\u53EF\u4EE5\u505A\u5851\u6599\uFF0C\u4E5F\u53EF\u4EE5\u7EBA\u6210\u7EA4\u7EF4\u6216\u5236\u6210\u6D82\u5C42\u3002</p></article><article class=\"card\"><h3>\u529F\u80FD\u9AD8\u5206\u5B50\u6750\u6599</h3><div class=\"tag-cloud\"><span class=\"viz-badge\">\u79BB\u5B50\u4EA4\u6362\u6811\u8102</span><span class=\"viz-badge\">\u5BFC\u7535\u9AD8\u5206\u5B50</span><span class=\"viz-badge\">\u611F\u5149\u9AD8\u5206\u5B50</span><span class=\"viz-badge\">\u9AD8\u5438\u6C34\u6811\u8102</span><span class=\"viz-badge\">\u533B\u7528\u9AD8\u5206\u5B50</span><span class=\"viz-badge\">\u6DB2\u6676\u9AD8\u5206\u5B50</span></div><p>\u5176\u4EF7\u503C\u6765\u81EA\u53EF\u8BBE\u8BA1\u7684\u4E13\u95E8\u529F\u80FD\uFF0C\u800C\u4E0D\u53EA\u6765\u81EA\u627F\u8F7D\u6216\u6210\u578B\u3002</p></article></div>";
     }
+    var productGroup = 'common', productPick = 'PE', companyPick = 'water';
+    var commonProducts = {
+        PE: { name: 'PE · 聚乙烯', brief: '从柔软薄膜到较硬的瓶、管：同属 PE，牌号不同，表现也不同。', route: 'PE 颗粒 → 塑化 → 吹膜 / 流延或挤出 → 膜、瓶、管', examples: ['农膜：覆盖土壤 / 温室', '包装膜：保护与包裹产品', '土工膜：阻隔渗漏'], reminder: '农膜和包装膜常采用 LDPE、LLDPE 等；土工膜常见 HDPE。这里只按 PE 家族归纳，不把所有产品归到同一种密度牌号。' },
+        PP: { name: 'PP · 聚丙烯', brief: '轻、耐疲劳；常用来做有一定挺度的日用品。', route: 'PP 颗粒 → 塑化 → 注塑或片材热成型 → 日用品', examples: ['餐具：碗、杯等', '托盘：承托与分隔', '文具：文件盒、笔身等'], reminder: '不是所有餐具和托盘都用注塑：一些薄壁包装托盘先制片，再热成型。具体耐热、接触用途以牌号和制品验证为准。' },
+        ABS: { name: 'ABS · 树脂', brief: '兼顾刚性、韧性和外观，常用于有形状细节的外壳。', route: 'ABS 颗粒 → 塑化 → 注塑进模具 → 外壳', examples: ['汽车内外饰及部分外壳', '吹风机外壳', '电子产品外壳'], reminder: '常用注塑，也可挤出或热成型。耐候、阻燃、耐热需求可能需要改性；不能只凭 ABS 名称判断产品性能。' }
+    };
+    var companyProducts = {
+        water: { name: '除水母料', need: '原料轻度受潮，成型时出现气泡、水纹。', goal: '通过活性吸水组分消耗部分水分，帮助减少含水相关缺陷。', input: '含水原料', add: '除水母料', output: '目标：减少水分影响', icons: ['水分', '吸水组分', '较干燥料流'], caution: '主要面向部分聚烯烃等料流的工艺补救；不能普遍替代 PET、PA、PC 的规范干燥。加入量和保存条件需按产品 TDS。培训记录中的“保存 6 个月、开封 8 小时”不是通用保证；失效可能结团、变大、变白，不宜预热“炒料”。' },
+        nano: { name: '纳米填料', need: '希望兼顾强化、成本或外观要求。', goal: '把细小填料分散进树脂，形成复合体系；作用取决于填料与界面。', input: '基础树脂', add: '细小填料', output: '目标：均匀分散的复合材料', icons: ['树脂', '填料', '分散'], caution: '光泽、力学性能、收缩和成本是否改善，需要核对粒径、表面处理、配方与实测数据。不能理解为所有纳米填料都同时提升所有性能；也不同于污染语境中的“纳米塑料”。' },
+        lowcarbon: { name: '低碳塑料', need: '采购或产品设计关注碳足迹与减排。', goal: '比较原料、生产、使用与末端处理的生命周期排放。', input: '原料阶段', add: '生产 / 使用', output: '回收 / 处置', icons: ['原料', '工艺', '循环'], caution: '“低碳”不等于“不含碳”，也不是某一种树脂的固定名称。公司产品具体减排路径和幅度需以 LCA、产品碳足迹或认证资料确认；成本与品质同样要实测。图只展示评价环节，不提供未经核实的减排比例。' },
+        bamboo: { name: '竹塑材料', need: '需要竹质外观或减少部分石化树脂用量。', goal: '竹粉 / 竹纤维与树脂复合，形成具有竹质填料的材料。', input: '竹粉 / 竹纤维', add: '树脂基体', output: '竹塑复合材料', icons: ['竹质填料', '树脂', '复合'], caution: '外观、气味、分散性和供料情况随配方变化。能否降解取决于树脂基体及测试条件；竹粉加入 PE、PP 不会自动得到可完全自然降解塑料。市场需求需结合客户与地区调研，不能仅凭“日本有市场”判断。' }
+    };
+    function productPrincipleGraphic(p) {
+        var marks = function (i, x) {
+            if (companyPick === 'lowcarbon')
+                return "<rect class=\"product-composite\" x=\"".concat(x + 25, "\" y=\"62\" width=\"155\" height=\"66\" rx=\"10\"/><text x=\"").concat(x + 102, "\" y=\"102\" text-anchor=\"middle\">").concat(['追溯来源', '核对能耗与过程', '评估末端路线'][i], "</text>");
+            if (companyPick === 'bamboo' && i !== 1)
+                return Array.from({ length: 9 }, function (_, n) { return "<path class=\"product-fiber\" d=\"M".concat(x + 37 + n % 3 * 54, " ").concat(66 + Math.floor(n / 3) * 23, "l25 16\"/>"); }).join('') + (i === 2 ? "<rect class=\"product-matrix\" x=\"".concat(x + 25, "\" y=\"61\" width=\"155\" height=\"76\" rx=\"8\"/>") : '');
+            return Array.from({ length: 12 }, function (_, n) { return "<circle class=\"".concat(i === 1 ? 'product-add' : i === 2 ? 'product-composite' : 'product-resin', "\" cx=\"").concat(x + 38 + (n % 4) * 42, "\" cy=\"").concat(78 + Math.floor(n / 4) * 27, "\" r=\"").concat(i === 1 ? 5 : 9, "\"/>"); }).join('') + (companyPick === 'water' && i === 0 ? "<text x=\"".concat(x + 102, "\" y=\"143\" text-anchor=\"middle\">\u542B\u6709\u6C34\u5206</text>") : companyPick === 'nano' && i === 2 ? Array.from({ length: 12 }, function (_, n) { return "<circle class=\"product-add\" cx=\"".concat(x + 54 + (n % 4) * 42, "\" cy=\"").concat(80 + Math.floor(n / 4) * 27, "\" r=\"3\"/>"); }).join('') : '');
+        };
+        return "<div class=\"product-diagram-scroll\"><svg class=\"product-principle\" viewBox=\"0 0 680 200\" role=\"img\" aria-label=\"".concat(esc(p.input), "\uFF0C").concat(esc(p.add), "\uFF0C").concat(esc(p.output), "\u7684\u6982\u5FF5\u56FE\"><title>").concat(esc(p.goal), "</title>").concat([p.input, p.add, p.output].map(function (name, i) { var x = 12 + i * 230; return "<rect class=\"product-zone\" x=\"".concat(x, "\" y=\"10\" width=\"205\" height=\"180\" rx=\"14\"/><text x=\"").concat(x + 102, "\" y=\"42\" text-anchor=\"middle\">").concat(esc(name), "</text>").concat(marks(i, x), "<text x=\"").concat(x + 102, "\" y=\"179\" text-anchor=\"middle\">").concat(esc(p.icons[i]), "</text>").concat(i < 2 ? "<text x=\"".concat(x + 217, "\" y=\"105\" text-anchor=\"middle\">").concat(companyPick === 'lowcarbon' ? '→' : i === 0 ? '＋' : '→', "</text>") : ''); }).join(''), "</svg></div>");
+    }
     function productsMarkup() {
-        return "<div class=\"knowledge-grid\">\n          <article class=\"card\"><h3>PE \u5E38\u89C1\u4EA7\u54C1</h3><ul><li>\u519C\u819C</li><li>\u5305\u88C5\u819C</li><li>\u571F\u5DE5\u819C</li></ul><p>\u8584\u819C\u591A\u91C7\u7528\u5439\u819C\u6216\u6D41\u5EF6\uFF1B\u4E0D\u540C\u5BC6\u5EA6\u548C\u5171\u805A\u7ED3\u6784\u51B3\u5B9A\u67D4\u97E7\u3001\u5F3A\u5EA6\u4E0E\u70ED\u5C01\u6027\u3002</p></article>\n          <article class=\"card\"><h3>PP \u5E38\u89C1\u4EA7\u54C1</h3><ul><li>\u9910\u5177</li><li>\u6258\u76D8</li><li>\u6587\u5177</li></ul><p>\u5E38\u7528\u6CE8\u5851\u3001\u6324\u51FA\u4E0E\u7EBA\u4E1D\uFF1B\u5BC6\u5EA6\u4F4E\u3001\u8010\u75B2\u52B3\u3001\u8010\u70ED\u901A\u5E38\u4F18\u4E8E PE\u3002</p></article>\n          <article class=\"card\"><h3>ABS \u5E38\u89C1\u4EA7\u54C1</h3><ul><li>\u6C7D\u8F66\u5185\u5916\u9970\u4E0E\u90E8\u5206\u5916\u58F3</li><li>\u5439\u98CE\u673A\u5916\u58F3</li><li>\u7535\u5B50\u4EA7\u54C1\u5916\u58F3</li></ul><p>\u5E38\u901A\u8FC7\u6CE8\u5851\u6210\u578B\uFF0C\u517C\u987E\u521A\u6027\u3001\u97E7\u6027\u3001\u8868\u9762\u5916\u89C2\u548C\u5C3A\u5BF8\u7A33\u5B9A\u3002</p></article>\n          <article class=\"card\"><h3>\u9664\u6C34\u6BCD\u6599</h3><p><strong>\u7279\u70B9\uFF1A</strong>\u5E38\u5229\u7528\u6D3B\u6027\u5438\u6C34\u7EC4\u5206\u4E0E\u6C34\u53CD\u5E94\uFF0C\u5206\u6563\u8F83\u5BB9\u6613\uFF0C\u53EF\u6309\u4F9B\u5E94\u5546\u5EFA\u8BAE\u6BD4\u4F8B\u76F4\u63A5\u52A0\u5165\u3002</p><p><strong>\u9002\u7528\uFF1A</strong>\u805A\u70EF\u70C3\u7B49\u539F\u6599\u8F7B\u5EA6\u53D7\u6F6E\uFF0C\u5236\u54C1\u6709\u6C14\u6CE1\u6216\u6C34\u7EB9\uFF0C\u53C8\u65E0\u6CD5\u5148\u70D8\u5E72\u65F6\u7684\u4E34\u65F6\u5DE5\u827A\u8865\u6551\u3002</p><p><strong>\u9650\u5236\uFF1A</strong>\u4E0D\u80FD\u666E\u904D\u66FF\u4EE3 PET\u3001PA\u3001PC \u7B49\u5438\u6E7F\u6027\u5DE5\u7A0B\u5851\u6599\u7684\u89C4\u8303\u5E72\u71E5\uFF1B\u5438\u6E7F\u5931\u6548\u540E\u53EF\u80FD\u51FA\u73B0\u767D\u9897\u7C92\u3001\u7ED3\u56E2\u3001\u53D8\u5927\u6216\u53D8\u767D\uFF0C\u4E0D\u5B9C\u9884\u70ED\u201C\u7092\u6599\u201D\u3002\u201C\u4FDD\u5B58 6 \u4E2A\u6708\u3001\u5F00\u5C01 8 \u5C0F\u65F6\u201D\u5E94\u4EE5\u5177\u4F53\u4F9B\u5E94\u5546 TDS \u4E3A\u51C6\u3002</p></article>\n          <article class=\"card\"><h3>\u7EB3\u7C73\u586B\u6599\u6539\u6027\u5851\u6599</h3><div class=\"compare-row\"><strong>\u57F9\u8BAD\u8981\u70B9</strong><span>\u63D0\u9AD8\u5149\u6CFD\u3001\u964D\u4F4E\u6210\u672C\u3001\u6539\u5584\u529B\u5B66\u6027\u80FD\u548C\u6536\u7F29\uFF0C\u9002\u5408\u5F3A\u5316\u3001\u964D\u672C\u3001\u7F8E\u89C2\u9700\u6C42\u3002</span></div><div class=\"compare-row\"><strong>\u6280\u672F\u6CE8\u91CA</strong><span>\u6548\u679C\u53D6\u51B3\u4E8E\u7EB3\u7C73\u586B\u6599\u79CD\u7C7B\u3001\u7C92\u5F84\u3001\u754C\u9762\u5904\u7406\u548C\u5206\u6563\uFF1B\u66F4\u51C6\u786E\u540D\u79F0\u662F\u201C\u7EB3\u7C73\u586B\u6599\u6539\u6027\u5851\u6599/\u6BCD\u6599\u201D\uFF0C\u4E0D\u540C\u4E8E\u73AF\u5883\u6C61\u67D3\u8BED\u5883\u4E2D\u7684\u201C\u7EB3\u7C73\u5851\u6599\u201D\u3002</span></div></article>\n          <article class=\"card\"><h3>\u4F4E\u78B3\u5851\u6599</h3><div class=\"compare-row\"><strong>\u57F9\u8BAD\u8981\u70B9</strong><span>\u964D\u4F4E\u6210\u672C\u3001\u5F3A\u8C03\u73AF\u4FDD\uFF0C\u5E76\u5C3D\u91CF\u7EF4\u6301\u666E\u901A\u5851\u6599\u4EA7\u54C1\u54C1\u8D28\u3002</span></div><div class=\"compare-row\"><strong>\u6280\u672F\u4FEE\u6B63</strong><span>\u201C\u4F4E\u78B3\u5851\u6599\u201D\u4E0D\u662F\u5355\u4E00\u6811\u8102\u7C7B\u522B\uFF0C\u800C\u662F\u78B3\u8DB3\u8FF9\u8F83\u4F4E\u7684\u4EA7\u54C1\u8868\u8FF0\uFF0C\u9700\u8981\u4EE5 LCA\u3001\u4EA7\u54C1\u78B3\u8DB3\u8FF9\u6216\u8BA4\u8BC1\u6570\u636E\u652F\u6301\uFF1B\u5B83\u4E0D\u7B49\u4E8E\u201C\u4E0D\u542B\u78B3\u201D\u3002\u82E5\u8D44\u6599\u5199\u201C\u4E0D\u542B\u78B3\u201D\uFF0C\u53EF\u80FD\u662F\u201C\u4E0D\u542B\u70AD\u9ED1\u201D\uFF0C\u5E94\u6838\u5BF9\u539F\u59CB\u89C4\u683C\u3002</span></div><p><strong>\u9002\u7528\uFF1A</strong>\u78B3\u8DB3\u8FF9\u3001\u73AF\u4FDD\u91C7\u8D2D\u548C\u51CF\u6392\u9700\u6C42\u3002</p></article>\n          <article class=\"card\"><h3>\u7AF9\u5851\u6750\u6599</h3><div class=\"compare-row\"><strong>\u57F9\u8BAD\u8981\u70B9</strong><span>\u5206\u6563\u6027\u597D\u3001\u6709\u7AF9\u9999\u3001\u6750\u6599\u6613\u53D6\u5F97\u3001\u5916\u89C2\u7279\u6B8A\uFF0C\u9762\u5411\u73AF\u4FDD\u9700\u6C42\uFF0C\u65E5\u672C\u7B49\u5E02\u573A\u5B58\u5728\u76F8\u5173\u9700\u6C42\u3002</span></div><div class=\"compare-row\"><strong>\u6280\u672F\u4FEE\u6B63</strong><span>\u7AF9\u7C89\u53EF\u964D\u4F4E\u77F3\u5316\u6811\u8102\u7528\u91CF\uFF0C\u4F46\u80FD\u5426\u81EA\u7136\u964D\u89E3\u53D6\u51B3\u4E8E\u6811\u8102\u57FA\u4F53\uFF1B\u7AF9\u7C89\u52A0\u5165 PE\u3001PP \u540E\u4E0D\u4F1A\u81EA\u52A8\u53D8\u6210\u53EF\u5B8C\u5168\u964D\u89E3\u6750\u6599\u3002</span></div></article>\n          <article class=\"card\"><h3>\u65B0\u6599 / \u539F\u751F\u6599</h3><p>\u7531\u77F3\u5316\u6216\u5176\u4ED6\u539F\u6599\u9996\u6B21\u805A\u5408\u5F97\u5230\u3001\u5C1A\u672A\u7ECF\u5386\u5236\u54C1\u56DE\u6536\u518D\u52A0\u5DE5\u7684\u6811\u8102\u3002\u884C\u4E1A\u53E3\u8BED\u4E2D\u201C\u65B0\u6599\u201D\u5E38\u4E0E\u518D\u751F\u6599\u76F8\u5BF9\u3002</p><div class=\"note-line\">\u201C\u6CA1\u6709\u7ECF\u8FC7\u4E8C\u6B21\u7194\u878D\u6DF7\u70BC\u3001\u9020\u7C92\u3001\u6539\u6027\u201D\u53EF\u4F5C\u4E3A\u5355\u4E00\u539F\u751F\u6811\u8102\u7684\u63CF\u8FF0\uFF0C\u4F46\u6539\u6027\u65B0\u6599\u4ECD\u53EF\u4F7F\u7528\u5168\u65B0\u7684\u539F\u751F\u6811\u8102\u548C\u52A9\u5242\u7ECF\u8FC7\u914D\u6DF7\u9020\u7C92\u3002</div></article>\n        </div>";
+        var m = commonProducts[productPick], p = companyProducts[companyPick];
+        return "<div class=\"product-group-switch\" aria-label=\"\u4EA7\u54C1\u5206\u7C7B\"><button type=\"button\" class=\"btn".concat(productGroup === 'common' ? ' btn-primary' : '', "\" data-product-group=\"common\" aria-pressed=\"").concat(productGroup === 'common', "\">\u5E38\u89C1\u6750\u6599 \u00B7 PE / PP / ABS</button><button type=\"button\" class=\"btn").concat(productGroup === 'company' ? ' btn-primary' : '', "\" data-product-group=\"company\" aria-pressed=\"").concat(productGroup === 'company', "\">\u516C\u53F8\u4EA7\u54C1 \u00B7 \u56DB\u7C7B</button></div>\n          ").concat(productGroup === 'common' ? "<div class=\"product-picks\">".concat(Object.keys(commonProducts).map(function (k) { return "<button type=\"button\" class=\"btn".concat(productPick === k ? ' btn-primary' : '', "\" data-common-product=\"").concat(k, "\" aria-pressed=\"").concat(productPick === k, "\">").concat(k, "</button>"); }).join(''), "</div><article class=\"card product-focus\"><h3>").concat(esc(m.name), "</h3><p>").concat(esc(m.brief), "</p><div class=\"product-route\">").concat(m.route.split(' → ').map(function (s, i) { return "<span><small>".concat(i + 1, "</small>").concat(esc(s), "</span>"); }).join(''), "</div><div class=\"product-examples\">").concat(m.examples.map(function (v) { return "<div>".concat(esc(v), "</div>"); }).join(''), "</div><details><summary>\u724C\u53F7\u4E0E\u5DE5\u827A\u63D0\u9192</summary><p>").concat(esc(m.reminder), "</p></details><button type=\"button\" class=\"btn\" id=\"product-open-process\">\u770B").concat(productPick === 'PE' ? '吹膜' : '注塑', "\u5982\u4F55\u5DE5\u4F5C</button></article>") : "<p class=\"text-small text-muted\">\u6309\u4F60\u63D0\u4F9B\u7684\u516C\u53F8\u57F9\u8BAD\u5185\u5BB9\u5F52\u7EB3\uFF1B\u4EE5\u4E0B\u4E3A\u4F5C\u7528\u6982\u5FF5\u56FE\uFF0C\u4E0D\u662F\u5B9E\u7269\u7167\u7247\u6216\u6027\u80FD\u8BA4\u8BC1\u3002</p><div class=\"company-product-list\">".concat(Object.entries(companyProducts).map(function (_a) {
+            var k = _a[0], v = _a[1];
+            return "<button type=\"button\" class=\"btn".concat(companyPick === k ? ' btn-primary' : '', "\" data-company-product=\"").concat(k, "\" aria-pressed=\"").concat(companyPick === k, "\">").concat(esc(v.name), "</button>");
+        }).join(''), "</div><article class=\"card product-focus\"><h3>").concat(esc(p.name), "</h3><div class=\"product-need\"><strong>\u8981\u89E3\u51B3\u4EC0\u4E48\uFF1F</strong><span>").concat(esc(p.need), "</span></div>").concat(productPrincipleGraphic(p), "<p>").concat(esc(p.goal), "</p><details><summary>\u9002\u7528\u8FB9\u754C\u4E0E\u8D44\u6599\u6838\u5BF9</summary><p>").concat(esc(p.caution), "</p></details></article>"), "\n          <section class=\"origin-comparison\"><h3>\u65B0\u6599\u548C\u56DE\u6599\uFF1A\u533A\u522B\u5728\u6765\u8DEF</h3><div class=\"knowledge-grid two\"><article class=\"card\"><h4>\u65B0\u6599 / \u539F\u751F\u6599</h4><div class=\"origin-route\"><span>\u539F\u59CB\u539F\u6599</span><b>\u2193</b><span>\u9996\u6B21\u805A\u5408</span><b>\u2193</b><strong>\u539F\u751F\u6811\u8102</strong></div><p>\u6CA1\u6709\u7ECF\u8FC7\u5236\u54C1\u56DE\u6536\u518D\u52A0\u5DE5\u3002\u6539\u6027\u65B0\u6599\u4E5F\u53EF\u7531\u5168\u65B0\u7684\u6811\u8102\u52A0\u52A9\u5242\u914D\u6DF7\u9020\u7C92\u3002</p></article><article class=\"card\"><h4>\u56DE\u6599 / \u56DE\u6536\u518D\u52A0\u5DE5\u6599</h4><div class=\"origin-route\"><span>\u751F\u4EA7\u8FB9\u89D2\u6599\u6216\u4F7F\u7528\u540E\u7684\u5236\u54C1</span><b>\u2193</b><span>\u5206\u9009\u3001\u6E05\u6D17\u3001\u5E72\u71E5\uFF08\u6309\u9700\u8981\uFF09</span><b>\u2193</b><strong>\u7C89\u788E\u56DE\u7528\u6216\u518D\u9020\u7C92</strong></div><p>\u201C\u56DE\u6599\u201D\u53E3\u8BED\u8303\u56F4\u8F83\u5BBD\uFF1A\u53EF\u6307\u5DE5\u5382\u8FB9\u89D2\u6599\u7C89\u788E\u6599\uFF0C\u4E5F\u53EF\u6307\u56DE\u6536\u5236\u54C1\u7684\u518D\u751F\u6599\u3002</p></article></div><details><summary>\u4E0D\u8981\u628A\u201C\u56DE\u6599\u201D\u76F4\u63A5\u7B49\u540C\u4E8E\u201C\u5DEE\u6599\u201D</summary><p>\u6027\u80FD\u4E0E\u6D01\u51C0\u5EA6\u3001\u6750\u6599\u662F\u5426\u6DF7\u6742\u3001\u70ED\u5386\u53F2\u3001\u964D\u89E3\u3001\u52A9\u5242\u548C\u6279\u6B21\u7A33\u5B9A\u6027\u6709\u5173\u3002\u5DE5\u5382\u8FB9\u89D2\u6599\u4E0E\u6D88\u8D39\u8005\u4F7F\u7528\u540E\u7684\u56DE\u6536\u6599\u6765\u8DEF\u4E0D\u540C\uFF1B\u518D\u751F\u6599\u4E0D\u4E00\u5B9A\u90FD\u7ECF\u8FC7\u6E05\u6D17\u6216\u9020\u7C92\u3002\u7528\u4E8E\u5177\u4F53\u4EA7\u54C1\u4ECD\u9700\u9A8C\u8BC1\u3002</p></details>").concat(window.PlasticVisualLab ? window.PlasticVisualLab.mixMarkup() : '', "</section>");
+    }
+    function bindProducts() {
+        var _a;
+        var content = $('#lab-knowledge-content');
+        content.querySelectorAll('[data-product-group]').forEach(function (b) { return b.addEventListener('click', function () { productGroup = b.dataset.productGroup; renderKnowledge(); }); });
+        content.querySelectorAll('[data-common-product]').forEach(function (b) { return b.addEventListener('click', function () { productPick = b.dataset.commonProduct; renderKnowledge(); }); });
+        content.querySelectorAll('[data-company-product]').forEach(function (b) { return b.addEventListener('click', function () { companyPick = b.dataset.companyProduct; renderKnowledge(); }); });
+        (_a = $('#product-open-process')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () { formingShape = 'all'; activeProcess = productPick === 'PE' ? 'blownfilm' : 'injection'; formingStep = 0; setMode('forming'); });
+        if (window.PlasticVisualLab)
+            window.PlasticVisualLab.mountMix($('#mix-explorer'));
     }
     function conceptsMarkup() {
-        return "<div class=\"knowledge-grid\">\n          <article class=\"card\"><h3>\u76F8\u5BF9\u5BC6\u5EA6</h3><p>\u6750\u6599\u5BC6\u5EA6\u4E0E\u53C2\u8003\u7269\u8D28\u5BC6\u5EA6\u4E4B\u6BD4\uFF1B\u56FA\u4F53\u548C\u6DB2\u4F53\u901A\u5E38\u4EE5\u7EA6 4 \u00B0C \u7684\u6C34\u4E3A\u53C2\u8003\uFF0C\u56E0\u6B64\u6CA1\u6709\u5355\u4F4D\u3002</p><div class=\"formula\"><strong>\u76F8\u5BF9\u5BC6\u5EA6 = \u6750\u6599\u5BC6\u5EA6 \u00F7 \u6C34\u7684\u5BC6\u5EA6</strong></div></article>\n          <article class=\"card\"><h3>\u5F3A\u5EA6</h3><p>\u6750\u6599\u62B5\u6297\u5916\u529B\u5BFC\u81F4\u7834\u574F\u6216\u89C4\u5B9A\u53D8\u5F62\u7684\u80FD\u529B\u3002\u9700\u8BF4\u660E\u7C7B\u578B\uFF0C\u5982\u62C9\u4F38\u5F3A\u5EA6\u3001\u5F2F\u66F2\u5F3A\u5EA6\u3001\u538B\u7F29\u5F3A\u5EA6\u3001\u51B2\u51FB\u5F3A\u5EA6\u3002</p><div class=\"note-line\">\u201C\u5F3A\u5EA6\u9AD8\u201D\u5FC5\u987B\u548C\u8F7D\u8377\u65B9\u5F0F\u3001\u6E29\u5EA6\u3001\u901F\u5EA6\u3001\u7F3A\u53E3\u53CA\u8BD5\u6837\u65B9\u5411\u4E00\u8D77\u7406\u89E3\u3002</div></article>\n          <article class=\"card\"><h3>\u6BD4\u5F3A\u5EA6</h3><p>\u5F3A\u5EA6\u4E0E\u5BC6\u5EA6\u7684\u6BD4\u503C\uFF0C\u7528\u6765\u6BD4\u8F83\u201C\u5355\u4F4D\u91CD\u91CF\u80FD\u627F\u53D7\u591A\u5C11\u201D\u3002\u6BD4\u5F3A\u5EA6\u9AD8\uFF0C\u901A\u5E38\u610F\u5473\u7740\u66F4\u9002\u5408\u8F7B\u91CF\u5316\u7ED3\u6784\u3002</p><div class=\"formula\"><strong>\u6BD4\u5F3A\u5EA6 = \u5F3A\u5EA6 \u00F7 \u5BC6\u5EA6</strong></div></article>\n          <article class=\"card\"><h3>\u5851\u6599\u7684\u4F18\u52BF</h3><ul><li>\u5BC6\u5EA6\u4F4E\uFF0C\u5BB9\u6613\u5B9E\u73B0\u8F7B\u91CF\u5316</li><li>\u6613\u52A0\u5DE5\u6210\u590D\u6742\u5F62\u72B6\uFF0C\u751F\u4EA7\u6548\u7387\u9AD8</li><li>\u8010\u8150\u8680\u3001\u7EDD\u7F18\u3001\u53EF\u900F\u660E\u6216\u7740\u8272</li><li>\u901A\u8FC7\u6539\u6027\u53EF\u517C\u987E\u5F3A\u5EA6\u3001\u97E7\u6027\u4E0E\u529F\u80FD</li></ul></article>\n          <article class=\"card\"><h3>\u5851\u6599\u7684\u5C40\u9650</h3><ul><li>\u591A\u6570\u54C1\u79CD\u8010\u70ED\u4F4E\u4E8E\u91D1\u5C5E\u548C\u9676\u74F7</li><li>\u53D7\u8F7D\u540E\u53EF\u80FD\u8815\u53D8\uFF0C\u5C3A\u5BF8\u7CBE\u5EA6\u53D7\u6536\u7F29\u5F71\u54CD</li><li>\u5149\u3001\u70ED\u3001\u6C27\u548C\u5316\u5B66\u73AF\u5883\u4F1A\u4FC3\u8FDB\u8001\u5316</li><li>\u56DE\u6536\u53D7\u6DF7\u6599\u3001\u6C61\u67D3\u3001\u6DFB\u52A0\u5242\u4E0E\u964D\u89E3\u9650\u5236</li></ul></article>\n          <article class=\"card\"><h3>\u4E00\u53E5\u8BDD\u5224\u65AD</h3><p>\u201C\u53C8\u8F7B\u53C8\u7ED3\u5B9E\u3001\u7A33\u5B9A\u6613\u52A0\u5DE5\u201D\u662F\u5851\u6599\u7684\u5178\u578B\u4EF7\u503C\uFF1B\u201C\u8010\u70ED\u8F83\u5DEE\u3001\u6613\u6536\u7F29\u8815\u53D8\u548C\u8001\u5316\u201D\u662F\u8BBE\u8BA1\u65F6\u5E38\u89C1\u9650\u5236\u3002</p><div class=\"note-line\">\u4E0D\u80FD\u7B3C\u7EDF\u8BF4\u6240\u6709\u5851\u6599\u201C\u7194\u70B9\u4F4E\u201D\uFF1A\u65E0\u5B9A\u5F62\u5851\u6599\u6CA1\u6709\u6676\u4F53\u7194\u70B9\uFF0C\u7279\u79CD\u5DE5\u7A0B\u5851\u6599\u7684\u8010\u70ED\u4E5F\u53EF\u80FD\u5F88\u9AD8\u3002</div></article>\n        </div>";
+        return "".concat(window.PlasticVisualLab ? window.PlasticVisualLab.strengthMarkup() : '', "<div class=\"knowledge-grid\">\n          <article class=\"card\"><h3>\u76F8\u5BF9\u5BC6\u5EA6</h3><p>\u6750\u6599\u5BC6\u5EA6\u4E0E\u53C2\u8003\u7269\u8D28\u5BC6\u5EA6\u4E4B\u6BD4\uFF1B\u56FA\u4F53\u548C\u6DB2\u4F53\u901A\u5E38\u4EE5\u7EA6 4 \u00B0C \u7684\u6C34\u4E3A\u53C2\u8003\uFF0C\u56E0\u6B64\u6CA1\u6709\u5355\u4F4D\u3002</p><div class=\"formula\"><strong>\u76F8\u5BF9\u5BC6\u5EA6 = \u6750\u6599\u5BC6\u5EA6 \u00F7 \u6C34\u7684\u5BC6\u5EA6</strong></div></article>\n          <article class=\"card\"><h3>\u5F3A\u5EA6</h3><p>\u6750\u6599\u62B5\u6297\u5916\u529B\u5BFC\u81F4\u7834\u574F\u6216\u89C4\u5B9A\u53D8\u5F62\u7684\u80FD\u529B\u3002\u9700\u8BF4\u660E\u7C7B\u578B\uFF0C\u5982\u62C9\u4F38\u5F3A\u5EA6\u3001\u5F2F\u66F2\u5F3A\u5EA6\u3001\u538B\u7F29\u5F3A\u5EA6\u3001\u51B2\u51FB\u5F3A\u5EA6\u3002</p><div class=\"note-line\">\u201C\u5F3A\u5EA6\u9AD8\u201D\u5FC5\u987B\u548C\u8F7D\u8377\u65B9\u5F0F\u3001\u6E29\u5EA6\u3001\u901F\u5EA6\u3001\u7F3A\u53E3\u53CA\u8BD5\u6837\u65B9\u5411\u4E00\u8D77\u7406\u89E3\u3002</div></article>\n          <article class=\"card\"><h3>\u6BD4\u5F3A\u5EA6</h3><p>\u5F3A\u5EA6\u4E0E\u5BC6\u5EA6\u7684\u6BD4\u503C\uFF0C\u7528\u6765\u6BD4\u8F83\u201C\u5355\u4F4D\u91CD\u91CF\u80FD\u627F\u53D7\u591A\u5C11\u201D\u3002\u6BD4\u5F3A\u5EA6\u9AD8\uFF0C\u901A\u5E38\u610F\u5473\u7740\u66F4\u9002\u5408\u8F7B\u91CF\u5316\u7ED3\u6784\u3002</p><div class=\"formula\"><strong>\u6BD4\u5F3A\u5EA6 = \u5F3A\u5EA6 \u00F7 \u5BC6\u5EA6</strong></div></article>\n          <article class=\"card\"><h3>\u5851\u6599\u7684\u4F18\u52BF</h3><ul><li>\u5BC6\u5EA6\u4F4E\uFF0C\u5BB9\u6613\u5B9E\u73B0\u8F7B\u91CF\u5316</li><li>\u6613\u52A0\u5DE5\u6210\u590D\u6742\u5F62\u72B6\uFF0C\u751F\u4EA7\u6548\u7387\u9AD8</li><li>\u8010\u8150\u8680\u3001\u7EDD\u7F18\u3001\u53EF\u900F\u660E\u6216\u7740\u8272</li><li>\u901A\u8FC7\u6539\u6027\u53EF\u517C\u987E\u5F3A\u5EA6\u3001\u97E7\u6027\u4E0E\u529F\u80FD</li></ul></article>\n          <article class=\"card\"><h3>\u5851\u6599\u7684\u5C40\u9650</h3><ul><li>\u591A\u6570\u54C1\u79CD\u8010\u70ED\u4F4E\u4E8E\u91D1\u5C5E\u548C\u9676\u74F7</li><li>\u53D7\u8F7D\u540E\u53EF\u80FD\u8815\u53D8\uFF0C\u5C3A\u5BF8\u7CBE\u5EA6\u53D7\u6536\u7F29\u5F71\u54CD</li><li>\u5149\u3001\u70ED\u3001\u6C27\u548C\u5316\u5B66\u73AF\u5883\u4F1A\u4FC3\u8FDB\u8001\u5316</li><li>\u56DE\u6536\u53D7\u6DF7\u6599\u3001\u6C61\u67D3\u3001\u6DFB\u52A0\u5242\u4E0E\u964D\u89E3\u9650\u5236</li></ul></article>\n        </div>");
     }
     function renderKnowledge() {
+        if (window.PlasticVisualLab)
+            window.PlasticVisualLab.disposeInjection();
         stopFormingPlay();
         var content = $('#lab-knowledge-content');
         content.innerHTML = knowledgeTopic === 'classify' ? classificationMarkup() : knowledgeTopic === 'modified' ? modifiedMarkup() : knowledgeTopic === 'forming' ? formingMarkup() : knowledgeTopic === 'polymers' ? polymersMarkup() : knowledgeTopic === 'products' ? productsMarkup() : conceptsMarkup();
@@ -3570,6 +4568,10 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         content.querySelectorAll('[data-process]').forEach(function (b) { return b.addEventListener('click', function () { activeProcess = b.dataset.process; renderKnowledge(); saveLearningState(); }); });
         if (knowledgeTopic === 'forming')
             bindForming();
+        if (knowledgeTopic === 'products')
+            bindProducts();
+        if (knowledgeTopic === 'concepts' && window.PlasticVisualLab)
+            window.PlasticVisualLab.mountStrength($('#strength-explorer'));
     }
     function renderQuiz() {
         var item = quizData[quizIndex];
@@ -3593,18 +4595,20 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     function setMode(mode, persist, preserveTopic) {
         if (persist === void 0) { persist = true; }
         if (preserveTopic === void 0) { preserveTopic = false; }
+        if (window.PlasticVisualLab)
+            window.PlasticVisualLab.disposeInjection();
         stopFormingPlay();
         activeMode = mode;
         $$('.mode-switch [data-mode]').forEach(function (b) { var on = b.dataset.mode === mode; b.classList.toggle('btn-primary', on); b.setAttribute('aria-pressed', String(on)); });
-        if (['classify', 'modified', 'forming'].includes(mode) && !preserveTopic)
+        if (['classify', 'modified', 'forming', 'products'].includes(mode) && !preserveTopic)
             knowledgeTopic = mode;
-        if (['classify', 'modified', 'forming'].includes(mode)) {
+        if (['classify', 'modified', 'forming', 'products'].includes(mode)) {
             renderKnowledgeNav();
             renderKnowledge();
         }
         $('#lab-flow-view').classList.toggle('hidden', mode !== 'flow');
         $('#lab-property-view').classList.toggle('hidden', mode !== 'lab');
-        $('#lab-knowledge-view').classList.toggle('hidden', !['classify', 'modified', 'forming'].includes(mode));
+        $('#lab-knowledge-view').classList.toggle('hidden', !['classify', 'modified', 'forming', 'products'].includes(mode));
         $('#lab-table-view').classList.toggle('hidden', mode !== 'table');
         $('#lab-training-view').classList.toggle('hidden', mode !== 'training');
         if (mode !== 'flow')
@@ -3696,6 +4700,16 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (location.hash === '#forming') {
         activeMode = 'forming';
         knowledgeTopic = 'forming';
+    }
+    if (location.hash === '#beginner') {
+        activeMode = 'forming';
+        knowledgeTopic = 'forming';
+        activeProcess = 'injection';
+        formingShape = 'all';
+    }
+    if (location.hash === '#products') {
+        activeMode = 'products';
+        knowledgeTopic = 'products';
     }
     renderFlow();
     renderMaterialButtons();
