@@ -1082,6 +1082,45 @@ html>body{padding:0}</style>
     #plastic-material-lab .table-detail dl { display: grid; grid-template-columns: 130px 1fr; gap: 8px 12px; margin: 0; }
     #plastic-material-lab .table-detail dt { color: var(--muted-foreground); }
     #plastic-material-lab .table-detail dd { margin: 0; }
+    #plastic-material-lab .industry-map { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:8px; align-items:center; margin:12px 0; }
+    #plastic-material-lab .industry-map > div { padding:12px; background:color-mix(in srgb,var(--muted) 55%,transparent); }
+    #plastic-material-lab .industry-map strong, #plastic-material-lab .industry-map span { display:block; }
+    #plastic-material-lab .forming-head { display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    #plastic-material-lab .forming-head h3 { margin:0; }
+    #plastic-material-lab .forming-selector { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:14px 0; }
+    #plastic-material-lab .forming-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:6px; margin:14px 0; }
+    #plastic-material-lab .forming-steps .btn { white-space:normal; text-align:left; }
+    #plastic-material-lab .forming-steps .step-num { opacity:.7; margin-right:6px; }
+    #plastic-material-lab .forming-player { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(220px,.9fr); gap:16px; align-items:start; }
+    #plastic-material-lab .machine-figure { margin:0; min-width:0; }
+    #plastic-material-lab .machine-svg { display:block; width:100%; height:auto; background:color-mix(in srgb,var(--muted) 35%,transparent); }
+    #plastic-material-lab .machine-svg .housing { fill:var(--background); stroke:var(--muted-foreground); stroke-width:2; }
+    #plastic-material-lab .machine-svg .resin { fill:color-mix(in srgb,var(--viz-series-1) 28%,var(--background)); stroke:var(--viz-series-1); stroke-width:2; }
+    #plastic-material-lab .machine-svg .material-path { stroke:var(--viz-series-1); stroke-width:7; fill:none; stroke-linejoin:round; }
+    #plastic-material-lab .machine-svg .force-path { stroke:var(--viz-series-3); stroke-width:3; fill:none; marker-end:url(#forming-arrow); }
+    #plastic-material-lab .machine-svg .inactive { opacity:.26; }
+    #plastic-material-lab .machine-svg .step-focus { fill:color-mix(in srgb,var(--viz-series-1) 8%,transparent); stroke:var(--viz-series-1); stroke-width:2; stroke-dasharray:6 4; }
+    #plastic-material-lab .forming-equipment .current { font-weight:500; text-decoration:underline; text-underline-offset:4px; }
+    #plastic-material-lab .machine-svg .guide { stroke:var(--muted-foreground); fill:none; stroke-width:2; }
+    #plastic-material-lab .machine-legend { display:flex; flex-wrap:wrap; gap:8px 18px; margin:8px 0; }
+    #plastic-material-lab .machine-legend span { display:inline-flex; gap:6px; align-items:center; }
+    #plastic-material-lab .forming-detail { padding:12px 0; }
+    #plastic-material-lab .forming-detail h4 { margin:0 0 8px; }
+    #plastic-material-lab .forming-detail dl { display:grid; gap:4px; margin:0; }
+    #plastic-material-lab .forming-detail dt { font-weight:500; margin-top:8px; }
+    #plastic-material-lab .forming-detail dd { margin:0; }
+    #plastic-material-lab .forming-actions { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0; }
+    #plastic-material-lab .forming-equipment { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:10px 0; text-align:center; }
+    #plastic-material-lab .forming-progress { height:5px; background:var(--muted); margin:8px 0; }
+    #plastic-material-lab .forming-progress span { display:block; height:100%; background:var(--viz-series-1); }
+    #plastic-material-lab .forming-more { margin:16px 0; }
+    #plastic-material-lab .forming-more summary { cursor:pointer; padding:8px 0; font-weight:500; }
+    #plastic-material-lab .source-links { display:flex; flex-wrap:wrap; gap:8px 16px; margin:10px 0; }
+    @media (max-width:660px) {
+      #plastic-material-lab .industry-map, #plastic-material-lab .forming-player, #plastic-material-lab .forming-selector { grid-template-columns:1fr; }
+      #plastic-material-lab .industry-map > b { text-align:center; transform:rotate(90deg); }
+      #plastic-material-lab .forming-equipment { grid-template-columns:1fr; text-align:left; }
+    }
     @keyframes lab-drift { from { transform: translateY(-4px); } to { transform: translateY(5px); } }
     @keyframes lab-spin { to { transform: rotate(360deg); } }
     @keyframes lab-pulse { from { opacity: .45; } to { opacity: 1; } }
@@ -1144,6 +1183,12 @@ html>body{padding:0}</style>
 
     <div class="flow-overview">
       <div class="flow-overview-head"><strong>完整生产闭环</strong><span class="text-small text-muted">点击任一步，查看变化、风险与检查重点</span></div>
+      <div class="industry-map" aria-label="树脂生产、塑料配混、制品成型三个环节">
+        <div><strong>① 树脂生产</strong><span>原料 → 单体 → 聚合树脂</span></div><b aria-hidden="true">→</b>
+        <div><strong>② 塑料配混</strong><span>树脂 ＋ 助剂 / 填料 → 专用料</span></div><b aria-hidden="true">→</b>
+        <div><strong>③ 制品生产</strong><span>选择成型工艺 → 最终制品</span></div>
+      </div>
+      <p class="text-small text-muted">①②属于材料生产，③属于塑料成型加工。并非每种树脂都必须改性或二次造粒；原生树脂也可直接成型。<button type="button" class="btn btn-ghost" id="lab-open-forming">查看成型工艺图解</button></p>
       <div class="stage-track" id="lab-stage-track" aria-label="完整生产流程步骤"></div>
       <div class="checkpoint-grid" aria-live="polite">
         <div class="checkpoint"><strong>本步容易出现的问题</strong><span id="lab-step-risk"></span></div>
@@ -1250,6 +1295,7 @@ html>body{padding:0}</style>
         <select id="lab-table-type" class="form-select">
           <option value="materials">材料对比</option>
           <option value="processes">成型工艺</option>
+          <option value="films">CPP / BOPP / IPP 薄膜</option>
           <option value="additives">助剂作用</option>
         </select>
       </label>
@@ -1288,6 +1334,7 @@ html>body{padding:0}</style>
         <div class="text-small text-muted">建议记录：材料 → 特性 → 工艺 → 产品 → 注意事项。自动保存仅限当前浏览器；下载文件可用于备份或带到其他设备。</div>
       </div>
     </div>
+    <details class="forming-more"><summary>培训资料的四个复习要点</summary><ol><li>常见成型工艺：注塑、挤出、吹塑、压延、热成型、模压等；拉伸是基膜的后续取向加工。</li><li>注塑通常按循环充模、保压、冷却并取件；挤出通常连续通过口模形成截面。</li><li>薄膜重点路线：吹膜、流延成膜，以及基膜的拉伸取向；普通牵引不等于专门拉伸。</li><li>薄膜用于包装、农膜、土工膜、雨衣、收缩包装和缠绕包装等，性能须结合材料与结构。</li></ol></details>
   </section>
 
   <script>
@@ -1476,6 +1523,342 @@ html>body{padding:0}</style>
         compression:{name:'模压', input:'预定量料坯', action:'在热模中加压固化或定形', output:'厚壁或复合制件', examples:'热固性电器件、橡胶件、SMC 车身件'},
         foam:{name:'发泡成型', input:'树脂 + 发泡体系', action:'气体成核、膨胀并稳定泡孔', output:'多孔轻质材料', examples:'EPS 保温板、EVA 鞋材、缓冲包装'}
       };
+// 基于用户提供的《常见塑料成型工艺培训》截图整理。
+// 图示用于学习工艺原理，顺序有简化；不是设备操作或配方参数指导。
+const trainingProcesses = {
+  injection: {
+    name: '注塑成型', family: 'injection',
+    input: '适用树脂粒料或成型料；按牌号要求完成配混、干燥与预塑',
+    action: '将塑化物料注入闭合模腔，保压补缩，冷却或固化后脱模',
+    output: '按模腔形状批量获得离散塑件',
+    examples: '餐具、收纳盒、家电外壳、汽车部件、齿轮与管件',
+    resins: 'PE、PP、PS、ABS、PA、PC等适用牌号；热固性注塑需专用材料和工艺',
+    advantage: '适合批量制造复杂形状，可集成加强筋和嵌件，易于自动化',
+    limitation: '模具投入和准备周期较大；内应力、缩痕、翘曲及脱模条件需要设计',
+    caution: '下面是典型热塑性注塑的7步循环。配混、干燥按材料要求提前完成；再塑化通常可与冷却阶段重叠。实际合模含模具保护和锁紧阶段，“高压低速”不是通用安全设置。热固性路线以固化为主。',
+    steps: [
+      { name: '合模', action: '动模与定模闭合并锁紧，为承受模腔压力建立封闭空间。', check: '关注模具保护、闭合位置、锁紧能力及分型面状态。' },
+      { name: '射台对接', action: '注射单元喷嘴与模具浇口套对接，建立熔体通道；部分设备循环中始终保持对接。', check: '关注对中、接触与漏料；机型不同，对接动作不一定每次重复。' },
+      { name: '注射', action: '螺杆向前推进，将已塑化的熔体通过流道与浇口充入模腔。', check: '关注充模完整性、流动平衡、短射、飞边和熔接痕。' },
+      { name: '保压', action: '继续向模腔补料，补偿冷却收缩，直至浇口有效封闭。', check: '关注缩痕、重量稳定、过度保压导致的应力及尺寸变化。' },
+      { name: '冷却', action: '热塑性塑件在模内降温定型；设备可同时旋转螺杆，为下一模准备熔体。', check: '关注冷却均匀性、固化程度、翘曲、残余应力和可脱模状态。' },
+      { name: '开模', action: '模具分开，露出成型塑件；滑块等机构按设计完成脱离。', check: '关注开模次序、抽芯、粘模及塑件变形。' },
+      { name: '顶出', action: '顶针或其他脱模机构取出塑件，经修边和必要后处理后检测，循环返回合模。', check: '关注顶白、顶裂、浇口与毛边；退火或调湿应由材料与产品要求决定。' }
+    ]
+  },
+  extrusion: {
+    name: '挤出成型', family: 'extrusion',
+    input: '适合挤出的树脂及配混料',
+    action: '螺杆连续输送、混合和塑化，通过口模形成连续截面，再定型冷却',
+    output: '连续的管、型材、片板、膜或其他挤出制品',
+    examples: '管材、门窗型材、塑料板片、电线包覆与薄膜基材',
+    resins: 'PE、PP、PVC、PS、ABS、PA、PC等适用牌号；FEP等氟聚合物也可熔融挤出',
+    advantage: '适合连续生产长尺寸制品，改变口模和辅机可形成多种截面',
+    limitation: '复杂离散三维形状通常不宜直接挤出；口模、定型和牵引共同影响尺寸',
+    caution: '“氟塑料不能挤出”不成立：FEP等可常规熔融挤出，PTFE需特殊加工路径。单螺杆和双螺杆用途取决于物料及工艺；挤出机还可用于混炼、改性和造粒。',
+    steps: [
+      { name: '物料准备', action: '按配方计量配混，并根据材料要求干燥或预处理；设备达到工艺准备状态。', check: '关注水分、污染、配比、热稳定性及物料一致性。' },
+      { name: '加料输送', action: '物料进入料斗，在螺杆进料段连续向前输送。', check: '关注架桥、喂料波动和输送稳定性。' },
+      { name: '塑化混合', action: '螺杆转动及加热使物料塑化、混合，形成适合成型的流动物料。', check: '关注未塑化颗粒、降解、混合均匀性及压力波动。' },
+      { name: '口模成型', action: '物料经过机头与口模，形成设计要求的初始截面。', check: '关注口模流动平衡、膨胀、表面粗糙及熔体破裂。' },
+      { name: '定型冷却', action: '通过适用定型装置、辊组、空气或水冷，使截面和尺寸稳定。', check: '关注冷却均匀性、收缩、椭圆度或平整度。' },
+      { name: '牵引', action: '牵引装置连续带走制品，与挤出供料相匹配。', check: '关注线速匹配、打滑、牵伸和尺寸波动。' },
+      { name: '切断或收卷', action: '按制品形式定长切断或连续收卷，经后处理和检验形成成品。', check: '关注切口、长度、收卷张力、外观和尺寸。' }
+    ]
+  },
+  pipe: {
+    name: '管材挤出', family: 'extrusion',
+    input: '管材级树脂及适用配混料',
+    action: '由环形口模形成管坯，经定径、冷却和牵引后定长切断',
+    output: '具有规定外径、壁厚和长度的连续塑料管材',
+    examples: '供水管、排水管、灌溉管和电缆保护管',
+    resins: 'PE、PP、PP-R、PVC、ABS等适用管材牌号',
+    advantage: '适合稳定连续生产，可按用途设计管壁、层数和截面',
+    limitation: '偏心、壁厚不均、椭圆、内应力和牵引波动影响质量',
+    caution: '管材用途不能只凭树脂名称判断；承压、卫生、耐温及耐久性能需符合对应产品要求。定径方式和辅机由材料、尺寸及线体决定。',
+    steps: [
+      { name: '配混加料', action: '计量准备树脂、色料及必要助剂，连续送入挤出机。', check: '关注配比、水分、杂质及原料批次。' },
+      { name: '塑化', action: '物料经螺杆输送和混合形成稳定的塑化物料。', check: '关注温度和压力稳定、分散及降解迹象。' },
+      { name: '环形口模', action: '物料流经环形通道形成连续管坯。', check: '关注口模对中、流动平衡及管壁偏心。' },
+      { name: '定径', action: '管坯进入适用定径装置，控制外形与初始尺寸。', check: '关注外径、椭圆度、壁厚和表面状态。' },
+      { name: '冷却', action: '通过冷却系统使管壁逐步定型。', check: '关注内外冷却差异、残余应力及充分冷却。' },
+      { name: '牵引', action: '牵引机稳定带走管材，协调挤出量与线速。', check: '关注打滑、压痕、线速波动及壁厚变化。' },
+      { name: '切断检测', action: '按指定长度切断，检测尺寸、外观和用途相关性能。', check: '关注长度、切口、尺寸；承压管还需相应性能测试。' }
+    ]
+  },
+  profile: {
+    name: '异型材挤出', family: 'extrusion',
+    input: '适用树脂配混料；必要时加入发泡或增强体系',
+    action: '口模形成复杂连续截面，经专用定型、冷却、牵引后切断',
+    output: '实心、中空、发泡或复合的连续塑料型材',
+    examples: '门窗型材、装饰条、密封条和结构型材',
+    resins: 'PVC、PE、PP、ABS及其他适用树脂或复合配方',
+    advantage: '连续制作特殊截面，可结合中空、发泡或复合设计',
+    limitation: '复杂截面的各部位流速与冷却差异易造成形变',
+    caution: '异型材是按截面形状描述制品，不是新的树脂类别。辅机和定型方式随截面、材料及线体不同。',
+    steps: [
+      { name: '配混', action: '按要求准备树脂与助剂，形成适用于目标型材的物料。', check: '关注配比、分散和材料一致性。' },
+      { name: '挤出塑化', action: '螺杆连续塑化和输送物料至机头。', check: '关注塑化、产量和压力稳定性。' },
+      { name: '异型口模', action: '口模把物料分配至各部分，形成连续的复杂截面。', check: '关注薄厚区域流动平衡、熔接及表面缺陷。' },
+      { name: '定型冷却', action: '专用定型装置约束外形，并逐步冷却固定尺寸。', check: '关注各区域收缩差、弯曲、扭曲和尺寸。' },
+      { name: '牵引', action: '匹配线速带走型材，保持成型连续。', check: '关注牵引力分布、打滑和压痕。' },
+      { name: '切断检验', action: '定长切断，检查外观、截面尺寸和所需性能。', check: '关注长度、平直度、孔腔与连接部位。' }
+    ]
+  },
+  sheet: {
+    name: '板片材挤出', family: 'cast',
+    input: '适用片板级树脂或配混料',
+    action: '平口模形成板片坯，经辊组压光与冷却后切边、牵引、切断或收卷',
+    output: '连续的塑料片材或板材',
+    examples: '吸塑用片材、塑料板、保护板和包装基材',
+    resins: 'PVC、PE、PP、PS、ABS、PC、PET等适用牌号',
+    advantage: '连续生产平面坯材，可控制表面、厚度及多层结构',
+    limitation: '横向厚差、辊印、翘曲与内应力需要控制',
+    caution: '平口模先挤出板片坯再经压光辊组，不等同于塑化团料直接进入多辊的传统压延路线。膜、片、板厚度边界随行业与标准而异。',
+    steps: [
+      { name: '计量塑化', action: '准备物料，经挤出机塑化并连续输送。', check: '关注水分、污染、分散和物料稳定。' },
+      { name: '平口模', action: '熔体从宽幅平口模流出，形成连续板片坯。', check: '关注横向分布、厚差及口模痕。' },
+      { name: '辊组压光', action: '板片坯进入辊组，被牵引、整平及冷却。', check: '关注辊隙、表面、辊速匹配与夹气。' },
+      { name: '继续冷却', action: '片板经过后续辊组或输送系统，进一步稳定尺寸。', check: '关注冷却均匀、平整度和内应力。' },
+      { name: '切边牵引', action: '修整边部，牵引系统稳定带走片板。', check: '关注有效宽度、边部质量及张力。' },
+      { name: '切片或收卷', action: '依厚度和用途切片堆放或收卷，并进行检测。', check: '关注尺寸、外观、厚度分布与后续热成型适用性。' }
+    ]
+  },
+  blow: {
+    name: '中空吹塑', family: 'blow',
+    input: '适合吹塑的树脂和热态型坯或预制坯',
+    action: '在闭合模具内用气压使热态坯体贴合模壁，冷却定型后脱模',
+    output: '瓶、桶等中空塑料制品',
+    examples: '洗涤剂瓶、包装桶、工具箱与中空容器',
+    resins: 'PE、PP、PVC、PET等适用吹塑牌号；PET瓶常采用注塑预制坯再拉伸吹塑',
+    advantage: '适合制造中空容器，可设计容量、外形及部分多层结构',
+    limitation: '壁厚分布、夹坯焊合和瓶口精度受路线及模具影响',
+    caution: '图示以挤出吹塑为例。注射吹塑和拉伸吹塑的坯体制作、温度历史及动作不同；不要将中空吹塑与不受封闭模腔约束的吹膜混为一谈。',
+    steps: [
+      { name: '形成型坯', action: '挤出机形成热态管状型坯；其他路线先制造适用预制坯。', check: '关注坯体温度、长度、壁厚和下垂。' },
+      { name: '合模夹坯', action: '模具闭合，将型坯夹持在指定位置。', check: '关注夹坯、密封、分型面和底部焊合。' },
+      { name: '吹胀贴模', action: '气体进入坯体，将其扩张至模具内表面；拉伸吹塑还含专门拉伸动作。', check: '关注成型完整性、壁厚分布及角部薄区。' },
+      { name: '冷却定型', action: '中空件保持形状并通过模具冷却。', check: '关注冷却均匀、收缩和可脱模状态。' },
+      { name: '开模取件', action: '模具打开，取出容器并清理必要的飞边。', check: '关注外观、切边与开口部位。' },
+      { name: '检测', action: '检查容量、尺寸、密封和产品用途要求的性能。', check: '关注泄漏、跌落、承载及材料适用性。' }
+    ]
+  },
+  blownfilm: {
+    name: '薄膜吹塑（吹膜）', family: 'blownfilm',
+    input: '适合吹膜的树脂与配混料',
+    action: '环形口模挤出膜管，经吹胀、牵引和冷却后收拢收卷',
+    output: '筒膜或经过切开的平膜',
+    examples: '农膜、袋膜、包装膜、垃圾袋和部分土工膜',
+    resins: 'LDPE、LLDPE、HDPE及适用共混；PP、PVC等需对应牌号、配方和设备',
+    advantage: '可直接得到筒膜，适合制袋；吹胀与牵引可产生两个方向的取向',
+    limitation: '膜泡稳定性、横向厚差及冷却能力限制需要控制',
+    caution: '吹膜和流延的效果需在相近材料、厚度及设备条件下比较。吹膜形成的取向不等同于专用双向拉伸线的可控取向。',
+    steps: [
+      { name: '配混塑化', action: '计量树脂与适用助剂，经挤出机塑化混合。', check: '关注分散、污染、凝胶与物料稳定。' },
+      { name: '环形口模', action: '熔体从环形口模挤出，形成连续膜管。', check: '关注口模流量分布、膜管初始厚度和表面。' },
+      { name: '吹胀风冷', action: '向膜管内部送气使其扩大，同时冷却风使膜泡逐步定型。', check: '关注泡径、膜泡摆动、冷却均匀性及霜线稳定。' },
+      { name: '收拢牵引', action: '膜泡经人字板收拢，夹辊牵引并维持连续运行。', check: '关注褶皱、折径、牵引稳定性与夹辊状态。' },
+      { name: '整理收卷', action: '按产品需要切开或保持筒状，并进行表面处理与收卷。', check: '关注厚度分布、张力、卷面和后续制袋适用性。' }
+    ]
+  },
+  cast: {
+    name: '流延薄膜', family: 'cast',
+    input: '适合平膜挤出的树脂与配混料',
+    action: '平口模形成熔体膜片，使其贴合冷却辊快速冷却定型，再整理收卷',
+    output: '连续平膜，通常没有专门拉伸取向工序',
+    examples: 'CPP膜、缠绕膜、包装封口内层和多层流延膜',
+    resins: 'PP、PE、PA、PET等适用牌号；多层结构按用途选择',
+    advantage: '在适用条件下可获得较好的厚度均匀性、透明度和表面效果',
+    limitation: '需控制贴辊、边部颈缩及切边损耗；设备投入与性能取决于线体',
+    caution: '“无拉伸”通常表示没有专门拉伸取向工序，不代表完全没有牵引和熔体拉伸。热封、耐热及阻隔不由“流延”名称单独决定。',
+    steps: [
+      { name: '配混塑化', action: '按材料要求处理物料，经挤出机形成均匀熔体。', check: '关注水分、凝胶、分散和降解。' },
+      { name: '平口模出膜', action: '熔体从T型或适用宽幅口模流出，形成膜片。', check: '关注横向流量分布、厚差及口模条纹。' },
+      { name: '贴合冷却辊', action: '膜片贴合冷却辊表面，通过传热快速定型。', check: '关注贴辊接触、夹气、边部颈缩和冷却均匀性。' },
+      { name: '表面整理', action: '按用途进行表面处理、测厚与边部修整。', check: '关注有效宽度、表面处理效果和边料。' },
+      { name: '牵引收卷', action: '膜片经牵引与张力控制连续收卷。', check: '关注卷面、松紧、褶皱及厚度分布。' }
+    ]
+  },
+  haul: {
+    name: '平膜挤出牵引／辊压', family: 'cast',
+    input: '适用平膜、片材或板材树脂',
+    action: '平口模挤出坯材，由辊组牵引、压光和冷却，再整理成品',
+    output: '膜、片或板等连续平面坯材',
+    examples: '包装片材、塑料膜及需要辊压表面的板片',
+    resins: 'PP、PE、PVC、PS、ABS、PC等适用牌号',
+    advantage: '连续生产，可结合辊组控制表面、厚度和冷却',
+    limitation: '辊隙、温度、线速及张力需协调，避免辊印和内应力',
+    caution: '这是培训资料采用的路径名称。牵引是流延、吹膜、片板挤出等多条路线中的动作，不能仅凭有牵引辊就判定为专门拉伸取向。',
+    steps: [
+      { name: '原料塑化', action: '准备物料，经挤出机塑化并稳定供料。', check: '关注材料状态、塑化均匀性与压力稳定。' },
+      { name: '平口模出坯', action: '宽幅口模挤出连续膜片或板片坯。', check: '关注横向厚度和口模表面痕迹。' },
+      { name: '辊组牵引压光', action: '辊组带走坯材，并按设计完成整平、压光和初步冷却。', check: '关注辊速匹配、辊隙、辊印与夹气。' },
+      { name: '切边继续冷却', action: '修整边部，经过后续冷却和输送系统稳定尺寸。', check: '关注宽度、平整度与收缩。' },
+      { name: '收卷或切片', action: '按产品厚度和用途收卷或切片，再检测。', check: '关注张力、卷面、切口及厚度分布。' }
+    ]
+  },
+  stretch: {
+    name: '薄膜拉伸取向', family: 'stretch',
+    input: '预先制备的适用膜片或膜管',
+    action: '在适合的热状态下单向或双向拉伸，使分子链产生取向，再热定型冷却',
+    output: '具有方向性或双向取向的薄膜',
+    examples: '单向拉伸膜、BOPP、BOPET、BOPA及部分收缩膜',
+    resins: 'PP、PET、PA、PE等适用牌号；取向条件随树脂不同',
+    advantage: '可提高特定方向的强度和刚度，并按设计改善特定光学或功能性能',
+    limitation: '具有方向差异；不均匀取向、断膜及热收缩需要控制',
+    caution: '图示以平膜顺序双向拉伸为例：纵向MDO、横向TDO；还有同时双向和管膜路线。单向拉伸省去相应另一方向步骤。取向不能保证所有耐热、阻隔、耐寒性能都提高。',
+    steps: [
+      { name: '制备基膜', action: '先通过挤出或其他适用路线制作均匀的待拉伸基膜。', check: '关注基膜厚差、结晶状态、污染与缺陷。' },
+      { name: '预热', action: '基膜均匀加热至适合本材料拉伸的状态。', check: '关注温度均匀性，避免局部过软或无法稳定延展。' },
+      { name: '纵向拉伸', action: '利用辊组速度差等设计沿运行方向拉伸，膜片变长变薄。', check: '关注纵向均匀性、打滑、颈缩及断膜。' },
+      { name: '横向拉伸', action: '双向路线通过夹持膜边等方式扩大宽度，获得另一方向的取向。', check: '关注边部夹持、横向厚差、拉伸均匀及破边。' },
+      { name: '热定型冷却', action: '通过适用热定型和松弛过程稳定结构，再冷却。', check: '关注尺寸稳定、残余应力及目标热收缩。' },
+      { name: '切边收卷', action: '修整边部，按需表面处理并检测后收卷。', check: '关注纵横向性能、厚度、卷面及用途要求。' }
+    ]
+  },
+  calender: {
+    name: '压延成型', family: 'calender',
+    input: '树脂与助剂配混后形成的适用塑化物料',
+    action: '物料经过多道辊隙，被剪切、挤压和延展成连续薄膜或片材',
+    output: '具有规定宽度、厚度及表面的膜片或复合材料',
+    examples: 'PVC薄膜、片材、人造革面层、地板与部分胶片',
+    resins: '主要为适用PVC配方；橡胶及其他材料也有相应压延路线',
+    advantage: '适合连续制造膜片，厚度与表面可控，可结合压花和复合',
+    limitation: '设备重、占地和投入较大，辊系精度与维护要求高',
+    caution: '规范名称为“压延”，不是“延压”。资料中的膜厚、线速和最高速度只是具体线体示例，不是所有树脂通用的操作范围；塑化设备与辊排列可因工艺而不同。',
+    steps: [
+      { name: '树脂助剂计量', action: '按目标配方称取树脂、稳定剂、增塑剂、润滑剂、颜料或填料等必要成分。', check: '关注配比、原料状态及是否适合目标用途。' },
+      { name: '均匀混合', action: '混合体系使树脂与各类助剂分布均匀。', check: '关注分散、水分、污染和团聚。' },
+      { name: '塑化炼料', action: '由密炼、开炼或适用挤出设备形成适合压延的塑化物料。', check: '关注塑化程度、热稳定性与物料一致性。' },
+      { name: '多道辊隙延展', action: '物料进入压延辊系，逐道剪切、挤压和延展，形成连续膜片。', check: '关注辊隙、辊挠度、横向厚差、气泡及异物。' },
+      { name: '剥离表面整理', action: '膜片从辊面剥离，按用途压花、压光或复合。', check: '关注剥离、表面光泽、纹理与粘辊。' },
+      { name: '冷却定型', action: '通过冷却辊组等系统降低温度，稳定形状与尺寸。', check: '关注收缩、褶皱、残余应力和冷却均匀。' },
+      { name: '检测收卷', action: '检测厚度、宽度和外观，合格膜片收卷或裁切。', check: '关注厚度分布、气泡、表面缺陷及卷面质量。' }
+    ]
+  },
+  thermo: {
+    name: '热成型（吸塑等）', family: 'thermo',
+    input: '预先制备的适用热塑性片材',
+    action: '片材加热软化，以真空、正压或机械辅助方式贴模，冷却脱模后修边',
+    output: '托盘、盒、罩壳等薄壳制品',
+    examples: '吸塑包装、食品托盘、透明罩、广告字和设备罩壳',
+    resins: 'PS/HIPS、ABS、PET、PVC、PP、PE等适用片材；工艺随材料不同',
+    advantage: '适合制造较大面积薄壳，可用相对简洁的模具路线',
+    limitation: '拉深使局部壁厚变薄，细节、深度、脱模及边料需设计',
+    caution: '吸塑是真空热成型的一种。真空负压、正压及正负压组合通过片材两侧压差成型；也可使用塞头辅助、对模或双片等路线。',
+    steps: [
+      { name: '片材装夹', action: '把合适厚度和尺寸的片材固定在夹框中。', check: '关注片材状态、夹紧及所需预处理。' },
+      { name: '均匀加热', action: '加热片材至适合成型的软化状态。', check: '关注温度均匀性、下垂、过热及局部冷区。' },
+      { name: '贴模成型', action: '以真空或适用压差使软化片材贴合模具，必要时使用机械辅助。', check: '关注排气、角部薄区、拉深、搭桥及细节复制。' },
+      { name: '冷却', action: '在保持形状的状态下降温，使制品具有可脱模刚性。', check: '关注冷却均匀性、形状稳定和收缩。' },
+      { name: '脱模', action: '解除夹持并使制品与模具分离。', check: '关注脱模斜度、倒扣、划伤和变形。' },
+      { name: '修边检测', action: '裁去边料，检查外观、尺寸和壁厚。', check: '关注修边、边角、局部最薄壁厚及用途要求。' }
+    ]
+  },
+  compression: {
+    name: '热固性模压', family: 'compression',
+    input: '适用热固性成型料、SMC或BMC等',
+    action: '计量装料后在模具中加热加压，使其流动成型并交联固化',
+    output: '热固性塑件或增强复合成型件',
+    examples: '电气绝缘件、耐热部件、汽车及其他复合结构件',
+    resins: '酚醛、氨基树脂、环氧及不饱和聚酯等适用成型体系',
+    advantage: '可结合增强纤维和填充体系，获得用途所需的稳定结构',
+    limitation: '固化和排气需控制，装料分布、流动及飞边影响制品',
+    caution: '这是热固性模压示例，不代表模压只适用于热固性材料。热固性件通过化学交联固化，与热塑性件主要靠冷却定型不同。',
+    steps: [
+      { name: '计量装料', action: '把规定成型料放入模腔合适位置。', check: '关注装料量、分布、材料状态和纤维结构。' },
+      { name: '合模加压', action: '模具闭合并施加压力，成型料开始铺展填充。', check: '关注流动平衡、夹气、排气与模腔填充。' },
+      { name: '加热固化', action: '在适用温度与压力条件下保持，使树脂交联并形成稳定形状。', check: '关注固化程度、温度均匀性、缩痕及气孔。' },
+      { name: '开模取件', action: '达到脱模条件后打开模具并取出成型件。', check: '关注粘模、顶出损伤、变形及脱模完整性。' },
+      { name: '修边检测', action: '清理飞边，按要求完成后处理和检验。', check: '关注尺寸、外观、固化及用途相关性能。' }
+    ]
+  },
+  lamination: {
+    name: '热固性层压', family: 'lamination',
+    input: '织物、纸、玻纤或碳纤等增强材料与适用树脂体系',
+    action: '浸渍或制备预浸料，裁剪铺层后加热加压压实、固化成层状复合材料',
+    output: '层压板或按模具形状形成的层状复合结构',
+    examples: '电气绝缘层压板、复合结构板和增强层状部件',
+    resins: '环氧、酚醛、不饱和聚酯等适用热固性体系；增强材料按设计选择',
+    advantage: '铺层、层数和纤维方向可设计，以较低重量实现所需刚度和强度',
+    limitation: '铺层、树脂含量、孔隙及层间结合影响质量',
+    caution: '这是热固性层压示例；预浸料也存在热塑性树脂体系。浸渍、干燥、固化和储存要求随材料不同，不应套用统一参数。',
+    steps: [
+      { name: '浸渍或预浸', action: '让增强材料与树脂结合，形成待铺层材料。', check: '关注浸润、树脂含量、材料状态及必要的储存要求。' },
+      { name: '裁剪铺层', action: '按设计裁剪，控制层数、位置和增强方向。', check: '关注铺层顺序、方向、接缝、褶皱及污染。' },
+      { name: '加热加压', action: '叠层在模具或压机等适用设备内压实，排除夹气并传热。', check: '关注压实、温度均匀、树脂流动和夹气。' },
+      { name: '交联固化', action: '使热固性树脂交联，形成结合牢固的层状结构。', check: '关注固化、孔隙、层间结合及树脂富集。' },
+      { name: '冷却加工检测', action: '达到适用状态后脱模，再裁切加工并检验。', check: '关注尺寸、翘曲、分层和设计要求的性能。' }
+    ]
+  },
+  rotation: {
+    name: '滚塑成型', family: 'rotation',
+    input: '适合滚塑的树脂粉料或专用体系',
+    action: '物料在旋转模具内受热，逐步覆盖模壁，再旋转冷却脱模',
+    output: '较大或复杂的中空制品',
+    examples: '储水箱、周转箱、游乐设施和中空外壳',
+    resins: '常见PE滚塑料；其他树脂需对应专用材料与工艺',
+    advantage: '适合部分大型中空件，可形成一体结构',
+    limitation: '周期通常较长，壁厚、加热及冷却均匀性需控制',
+    caution: '滚塑主要依靠旋转和热过程使物料铺覆模壁，并非通过吹气贴模。',
+    steps: [
+      { name: '装料合模', action: '称取适用材料，装入模具后封闭。', check: '关注料量、粒径、污染和模具密封。' },
+      { name: '旋转加热', action: '模具旋转受热，物料逐步熔结覆盖内表面。', check: '关注热历史、覆盖、孔隙及壁厚分布。' },
+      { name: '旋转冷却', action: '继续旋转并冷却，使中空件稳定。', check: '关注冷却均匀、收缩和变形。' },
+      { name: '脱模检测', action: '打开模具取件，按需修整并检测。', check: '关注壁厚、外观、尺寸和所需性能。' }
+    ]
+  },
+  foam: {
+    name: '发泡成型', family: 'foam',
+    input: '适用聚合物与物理或化学发泡体系',
+    action: '在材料中形成气体泡孔，再通过冷却或反应固化稳定结构',
+    output: '具有泡孔的轻量化或功能制品',
+    examples: '缓冲包装、保温材料、泡沫板和部分轻量化塑件',
+    resins: 'PS、PE、PP等适用热塑性发泡体系；聚氨酯等属于相应反应发泡路线',
+    advantage: '可降低表观密度，并获得缓冲、隔热等目标性能',
+    limitation: '泡孔尺寸、均匀性和稳定性影响强度及外观',
+    caution: '发泡可结合挤出、注塑或反应成型，不是只有一条独立生产线。物理发泡与化学／反应发泡的物料和过程不同。',
+    steps: [
+      { name: '准备发泡体系', action: '选择与聚合物及目标制品匹配的发泡路线和原料。', check: '关注配方适用、分散和材料状态。' },
+      { name: '形成气体与泡孔', action: '通过物理气体或化学／反应过程形成并发展泡孔。', check: '关注成核、泡孔分布及膨胀稳定。' },
+      { name: '成型稳定', action: '按相应路线形成形状，通过冷却或固化稳定泡孔结构。', check: '关注塌泡、收缩、表皮和尺寸。' },
+      { name: '后处理检测', action: '按要求切割、修整或熟化，再检查用途相关性能。', check: '关注密度、泡孔、尺寸、强度及缓冲或隔热性能。' }
+    ]
+  }
+};
+
+const filmComparisons = [
+  {
+    name: 'CPP', process: '流延PP膜', orientation: '通常无专门拉伸取向工序',
+    features: '常用于柔软、透明及封口内层；性能随牌号和结构而不同',
+    applications: '包装封口内层、食品袋、相应专用耐蒸煮包装',
+    caution: '耐蒸煮需要专用品种及时间／温度验证，不是所有CPP均能耐120°C以上蒸煮。'
+  },
+  {
+    name: 'BOPP', process: '双向拉伸PP膜', orientation: '纵向与横向专门拉伸取向',
+    features: '常见较高刚度、拉伸强度与良好光学效果；可结合处理、涂层或镀层',
+    applications: '印刷复合包装、标签、胶带基膜和相应专用品种',
+    caution: '存在可热封与不可热封牌号；高氧阻隔等功能通常需看涂层、镀层或具体结构，不能只凭BOPP名称判断。'
+  },
+  {
+    name: 'IPP', process: '本培训资料用语：吹挤PP膜', orientation: '吹胀与牵引产生相应取向',
+    features: '可用于筒膜制袋；光学及厚度均匀性需按材料与设备条件比较',
+    applications: '部分食品、纺织品、文具及日用品包装',
+    caution: '缩写在不同资料中可能不同。本页仅指资料中的吹挤PP膜；热封、透明度和成本依牌号及线体确定。'
+  }
+];
+
+const trainingReferences = [
+  { label: 'Chemours：FEP可熔融挤出与吹塑', url: 'https://www.teflon.com/en/products/resins/fep-resins' },
+  { label: 'Chemours：PTFE与可熔融加工氟聚合物的区别', url: 'https://www.teflon.com/en/insights/all-insights/fluoropolymers-101' },
+  { label: 'Reifenhäuser：流延膜与冷却辊接触', url: 'https://reifenhauser.com/en/company/media/news-and-stories/success-story/benefit-from-automated-width-adjustment' },
+  { label: 'Brückner：纵向MDO与横向TDO拉伸单元', url: 'https://www.brueckner-maschinenbau.com/en/innovations' },
+  { label: '东丽：不同CPP牌号的耐蒸煮性能技术表', url: 'https://www.toray-taf.co.jp/en/products/pdf/TORAYFAN_NO.pdf' },
+  { label: '东丽：BOPP系列含可热封与不可热封品种', url: 'https://www.toraytpa.com/insights/toray-plastics-america-expands-torayfan-white-films-portfolio-with-the-launch-of-white-pigmented-metallized-bopp-films/' },
+  { label: 'Hexcel：预浸料、增强材料与树脂体系', url: 'https://www.hexcel.com/products/prepregs-resins/' },
+  { label: 'Formech：真空成型与排气原理', url: 'https://de.formech.com/blog/formech-technical-newsletter-tooling-materials-3-2' }
+];
+      Object.assign(processData, trainingProcesses);
       const materialScopes = {PP:'通用塑料', PET:'工程/包装塑料', HDPE:'通用塑料', LDPE:'通用塑料', PVC:'通用塑料', PS:'通用塑料', ABS:'通用/工程塑料', PA6:'工程塑料'};
       const tableConfigs = {
         materials:{
@@ -1483,8 +1866,12 @@ html>body{padding:0}</style>
           rows:()=>Object.entries(materials).map(([key,m])=>({key,...m,scope:materialScopes[key]}))
         },
         processes:{
-          columns:[['name','成型工艺'],['input','输入'],['action','核心动作'],['output','输出形态'],['examples','典型产品']],
+          columns:[['name','成型工艺'],['resins','常见材料'],['action','核心动作'],['output','输出形态'],['examples','典型产品']],
           rows:()=>Object.entries(processData).map(([key,p])=>({key,...p}))
+        },
+        films:{
+          columns:[['name','薄膜名称'],['process','成膜路径'],['orientation','取向'],['features','性能特点'],['applications','应用'],['caution','判断提醒']],
+          rows:()=>filmComparisons.map(f=>({key:f.name,...f}))
         },
         additives:{
           columns:[['name','助剂'],['action','主要作用'],['use','常见场景'],['caution','使用提醒']],
@@ -1500,14 +1887,15 @@ html>body{padding:0}</style>
       function tableDetailMarkup(row) {
         if (!row) return '<p class="text-muted">没有符合条件的记录。</p>';
         if (tableType==='materials') return `<h3>${esc(row.name)}</h3><dl><dt>材料要点</dt><dd>${esc(row.note)}</dd><dt>分类</dt><dd>${esc(row.scope)} · ${esc(row.structure)}</dd><dt>常用成型</dt><dd>${esc(row.form)}</dd><dt>典型产品</dt><dd>${esc(row.product)}</dd></dl>`;
-        if (tableType==='processes') return `<h3>${esc(row.name)}</h3><dl><dt>流程</dt><dd>${esc(row.input)} → ${esc(row.action)} → ${esc(row.output)}</dd><dt>典型产品</dt><dd>${esc(row.examples)}</dd><dt>判断重点</dt><dd>先看原料形态、是否连续生产，再看模具与施力方式。</dd></dl>`;
+        if (tableType==='processes') return `<h3>${esc(row.name)}</h3><dl><dt>逐步流程</dt><dd>${esc(row.steps.map(s=>s.name).join(' → '))}</dd><dt>优势</dt><dd>${esc(row.advantage)}</dd><dt>局限</dt><dd>${esc(row.limitation)}</dd><dt>判断提醒</dt><dd>${esc(row.caution)}</dd></dl><p><button type="button" class="btn" data-table-process="${esc(row.key)}">打开本工艺动态图</button></p>`;
+        if (tableType==='films') return `<h3>${esc(row.name)}</h3><dl><dt>成膜与取向</dt><dd>${esc(row.process)}；${esc(row.orientation)}</dd><dt>性能</dt><dd>${esc(row.features)}</dd><dt>用途</dt><dd>${esc(row.applications)}</dd><dt>提醒</dt><dd>${esc(row.caution)}</dd></dl>`;
         return `<h3>${esc(row.name)}</h3><dl><dt>作用</dt><dd>${esc(row.action)}</dd><dt>常见场景</dt><dd>${esc(row.use)}</dd><dt>配方提醒</dt><dd>${esc(row.caution)}</dd></dl>`;
       }
 
       function renderDynamicTable() {
         const config=tableConfigs[tableType];
         const query=tableQuery.trim().toLocaleLowerCase('zh-CN');
-        const rows=config.rows().filter(row=>!query||Object.values(row).some(v=>String(v).toLocaleLowerCase('zh-CN').includes(query)));
+        const rows=config.rows().filter(row=>!query||JSON.stringify(row).toLocaleLowerCase('zh-CN').includes(query));
         rows.sort((a,b)=>{
           const av=a[tableSortKey], bv=b[tableSortKey];
           if(typeof av==='number'&&typeof bv==='number') return (av-bv)*tableSortDir;
@@ -1518,6 +1906,7 @@ html>body{padding:0}</style>
         $('#lab-table-head').innerHTML=`<tr>${config.columns.map(([key,label])=>`<th scope="col"><button type="button" class="btn btn-ghost" data-table-sort="${key}" aria-label="按${label}排序">${label}${tableSortKey===key?(tableSortDir===1?' ↑':' ↓'):''}</button></th>`).join('')}</tr>`;
         $('#lab-table-body').innerHTML=rows.length?rows.map(row=>`<tr class="${row.key===tableSelectedKey?'is-selected':''}">${config.columns.map(([key],index)=>`<td>${index===0?`<button type="button" class="table-link" data-table-row="${esc(row.key)}">${esc(row[key])}</button>`:esc(row[key])}</td>`).join('')}</tr>`).join(''):'<tr><td colspan="8">没有符合条件的记录，请换一个关键词。</td></tr>';
         $('#lab-table-detail').innerHTML=tableDetailMarkup(rows.find(r=>r.key===tableSelectedKey));
+        $('#lab-table-detail').querySelector('[data-table-process]')?.addEventListener('click',e=>{formingShape='all';selectFormingProcess(e.currentTarget.dataset.tableProcess);setMode('forming');});
         $('#lab-table-head').querySelectorAll('[data-table-sort]').forEach(button=>button.addEventListener('click',()=>{
           const key=button.dataset.tableSort;
           if(tableSortKey===key) tableSortDir*=-1; else {tableSortKey=key;tableSortDir=1;}
@@ -1533,11 +1922,23 @@ html>body{padding:0}</style>
         {q:'比强度用于比较什么？', options:['单位重量能够承受的强度水平','材料的绝对重量','材料熔化的速度'], answer:0, explain:'比强度 = 强度 ÷ 密度，是轻量化选材的重要指标。'},
         {q:'关于“低碳塑料”，哪种说法正确？', options:['塑料分子完全不含碳','重点是降低生命周期碳排放','必然可以在自然环境快速降解'], answer:1, explain:'低碳描述碳足迹目标，不等于无碳，也不自动等于可降解。'},
         {q:'除水母料更适合被理解为什么？', options:['长期替代所有烘干工艺','受潮原料出现气泡水纹时的配方补救之一','任何失效母料都能继续使用'], answer:1, explain:'使用比例、保存期和开封时限都应以具体供应商的 TDS 为准。'},
-        {q:'以下哪组更符合功能高分子材料？', options:['PE 膜、PP 托盘、ABS 外壳','离子交换树脂、导电高分子、高吸水树脂','钢、玻璃、陶瓷'], answer:1, explain:'功能高分子强调电、光、离子、生物等专门功能。'}
+        {q:'以下哪组更符合功能高分子材料？', options:['PE 膜、PP 托盘、ABS 外壳','离子交换树脂、导电高分子、高吸水树脂','钢、玻璃、陶瓷'], answer:1, explain:'功能高分子强调电、光、离子、生物等专门功能。'},
+        {q:'注塑中的保压主要为了解决什么？',options:['补偿冷却收缩，继续补料','把冷制件重新熔化','直接代替开模'],answer:0,explain:'浇口封冻前保压有助于补偿收缩；冷却和下一次塑化可部分重叠。'},
+        {q:'连续生产固定截面的长管，最典型的路线是哪种？',options:['注塑逐件取出长管','挤出 → 定径 → 冷却 → 牵引 → 切断','片材吸塑'],answer:1,explain:'管材挤出线用口模形成截面，后续定径、冷却和牵引配合控制尺寸。'},
+        {q:'流延与压延的关键区别是什么？',options:['两个词完全同义','流延用平口模熔体贴冷却辊；压延用多道辊隙延展塑化料','流延只用于热固性材料'],answer:1,explain:'同样看到辊筒，材料的输入形态与成形位置仍不同。'},
+        {q:'吹膜为什么会形成膜泡？',options:['向膜管内通气，并在牵引和冷却中形成筒膜','用模具把冷板材压碎','基膜进行表面着色'],answer:0,explain:'环形口模形成膜管，吹胀、风冷、收拢与牵引共同形成筒膜。'},
+        {q:'普通牵引和双向拉伸取向是什么关系？',options:['完全一样','牵引负责输送；专门拉伸在适合状态下沿两个方向取向','都只负责裁切'],answer:1,explain:'BOPP 等基膜经过纵横拉伸及热定型；不是只经过收卷牵引。'},
+        {q:'吸塑使用的原料和主要施力方式是什么？',options:['单体加催化剂聚合','加热软化片材，用真空压差贴模','金属粉末焊接'],answer:1,explain:'吸塑是热成型的一种；正压或正负压成型也利用压差。'},
+        {q:'热固性模压为什么不能理解成只把树脂冷却？',options:['加热加压时发生固化交联','所有材料都没有化学反应','只是普通薄膜收卷'],answer:0,explain:'热固性模压通过加热加压使材料流动并固化；形成交联网络。'},
+        {q:'BOPP 与 CPP 的差别，哪种说法更可靠？',options:['所有 BOPP 都能热封，所有 CPP 都耐高温蒸煮','BOPP 有双向拉伸；CPP 走流延路线，具体封口和耐热需看牌号','它们完全是同一种工艺'],answer:1,explain:'名称帮助识别路径，但不能代替具体结构与技术规格。'}
       ];
       let knowledgeTopic = 'classify';
       let activeAdditive = 'plasticizer';
       let activeProcess = 'calender';
+      let formingStep = 0;
+      let formingTimer = null;
+      let formingVariant = 'default';
+      let formingShape = 'all';
       let quizIndex = 0;
       let quizAnswered = false;
       let activeMode = 'flow';
@@ -1553,7 +1954,7 @@ html>body{padding:0}</style>
         const payload={
           notes:$('#lab-notes')?.value||'', mode:activeMode, routeKey, stepIndex, selectedKey,
           temp:$('#lab-temp')?.value, load:$('#lab-load')?.value, knowledgeTopic,
-          activeAdditive, activeProcess, quizIndex, tableType, tableQuery,
+          activeAdditive, activeProcess, formingStep, formingVariant, formingShape, quizIndex, tableType, tableQuery,
           tableSortKey, tableSortDir, tableSelectedKey, savedAt:new Date().toISOString()
         };
         try {
@@ -1570,7 +1971,7 @@ html>body{padding:0}</style>
         const content=$('#lab-notes').value.trim();
         const heading='塑料材料与改性培训笔记';
         const text=`${heading}\n保存时间：${new Date().toLocaleString('zh-CN')}\n\n${content||'（暂无笔记）'}\n`;
-        const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+        const blob=new Blob(['\uFEFF',text],{type:'text/plain;charset=utf-8'});
         const url=URL.createObjectURL(blob);
         const link=document.createElement('a');
         link.href=url;
@@ -1578,8 +1979,8 @@ html>body{padding:0}</style>
         document.body.appendChild(link);
         link.click();
         link.remove();
-        URL.revokeObjectURL(url);
-        $('#lab-save-status').textContent='笔记已下载为 TXT 文件。';
+        setTimeout(()=>URL.revokeObjectURL(url),30000);
+        $('#lab-save-status').textContent='已发起 TXT 下载；文件由浏览器保存。';
       }
 
       function renderKnowledgeNav() {
@@ -1605,9 +2006,115 @@ html>body{padding:0}</style>
 
       function formingMarkup() {
         const p=processData[activeProcess];
-        return `<div class="choice-grid" id="lab-process-grid">${Object.entries(processData).map(([k,v])=>`<button type="button" class="btn${k===activeProcess?' btn-primary':''}" data-process="${k}" aria-pressed="${k===activeProcess}">${v.name}</button>`).join('')}</div>
-          <div class="process-line" aria-label="${p.name}流程"><div class="process-node">${p.input}</div><span class="formula-arrow">→</span><div class="process-node">${p.action}</div><span class="formula-arrow">→</span><div class="process-node">${p.output}</div></div>
-          <div class="card selected-detail"><h3>${p.name}</h3><dl><dt>基本原理</dt><dd>${p.action}</dd><dt>典型产品</dt><dd>${p.examples}</dd><dt>识别方式</dt><dd>${p.output}；观察制品形状和是否连续生产，可以初步判断工艺。</dd></dl>${activeProcess==='calender'?'<div class="note-line">“延压”在塑料加工中的规范名称通常写作“压延”。PVC 是最典型的压延材料之一。</div>':''}</div>`;
+        const available=shapeRoutes[formingShape]||Object.keys(processData);
+        return `<div class="forming-head"><h3>成型工艺 · 动态图解</h3><span class="text-small text-muted">培训资料已融入 · 2026-09-13</span></div>
+          <p>先看产品形状，再比较原料、设备和成型动作。点击步骤或播放，看材料如何变成制品。</p>
+          <div class="forming-selector">
+            <label class="form-label">按产品形状找工艺<select class="form-select" id="forming-shape">${Object.entries(shapeLabels).map(([k,v])=>`<option value="${k}"${k===formingShape?' selected':''}>${v}</option>`).join('')}</select></label>
+            <label class="form-label">选择工艺<select class="form-select" id="forming-process">${available.map(k=>`<option value="${k}"${k===activeProcess?' selected':''}>${esc(processData[k].name)}</option>`).join('')}</select></label>
+          </div>
+          <div id="forming-player"></div>
+          <div class="knowledge-grid two forming-more"><article class="card"><h3>优势与适用场景</h3><p>${esc(p.advantage)}</p><p><strong>常见材料：</strong>${esc(p.resins)}</p><p><strong>产品：</strong>${esc(p.examples)}</p></article>
+          <article class="card"><h3>局限与判断提醒</h3><p>${esc(p.limitation)}</p><div class="note-line">${esc(p.caution)}</div></article></div>
+          <div class="forming-actions"><button type="button" class="btn" id="forming-to-note">把本工艺要点加入笔记</button><button type="button" class="btn btn-ghost" id="forming-to-table">打开工艺对比表</button></div><p class="text-small" id="forming-note-status" role="status"></p>
+          <details class="forming-more"><summary>薄膜怎么选？CPP / BOPP / IPP 对照</summary>${filmTableMarkup()}<button type="button" class="btn" id="forming-film-table">在动态表格中筛选薄膜</button></details>
+          <details class="forming-more"><summary>材料生产、成型加工与二次成型</summary><div class="industry-map"><div><strong>树脂生产</strong><span>原料 → 单体 → 聚合</span></div><b>→</b><div><strong>塑料配混</strong><span>树脂 ＋ 助剂 → 配混料</span></div><b>→</b><div><strong>塑料制品生产</strong><span>成型 → 后处理 → 检测</span></div></div><p>注塑与挤出是常见的熔体成型路线；片材可再热成型，基膜可再拉伸取向，型坯可再吹胀。不同路线可以组合，而非所有产品都走同一条线。</p><p>注塑制件按需要进行退火、调湿、去浇口、修边或装饰；并非每件产品都要做全部后处理。</p></details>
+          <details class="forming-more"><summary>资料校正、范围说明与核对来源</summary><p>本模块依据你提供的《常见塑料成型工艺培训》截图归纳重绘，没有公开上传原始公司截图。图是原理示意，不是设备操作规程，也不提供生产设定值。</p><ul><li>“延压”规范写作“压延”；平口模挤出后用三辊压光，不等于传统多辊压延。</li><li>膜 / 片 / 板的厚度界限因行业与标准而异。资料的 0.25 mm、1 mm 可作速记示例；另页 0.025 mm 存在不一致，不作为统一标准。</li><li>资料中的产量占比、最大宽度、速度和厚度范围是历史或特定设备示例，未当成通用工艺参数。</li><li>不是所有氟塑料都不能挤出：FEP、PFA 可熔融挤出；PTFE 通常需要特殊加工路径。</li><li>CPP 蒸煮性能、BOPP 热封与阻隔性能都需核对具体牌号、层结构及测试条件。</li></ul><div class="source-links">${trainingReferences.map(r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${esc(r.label)}</a>`).join('')}</div></details>`;
+      }
+
+      const shapeLabels={all:'全部工艺',complex:'复杂三维实体 / 外壳',continuous:'连续固定截面：管、型、板',hollow:'中空容器 / 大型水箱',film:'薄膜与连续片材',tray:'薄壁托盘 / 包装内托',thermoset:'热固性 / 增强复合材料'};
+      const shapeRoutes={complex:['injection','compression'],continuous:['extrusion','pipe','profile','sheet'],hollow:['blow','rotation'],film:['blownfilm','cast','haul','stretch','calender','sheet'],tray:['thermo','injection'],thermoset:['compression','lamination']};
+      const equipmentLabels={injection:['① 料斗与螺杆塑化','② 喷嘴向闭模注射','③ 模腔冷却 / 顶出'],extrusion:['① 螺杆输送与塑化','② 口模形成截面','③ 定型冷却 / 牵引切断'],blow:['① 热型坯 / 预制坯','② 模内气压吹胀','③ 贴模冷却 / 脱模'],blownfilm:['① 螺杆与环形口模','② 膜泡吹胀 / 风冷','③ 收拢牵引 / 收卷'],cast:['① 螺杆与平口模','② 冷却辊贴膜 / 辊组','③ 牵引切边 / 收卷切片'],stretch:['① 基膜加热','② 专门拉伸取向','③ 热定型 / 冷却'],calender:['① 配料与塑化团料','② 多道辊隙压延','③ 引离冷却 / 收卷'],thermo:['① 片材装夹与加热','② 压差使片材贴模','③ 冷却脱模 / 修边'],compression:['① 定量料装入热模','② 加热加压 / 交联','③ 固化后开模 / 修边'],lamination:['① 增强材料与树脂','② 铺层热压 / 固化','③ 冷却与层间检测'],rotation:['① 粉料装入封闭模','② 多轴旋转与加热','③ 冷却脱模'],foam:['① 树脂与发泡体系','② 成核与泡孔膨胀','③ 稳定泡孔 / 定形']};
+
+      function filmTableMarkup() {
+        return `<div class="table-responsive"><table class="table table-sm"><thead><tr><th scope="col">名称</th><th scope="col">成膜路径</th><th scope="col">取向与性能</th><th scope="col">典型应用</th></tr></thead><tbody>${filmComparisons.map(f=>`<tr><th scope="row">${esc(f.name)}</th><td>${esc(f.process)}</td><td>${esc(f.orientation)}；${esc(f.features)}</td><td>${esc(f.applications)}<p class="text-small">${esc(f.caution)}</p></td></tr>`).join('')}</tbody></table></div>`;
+      }
+
+      function processMachineMarkup(p, i) {
+        const family=p.family, ratio=i/Math.max(1,p.steps.length-1);
+        const arrow=(x1,y1,x2,y2)=>`<path class="force-path" d="M${x1} ${y1}L${x2} ${y2}"/>`;
+        const roll=(x,y,r=24)=>`<circle class="housing" cx="${x}" cy="${y}" r="${r}"/><path class="guide" d="M${x-r/2} ${y}h${r}M${x} ${y-r/2}v${r}"/>`;
+        const extruder=`<path class="housing" d="M48 60H105L93 110H60Z"/><rect class="housing" x="30" y="110" width="245" height="62" rx="8"/><path class="resin" d="M48 137H266V158H48Z"/><path class="guide" d="M50 152l18-26 18 26 18-26 18 26 18-26 18 26 18-26 18 26 18-26 18 26"/><path class="housing" d="M275 120l38 12v25l-38 10Z"/>`;
+        let drawing='';
+        if(family==='injection') {
+          const open=i>=5, injected=i>=2&&i<6, left=open?370:410;
+          drawing=`${extruder}<path class="guide" d="M315 144H400"/><g transform="translate(${left} 0)"><rect class="housing" x="0" y="70" width="48" height="162"/><path class="housing" d="M48 92h20v45h-20v30h20v42h-20Z"/></g><path class="housing" d="M478 70h48v162h-48v-23h-20v-42h20v-30h-20V92h20Z"/>${injected?`<path class="resin" d="M460 92h18v117h-18v-42h-12v-30h12Z"/>`:''}${i===2?'<path class="material-path" d="M310 144H463"/>':''}${i===3?arrow(320,144,439,144):''}${i===4?'<path class="guide" d="M495 80v140M510 80v140"/>':''}${i===6?'<path class="resin" d="M402 230h50v16h-16v22h-18v-22h-16Z"/>':''}${open?arrow(410,250,356,250):arrow(375,250,427,250)}`;
+        } else if(family==='extrusion') {
+          const section=activeProcess==='profile'?'<path class="resin" d="M542 115h60v18h-21v49h-18v-49h-21Z"/>':activeProcess==='pipe'?'<circle class="resin" cx="570" cy="148" r="32"/><circle class="housing" cx="570" cy="148" r="19"/>':'<rect class="resin" x="543" y="119" width="57" height="58"/>';
+          drawing=`${extruder}<path class="material-path" d="M311 145H530"/><rect class="housing" x="330" y="123" width="86" height="48" rx="5"/><path class="guide" d="M340 164h67"/>${roll(463,112,19)}${roll(463,178,19)}<path class="guide" d="M522 114v67"/>${section}${arrow(344,206,495,206)}`;
+        } else if(family==='calender') {
+          drawing=`<path class="resin" d="M30 111Q60 62 112 109L145 137H65Z"/>${roll(180,112,39)}${roll(259,112,39)}${roll(259,192,39)}${roll(340,192,39)}<path class="material-path" d="M95 112H137Q180 45 220 111Q299 116 298 155Q214 173 260 233Q338 241 380 193H568"/>${roll(454,165,24)}${roll(540,194,28)}${arrow(135,253,550,253)}`;
+        } else if(family==='blownfilm') {
+          drawing=`<g transform="translate(0 90) scale(.8)">${extruder}</g><path class="housing" d="M285 249v-35h49v35Z"/><path class="resin" d="M296 214C293 178 256 168 266 118Q277 62 310 49Q343 62 354 118C364 168 327 178 324 214Z"/><path class="guide" d="M276 47l34-22 34 22"/>${roll(292,28,14)}${roll(328,28,14)}<path class="material-path" d="M310 25H465V205H530"/>${roll(555,205,34)}${arrow(310,203,310,130)}${arrow(227,132,261,132)}${arrow(392,132,358,132)}`;
+        } else if(family==='cast') {
+          drawing=`${extruder}<path class="housing" d="M308 118h29v59h-29Z"/>${roll(389,196,50)}${roll(470,192,20)}${roll(560,196,35)}<path class="material-path" d="M325 168Q327 260 389 249Q435 253 447 194H530"/>${arrow(420,266,540,266)}`;
+        } else if(family==='stretch') {
+          const stretching=i>=2, biaxial=formingVariant!=='uniaxial', transverse=stretching&&biaxial&&i>=3, w=stretching?290:155,h=transverse?135:95,x=320-w/2,y=150-h/2;
+          drawing=`<rect class="resin" x="${x}" y="${y}" width="${w}" height="${h}"/>${Array.from({length:4},(_,n)=>`<path class="guide" d="${stretching?`M${x+15} ${y+18+n*(h-30)/4}h${w-30}`:`M${x+12} ${y+15+n*16}q20-12 40 0t40 0t40 0`}"/>`).join('')}${stretching?arrow(x-5,150,x-70,150)+arrow(x+w+5,150,x+w+70,150):''}${transverse?arrow(320,y-5,320,y-45)+arrow(320,y+h+5,320,y+h+45):''}`;
+        } else if(family==='thermo') {
+          const drawn=i>=2,removed=i>=4,pressing=i===2,shape=drawn?'M115 112H225L245 218H394L414 112H525':'M115 112H525';
+          drawing=`<path class="housing" d="M130 133h88l30 100h141l30-100h90v116H130Z"/><g transform="translate(0 ${removed?-70:0})"><path class="material-path" d="${shape}"/></g>${removed?'':`<rect class="housing" x="101" y="99" width="23" height="26"/><rect class="housing" x="517" y="99" width="23" height="26"/>`}${i===1?Array.from({length:7},(_,n)=>arrow(170+n*50,35,170+n*50,89)).join(''):''}${pressing&&formingVariant!=='positive'?arrow(276,192,276,263)+arrow(365,192,365,263):''}${pressing&&formingVariant!=='vacuum'&&formingVariant!=='default'?arrow(276,41,276,115)+arrow(365,41,365,115):''}`;
+        } else if(family==='blow') {
+          const expanded=i>=2,open=i>=4;
+          drawing=`<g transform="translate(${open?-80:0} 0)"><path class="housing" d="M167 57h118v35h-25l-37 57v67h62v28H167Z"/></g><g transform="translate(${open?80:0} 0)"><path class="housing" d="M357 57h118v187H357v-28h62v-67l-37-57h-25Z"/></g><path class="resin" d="${expanded?'M304 75h33v32q55 28 55 71v52H250v-52q0-43 54-71Z':'M305 78h32v145h-32Z'}"/>${i===2?arrow(321,23,321,105)+arrow(320,156,370,156)+arrow(318,156,268,156):''}${open?arrow(214,145,162,145)+arrow(428,145,480,145):''}`;
+        } else if(family==='compression'||family==='lamination') {
+          const closed=family==='compression'?i>=1&&i<=2:i>=2&&i<=3,y=closed?119:50;
+          drawing=`<path class="housing" d="M156 ${y}h330v28h-71v47H228v-47h-72Z"/><path class="housing" d="M156 188h72v44h187v-44h71v70H156Z"/>${family==='lamination'?Array.from({length:5},(_,n)=>`<rect class="resin" x="228" y="${202+n*6}" width="187" height="5"/>`).join(''):'<path class="resin" d="M238 209q67-65 167 0v21H238Z"/>'}${arrow(322,23,322,y+15)}${closed?'<path class="guide" d="M248 203l18 26 18-26 18 26 18-26 18 26 18-26 18 26 18-26"/>':''}`;
+        } else if(family==='rotation') {
+          drawing=`<g transform="rotate(${i*18} 320 145)"><rect class="housing" x="215" y="67" width="210" height="157" rx="50"/><rect class="resin" x="226" y="79" width="188" height="133" rx="40"/><rect class="housing" x="240" y="92" width="160" height="107" rx="30"/></g>${arrow(160,90,180,195)}${arrow(478,196,463,90)}`;
+        } else {
+          drawing=`<rect class="resin" x="170" y="65" width="300" height="170" rx="15"/>${Array.from({length:i>=2?32:8},(_,n)=>`<circle class="housing" cx="${195+(n%8)*35}" cy="${93+Math.floor(n/8)*38}" r="${i>=2?12:4}"/>`).join('')}${arrow(105,150,155,150)}${arrow(485,150,540,150)}`;
+        }
+        const zone=formingZone(p,i);
+        const zones=family==='blownfilm'?[[20,156,254,114],[238,6,145,260],[400,6,216,252]]:family==='injection'?[[20,48,315,135],[349,57,191,186],[349,57,191,216]]:family==='thermo'?[[95,20,455,111],[124,99,396,160],[124,99,396,160]]:['stretch','blow','compression','lamination','rotation','foam'].includes(family)?[[142,26,356,240],[142,26,356,240],[142,26,356,240]]:[[20,44,294,209],[132,47,295,214],[415,87,201,175]];
+        const [zx,zy,zw,zh]=zones[zone];
+        return `<svg class="machine-svg" viewBox="0 0 640 300" role="img" aria-label="${esc(p.name)}：${esc(p.steps[i].name)}的原理示意；虚线框显示当前作用位置"><title>${esc(p.steps[i].action)}</title><defs><marker id="forming-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--viz-series-3)"/></marker></defs><g>${drawing}</g><rect class="step-focus" x="${zx}" y="${zy}" width="${zw}" height="${zh}" rx="7"/><path class="guide" d="M30 286H610"/><path class="material-path" d="M30 286H${30+ratio*580}"/></svg>`;
+      }
+
+      function formingZone(p,i) {
+        const name=p.steps[i].name;
+        if(p.family==='injection') return i===1||i===2||i===3?1:i===0?1:2;
+        if(p.family==='blownfilm'&&/配|塑化|口模/.test(name))return 0;
+        if(p.family==='calender'&&/剥离|表面|冷却/.test(name))return 2;
+        if(p.family==='cast'&&/口模/.test(name))return 0;
+        if(/收卷|卷|牵引|切|修|检测|检验|脱模|开模|顶出|后处理/.test(name)) return 2;
+        if(/计量|配|混|塑化|装|基膜|片材|浸|铺|预热|干燥/.test(name)) return 0;
+        return 1;
+      }
+      function currentFormingData() {
+        const p=processData[activeProcess];
+        return p.family==='stretch'&&formingVariant==='uniaxial'?{...p,steps:p.steps.filter(s=>!/横向/.test(s.name))}:p;
+      }
+
+      function renderFormingPlayer() {
+        const container=$('#forming-player'); if(!container) return;
+        const focused=document.activeElement;
+        const focusSelector=container.contains(focused)?(focused.id?'#'+focused.id:focused.dataset?.formingStep!==undefined?'[data-forming-step="'+focused.dataset.formingStep+'"]':null):null;
+        const p=currentFormingData(); formingStep=clamp(formingStep,0,p.steps.length-1);
+        const s=p.steps[formingStep];
+        container.innerHTML=`<div class="forming-steps" aria-label="${esc(p.name)}步骤">${p.steps.map((v,i)=>`<button type="button" class="btn${i===formingStep?' btn-primary':''}" data-forming-step="${i}" aria-pressed="${i===formingStep}"><span class="step-num">${i+1} →</span>${esc(v.name)}</button>`).join('')}</div>
+          ${p.family==='stretch'?`<label class="form-label">拉伸方向<select class="form-select" id="forming-variant"><option value="biaxial"${formingVariant!=='uniaxial'?' selected':''}>双向：纵向 + 横向</option><option value="uniaxial"${formingVariant==='uniaxial'?' selected':''}>单向：仅纵向（示例）</option></select></label>`:p.family==='thermo'?`<label class="form-label">施力方式<select class="form-select" id="forming-variant"><option value="vacuum"${['default','vacuum'].includes(formingVariant)?' selected':''}>真空吸塑：下方抽气</option><option value="positive"${formingVariant==='positive'?' selected':''}>正压：上方加压</option><option value="combined"${formingVariant==='combined'?' selected':''}>正负压：上下形成压差</option></select></label>`:''}
+          <div class="forming-player"><figure class="machine-figure">${processMachineMarkup(p,formingStep)}<div class="machine-legend text-small"><span><i class="dot"></i>树脂 / 膜片 / 制品</span><span><i class="dot hot"></i>气压 / 施力方向</span><span>虚线框：当前作用位置</span></div><figcaption>${esc(p.name)} · ${esc(s.name)}（结构简化示意）</figcaption><div class="forming-equipment text-small">${(equipmentLabels[p.family]||equipmentLabels.extrusion).map((l,n)=>`<span class="${n===formingZone(p,formingStep)?'current':''}">${esc(l)}${n===formingZone(p,formingStep)?' · 当前':''}</span>`).join('')}</div></figure>
+          <div class="forming-detail" aria-live="polite"><div class="text-small">第 ${formingStep+1} / ${p.steps.length} 步</div><h4>${esc(s.name)}</h4><dl><dt>材料 / 设备在做什么</dt><dd>${esc(s.action)}</dd><dt>质量关注点</dt><dd>${esc(s.check)}</dd><dt>这条路线的输入 → 输出</dt><dd>${esc(p.input)} → ${esc(p.output)}</dd></dl></div></div>
+          <div class="forming-actions"><button type="button" class="btn" id="forming-prev"${formingStep===0?' disabled':''}>上一步</button><button type="button" class="btn btn-primary" id="forming-next">${formingStep===p.steps.length-1?(p.family==='injection'?'开始下一循环':'重新看流程'):'下一步'}</button><button type="button" class="btn" id="forming-play" aria-pressed="${Boolean(formingTimer)}">${formingTimer?'暂停播放':'自动播放'}</button></div>`;
+        container.querySelectorAll('[data-forming-step]').forEach(b=>b.addEventListener('click',()=>{stopFormingPlay();formingStep=Number(b.dataset.formingStep);renderFormingPlayer();saveLearningState();}));
+        $('#forming-prev').addEventListener('click',()=>{stopFormingPlay();formingStep=Math.max(0,formingStep-1);renderFormingPlayer();saveLearningState();});
+        $('#forming-next').addEventListener('click',()=>{stopFormingPlay();formingStep=(formingStep+1)%p.steps.length;renderFormingPlayer();saveLearningState();});
+        $('#forming-play').addEventListener('click',()=>{if(formingTimer)stopFormingPlay();else formingTimer=setInterval(()=>{formingStep=(formingStep+1)%p.steps.length;renderFormingPlayer();saveLearningState();},2800);renderFormingPlayer();});
+        $('#forming-variant')?.addEventListener('change',e=>{stopFormingPlay();formingVariant=e.target.value;formingStep=0;renderFormingPlayer();saveLearningState();});
+        if(focusSelector)container.querySelector(focusSelector)?.focus({preventScroll:true});
+      }
+
+      function stopFormingPlay() { if(formingTimer)clearInterval(formingTimer); formingTimer=null; }
+      function selectFormingProcess(key) { stopFormingPlay(); activeProcess=key;formingStep=0;formingVariant='default';renderKnowledge();saveLearningState(); }
+      function openProcessTable(type='processes') { stopFormingPlay();tableType=type;tableQuery='';tableSortKey='name';tableSelectedKey=type==='processes'?activeProcess:'';$('#lab-table-type').value=type;$('#lab-table-search').value='';renderDynamicTable();setMode('table'); }
+      function bindForming() {
+        renderFormingPlayer();
+        $('#forming-shape').addEventListener('change',e=>{formingShape=e.target.value;const available=shapeRoutes[formingShape]||Object.keys(processData);selectFormingProcess(available.includes(activeProcess)?activeProcess:available[0]);});
+        $('#forming-process').addEventListener('change',e=>selectFormingProcess(e.target.value));
+        $('#forming-to-note').addEventListener('click',()=>{const p=currentFormingData(),notes=$('#lab-notes');notes.value+=(notes.value.trim()?'\n\n':'')+`【${p.name}${p.family==='stretch'?(formingVariant==='uniaxial'?' · 单向':' · 双向'):''}】\n流程：${p.steps.map(s=>s.name).join(' → ')}\n材料：${p.resins}\n产品：${p.examples}\n优势：${p.advantage}\n局限：${p.limitation}\n提醒：${p.caution}`;saveLearningState('工艺要点已加入笔记');$('#forming-note-status').textContent='已追加到“复习笔记”，原有内容保留；可在那里保存或下载 TXT。';});
+        $('#forming-to-table').addEventListener('click',()=>openProcessTable());
+        $('#forming-film-table').addEventListener('click',()=>openProcessTable('films'));
       }
 
       function polymersMarkup() {
@@ -1640,10 +2147,12 @@ html>body{padding:0}</style>
       }
 
       function renderKnowledge() {
+        stopFormingPlay();
         const content=$('#lab-knowledge-content');
         content.innerHTML=knowledgeTopic==='classify'?classificationMarkup():knowledgeTopic==='modified'?modifiedMarkup():knowledgeTopic==='forming'?formingMarkup():knowledgeTopic==='polymers'?polymersMarkup():knowledgeTopic==='products'?productsMarkup():conceptsMarkup();
         content.querySelectorAll('[data-additive]').forEach(b=>b.addEventListener('click',()=>{activeAdditive=b.dataset.additive;renderKnowledge();saveLearningState();}));
         content.querySelectorAll('[data-process]').forEach(b=>b.addEventListener('click',()=>{activeProcess=b.dataset.process;renderKnowledge();saveLearningState();}));
+        if(knowledgeTopic==='forming') bindForming();
       }
 
       function renderQuiz() {
@@ -1663,6 +2172,7 @@ html>body{padding:0}</style>
       }
 
       function setMode(mode,persist=true,preserveTopic=false) {
+        stopFormingPlay();
         activeMode=mode;
         $$('.mode-switch [data-mode]').forEach(b=>{const on=b.dataset.mode===mode;b.classList.toggle('btn-primary',on);b.setAttribute('aria-pressed',String(on));});
         if(['classify','modified','forming'].includes(mode)&&!preserveTopic) knowledgeTopic=mode;
@@ -1677,6 +2187,8 @@ html>body{padding:0}</style>
       }
 
       $$('.mode-switch [data-mode]').forEach(btn=>btn.addEventListener('click',()=>setMode(btn.dataset.mode)));
+      $('#lab-open-forming').addEventListener('click',()=>setMode('forming'));
+      document.addEventListener('visibilitychange',()=>{if(document.hidden){stopFormingPlay();stopPlay();if(knowledgeTopic==='forming')renderFormingPlayer();}});
       $('#lab-route-material').addEventListener('change',e=>{routeKey=e.target.value;renderFlow();saveLearningState();});
       $('#lab-prev').addEventListener('click',()=>{stopPlay();stepIndex=Math.max(0,stepIndex-1);renderFlow();saveLearningState();});
       $('#lab-next').addEventListener('click',()=>{stopPlay();stepIndex=(stepIndex+1)%steps.length;renderFlow();saveLearningState();});
@@ -1708,6 +2220,10 @@ html>body{padding:0}</style>
         if(saved.knowledgeTopic&&knowledgeTopics.some(t=>t.key===saved.knowledgeTopic)) knowledgeTopic=saved.knowledgeTopic;
         if(saved.activeAdditive&&additiveData[saved.activeAdditive]) activeAdditive=saved.activeAdditive;
         if(saved.activeProcess&&processData[saved.activeProcess]) activeProcess=saved.activeProcess;
+        if(Number.isInteger(saved.formingStep)) formingStep=clamp(saved.formingStep,0,processData[activeProcess].steps.length-1);
+        if(['default','uniaxial','biaxial','vacuum','positive','combined'].includes(saved.formingVariant)) formingVariant=saved.formingVariant;
+        if(saved.formingShape&&shapeLabels[saved.formingShape]) formingShape=saved.formingShape;
+        if(shapeRoutes[formingShape]&&!shapeRoutes[formingShape].includes(activeProcess)) formingShape='all';
         if(Number.isInteger(saved.quizIndex)) quizIndex=clamp(saved.quizIndex,0,quizData.length-1);
         if(saved.tableType&&tableConfigs[saved.tableType]) tableType=saved.tableType;
         tableQuery=typeof saved.tableQuery==='string'?saved.tableQuery:'';
@@ -1723,6 +2239,7 @@ html>body{padding:0}</style>
       $('#lab-route-material').value=routeKey;
       $('#lab-table-type').value=tableType;
       $('#lab-table-search').value=tableQuery;
+      if(location.hash==='#forming'){activeMode='forming';knowledgeTopic='forming';}
       renderFlow(); renderMaterialButtons(); renderProperties(); renderKnowledgeNav(); renderKnowledge(); renderDynamicTable(); renderQuiz(); setMode(activeMode,false,true);
     })();
   </script>
@@ -2013,4 +2530,3 @@ html>body{padding:0}</style>
 
 </body>
 </html>
-
