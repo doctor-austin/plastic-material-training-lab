@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>塑料材料与改性培训实验室</title>
 
-<meta name="application-version" content="20260914-visual1">
+<meta name="application-version" content="20260914-visual2">
 <style>#plastic-material-lab {
   color: #1a1c1f;
   width: 100%;
@@ -3495,6 +3495,65 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         ['顶出外壳', '顶针把外壳从模具上推开，制品取走，机器再进入下一循环。', '取出的外壳', '顶针：帮助制品脱离模具']
     ];
     var parts = [['料斗', '装颗粒的入口。颗粒从这里往下落。'], ['螺杆与料筒', '螺杆在筒内转动，输送、混合并塑化；注射时再向前推进。'], ['加热圈', '给料筒供热。塑化也包含螺杆剪切产生的热。'], ['喷嘴', '连接料筒与模具，让熔体进入模腔。'], ['模具与水路', '模腔决定外形；独立的冷却水路带走热量。'], ['顶针', '开模后，把已经定形的制品推离模具。']];
+    var injectionStory = story, injectionParts = parts, lesson = null;
+    var journeys = {
+        extrusion: [['颗粒进入', '颗粒从料斗落入料筒，螺杆把它们向前送。', '固体颗粒'], ['变成熔体', '料筒供热，螺杆转动、混合和剪切，让材料变得能流动。', '流动的熔体'], ['穿过口模', '熔体穿过有特定开口的口模。像挤面条一样，出口决定截面，不是做一件就开一次模。', '连续的热态坯材'], ['定形、冷却', '定型装置帮助保持截面，冷却带走热量，牵引装置连续拉走制品。', '逐渐稳定的长条制品'], ['切成需要的长度', '制品不断向前走，再按用途切断或收卷。', '冷却后的连续制品']],
+        cast: [['颗粒塑化', '颗粒在挤出机内加热、混合，成为均匀的熔体。', '熔体'], ['流出一张宽片', '熔体穿过扁而宽的口模，流成一张连续的热片。', '热的膜片或板片'], ['接触冷却辊', '热片贴上辊面。辊带走热量；辊组同时牵引、整平，必要时压光。', '逐渐冷却的片材'], ['向前输送、修边', '辊组连续带走片材，继续冷却并整理两侧的边。普通牵引不等于专门拉伸取向。', '尺寸逐渐稳定的片材'], ['收卷或切片', '薄而柔软的材料可收卷；较厚板材通常切成片并堆放。', '膜卷或板片']],
+        blow: [['先做一根热管', '先形成软的中空型坯。这里演示挤出吹塑；另一些路线使用预制坯。', '热而柔软的管状型坯'], ['模具夹住热管', '左右模具合起来，夹住型坯，封住底部并建立吹气入口。', '留在闭合模具中的型坯'], ['从里面吹气', '空气进入型坯内部，把管壁向外撑开，贴到瓶形模腔上。空气不是混进塑料里。', '被吹成瓶形的薄壁'], ['保持形状、冷却', '模具带走热量，瓶壁逐渐变得稳定。内部保持中空。', '稳定的中空瓶壁'], ['开模取出瓶子', '模具分开，取出瓶子，再按要求修边、检查密封。', '中空容器']],
+        blownfilm: [['把颗粒变成熔体', '挤出机先把颗粒塑化，再连续送往下面的口模。', '熔体'], ['挤出一根膜管', '环形口模像一个圆环，连续挤出薄薄的管状膜。', '连续的热膜管'], ['吹成大膜泡', '内部空气撑大膜管，外部冷却风带走热量。膜泡不是一只瓶子，而是一条持续向上走的膜。', '逐渐冷却的膜泡'], ['收拢、压扁', '人字形导板把膜泡收拢，上方夹辊把它压成双层扁筒并向前牵引。', '双层扁平筒膜'], ['连续收卷', '扁筒膜绕成膜卷；可保持筒状，也可按用途切开后制袋。', '薄膜卷']],
+        calender: [['树脂和助剂混匀', '先把树脂和需要的助剂配好、混匀。不是只把一粒粒硬颗粒直接送进最后的辊隙。', '混合料'], ['塑化成软料团', '前面的炼料设备让材料成为能被辊压展开的塑化软料。', '热的塑化料团'], ['在多道辊隙展开', '相邻辊转动，夹住软料。材料在多道辊隙里被剪切、挤压、延展，越来越像一张连续的膜片。', '连续的热膜片'], ['剥离、整理、冷却', '膜片离开辊面，可压花或压光，再通过冷却辊稳定形状。', '冷却中的膜片'], ['检测后收卷', '连续膜片整理、检测后收卷。厚度还受辊隙、辊变形和物料等影响。', '薄膜或片材卷']],
+        stretch: [['先有一张基膜', '先用挤出等方法做好基膜。拉伸是对这张膜的后续加工。', '固体基膜'], ['把基膜温热', '均匀加热，让膜能够延展，但不是把膜完全融化成一滩液体。', '能够延展的温热膜'], ['沿前进方向拉长', '后面的辊比前面的辊快，膜被沿前进方向拉长、变薄，分子链趋向沿拉伸方向排列。', '纵向取向的膜'], ['向左右拉宽', '双向路线夹住膜的两边，逐渐向外拉开，让膜在宽度方向也延展。', '双向取向的膜'], ['稳定结构、收卷', '经过适用的热定型、冷却和整理后收卷。图中的线段只表示分子链取向趋势。', '取向薄膜']],
+        thermo: [['放上一张片材', '原料已经是一张片材。夹框固定它的四边，下面是托盘形模具。', '平整的固体片材'], ['把片材加热软化', '加热使片材变软，能够拉伸变形；这不是用螺杆向模具注入熔体。', '柔软的热片材'], ['压差让片材贴模', '抽走下方空气或在上方加压，使软片向模具表面变形，得到托盘轮廓。', '拉伸变薄、贴模的片材'], ['保持形状、冷却', '片材贴着模具冷却，逐渐固定托盘形状。角部和深处可能更薄。', '稳定的托盘坯'], ['取出、切掉边框', '取出成型片材，切掉多余边框，得到托盘或包装壳。', '薄壁托盘']],
+        compression: [['把成型料放进模具', '先计量，把热固性成型料放到下模内。', '待固化的成型料'], ['上模向下压', '上模闭合并施压，材料被挤开，铺满模腔。', '铺展的成型料'], ['加热、交联固化', '加热加压保持，树脂内部形成交联网络，成为稳定的结构。不是单靠降温变硬。', '正在交联的材料'], ['打开、取出', '达到脱模条件后开模，取出已经固化的制品。', '固化的热固性制品'], ['修边、检查', '修掉飞边并检验。热固性固化后不能像普通热塑性料一样重新熔融。', '修整后的制品']],
+        lamination: [['纤维和树脂结合', '织物、纸或纤维层先与树脂结合，形成待铺层材料。', '含树脂的增强层'], ['一层层铺好', '按设计叠放各层，控制层数和纤维方向。就像把多张带胶的布叠在一起。', '尚未压实的叠层'], ['加热、压实', '压板靠近，把叠层压实并传热，减少夹气。', '压实中的叠层'], ['树脂交联、把层粘牢', '热固性树脂交联固化，把各层结合成整体。图中的网格代表增强纤维，不是泡孔。', '固化的层状复合材料'], ['冷却、取出、加工', '达到适用状态后取出，按要求裁切、加工和检查。', '层压板']],
+        rotation: [['粉料装进模具', '把粉料放进中空模具，关好模具。', '模具底部的粉料'], ['边转动、边加热', '模具绕不同方向转动并受热，粉料反复经过模壁，逐渐熔结、覆盖内表面。不是用空气吹胀。', '逐渐铺到模壁上的材料'], ['继续转动并冷却', '继续转动、带走热量，让整个中空外壁稳定。', '冷却中的中空壁'], ['开模取出', '打开模具，取出一体的中空件，检查壁厚和外观。', '中空箱体']],
+        foam: [['准备材料和发泡体系', '聚合物与适用发泡体系配合。实际可结合挤出、注塑或反应成型。', '尚未发泡的材料'], ['气体形成许多小泡孔', '气体在材料内部形成小泡孔并发展，让同一份材料的体积增大。不是外部空气把一个瓶子吹大。', '膨胀中的泡孔结构'], ['把泡孔稳定下来', '通过对应路线的冷却或反应固化，固定形状与泡孔，避免塌泡。', '稳定的多孔材料'], ['切割、检查', '按用途修整并检查密度、泡孔和性能。泡孔有开孔或闭孔等结构，图只演示概念。', '发泡制品']]
+    };
+    var componentSets = {
+        extrusion: ['料斗', '螺杆料筒', '加热区', '口模', '定型冷却', '牵引切断'], cast: ['挤出机', '宽幅口模', '冷却辊', '输送辊', '切边区', '收卷或切片'],
+        blow: ['型坯入口', '左半模', '右半模', '吹气入口', '中空瓶壁', '取件区'], blownfilm: ['挤出机', '环形口模', '膜泡', '冷却风环', '收拢夹辊', '收卷轴'],
+        calender: ['混合料', '塑化软料', '压延辊系', '剥离膜片', '冷却辊', '收卷轴'], stretch: ['基膜', '预热区', '纵向辊组', '横向夹持轨道', '热定型区', '收卷轴'],
+        thermo: ['夹框', '片材', '加热器', '成型模具', '空气通道', '成型托盘'], compression: ['上模', '成型料', '下模', '加热区', '交联结构', '固化制品'],
+        lamination: ['增强层', '树脂', '上压板', '下压板', '铺层结构', '层压板'], rotation: ['模具上半部', '粉料', '模具下半部', '旋转轴', '加热冷却区', '中空制品'], foam: ['聚合物', '发泡体系', '气体泡孔', '膨胀区', '稳定区', '发泡制品']
+    };
+    var componentText = {
+        extrusion: ['颗粒从这里进入料筒。', '转动时输送、混合和塑化材料。', '供热；螺杆剪切也会产生热。', '开口决定连续制品的截面；管口模含形成内孔的芯部。', '帮助保持截面并带走热量。冷却介质不混进塑料。', '连续拉走制品，按用途切断或收卷。'],
+        cast: ['把颗粒塑化成熔体，连续供料。', '扁而宽的出口让熔体成为宽片。', '片材贴到辊面，热量传给辊；多辊组还可整平压光。', '向前运送，继续冷却；普通牵引不是专门取向拉伸。', '按用途修整边部并检查有效宽度。', '薄膜可收卷；较厚板材可切片堆放。'],
+        blow: ['先形成热态中空型坯；不是一颗颗粒直接吹成瓶子。', '与右半模合拢，模腔的一半决定外形。', '与左半模合拢，开模后取件。', '空气进入型坯内部，把管壁向外撑。', '塑料只形成瓶壁，内部保留空腔。', '开模取件后按要求修边和检测。'],
+        blownfilm: ['连续塑化并供应熔体。', '圆环状出口形成连续膜管。', '内气压撑大管膜，外部风冷定型。', '外部空气带走热量，不是混进塑料。', '导板收拢膜泡，夹辊压成双层扁筒并牵引。', '连续膜绕成卷；可再用于制袋。'],
+        calender: ['树脂和适用助剂先混合均匀。', '炼料设备先把混合料塑化为可延展的软料。', '相邻辊转动，多道辊隙挤压、剪切和延展软料。', '连续膜片从辊面剥离，可再压花、压光。', '带走热量，帮助稳定膜片形状。', '将检测整理后的连续膜片绕成卷。'],
+        stretch: ['先制备均匀基膜，再进入取向加工。', '温热到可以延展的状态，不是完全融化。', '利用辊速差，把膜沿前进方向拉长变薄。', '夹持膜的两边、向左右展开；单向示例不走这一步。', '按材料要求热定型并冷却，稳定结构。', '整理、修边和检测后收卷。'],
+        thermo: ['固定片材四边，成型时防止整张片滑走。', '已有的片材是原料；加热后被拉伸成形。', '把片材加热到能变形的状态。', '模具表面决定托盘外形；这里展示凹模。', '下方抽气或上方加压，使两侧形成压差。', '贴模冷却、脱模后，还要切掉多余边框。'],
+        compression: ['闭合并施压，与下模共同决定形状。', '计量后放入下模，受压铺展填充。', '承托材料并提供模腔形状。', '热固性示例通过加热加压保持，促进交联固化。', '线段表示交联网络的概念，不是纤维或泡孔。', '固化后取出、修边；不能像普通热塑料再熔融。'],
+        lamination: ['织物、纸或纤维等形成骨架，方向和层数可设计。', '浸润增强层，固化后把层结合起来。', '向下压实叠层并传热。', '承托叠层，与上压板共同加热加压。', '不同层按设计叠放；图上网格代表增强纤维。', '热固性树脂交联后形成整体，再脱模加工。'],
+        rotation: ['与下半部封闭，内部容纳粉料。', '旋转受热后逐渐熔结、铺覆模壁。', '决定中空制品的一部分外形，脱模时打开。', '实际设备可绕多个轴转动；动画只示意不同姿态。', '先受热熔结，再继续旋转冷却；不是吹气贴模。', '制品为沿模壁形成的壳，中心仍中空。'],
+        foam: ['提供连续的材料基体。', '物理气体或化学／反应体系形成气体。', '许多小孔分布在材料内部；不是一个瓶子内腔。', '泡孔发展时体积增大，表观密度可能降低。', '对应路线冷却或反应固化，固定泡孔。', '按用途切割、修整和检验；泡孔结构有不同类型。']
+    };
+    function configureLesson(key, p, variant) {
+        lesson = key === 'injection' ? null : { key: key, p: p, variant: variant || 'default' };
+        story = lesson ? journeys[p.family].map(function (s) { return s.slice(); }) : injectionStory;
+        if (lesson && p.family === 'stretch' && variant === 'uniaxial') {
+            story.splice(3, 1);
+            story[2][1] += ' 本例只做纵向拉伸，不进入横向拉宽工序。';
+        }
+        if (lesson && p.family === 'thermo')
+            story[2][1] = variant === 'positive' ? '从上方加压，空气压力把软片向下推，使它贴合模具。' : variant === 'combined' ? '上方加压、下方抽气，两侧形成压差，把软片压向模具表面。' : '从模具下方抽走空气，上方空气压力把软片压向模具表面。';
+        parts = lesson ? componentSets[p.family].map(function (name, i) { return [name, componentText[p.family][i]]; }) : injectionParts;
+        total = story.length * duration;
+        state.time = 0;
+        state.close = false;
+        state.part = 0;
+    }
+    function processMarkup(key, p, variant) {
+        configureLesson(key, p, variant);
+        var markup = injectionMarkup();
+        function escape(v) { return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+        var products = '<div class="novice-products"><strong>这种工艺可以做什么？</strong><div class="tag-cloud">' + p.examples.split('、').map(function (v) { return '<span class="viz-badge">' + escape(v) + '</span>'; }).join('') + '</div><p class="text-small text-muted">常见用途示例；同一种产品也可能采用其他工艺。' + escape(p.output) + '</p></div>';
+        markup = markup.replace('<div class="novice-story"', products + '<div class="novice-story"');
+        if (!lesson)
+            return markup;
+        return markup.replace('一颗塑料，怎样变成外壳？', p.name + '：材料怎样变成制品？').replace(/注塑入门/g, '立体入门').replace('注塑机立体剖面，展示材料输送、充模、冷却、开模和顶出', p.name + '立体剖面动画').replace('透明料筒与剖开模具', '显示材料与内部剖面').replace('供料、塑化和冷却在实际循环中可能重叠；这里为理解材料变化分开演示。', '各步骤为理解原理而分开演示；连续生产时，多个位置可同时发生不同变化。').replace('<div class="novice-state">', '<p class="text-small">蓝色＝冷态材料；橙色＝热态或正在变化的材料；青色箭头＝空气 / 冷却方向。数字与下面的部件按钮对应。</p><div class="novice-state">');
+    }
     function q(id) { return host && host.querySelector('#' + id); }
     function injectionMarkup() {
         return '<section class="novice-lesson card" id="novice-injection" aria-label="注塑入门立体剖面动画">' +
@@ -3527,27 +3586,31 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         function update() {
             if (!host)
                 return;
-            var step = Math.min(6, Math.floor(state.time / duration)), f = (state.time - step * duration) / duration;
+            var step = Math.min(story.length - 1, Math.floor(state.time / duration)), f = (state.time - step * duration) / duration;
             q('novice-progress').value = Math.round(state.time / (total - 1) * 1000);
             q('novice-play').textContent = state.playing ? '暂停动画' : '播放动画';
             q('novice-play').setAttribute('aria-pressed', String(state.playing));
             q('novice-prev').disabled = step === 0;
-            q('novice-next').disabled = step === 6;
+            q('novice-next').disabled = step === story.length - 1;
             q('novice-close').textContent = state.close ? '返回整机' : '放大所选部件';
             if (step !== lastStep) {
-                q('novice-number').textContent = '第 ' + (step + 1) + ' / 7 步';
+                q('novice-number').textContent = '第 ' + (step + 1) + ' / ' + story.length + ' 步';
                 q('novice-title').textContent = story[step][0];
                 q('novice-explain').textContent = story[step][1];
                 q('novice-material').textContent = story[step][2];
-                q('novice-technical').textContent = story[step][3];
+                q('novice-technical').textContent = lesson ? lesson.p.action + '；' + lesson.p.caution : story[step][3];
                 node.querySelectorAll('[data-novice-step]').forEach(function (b) { var on = +b.dataset.noviceStep === step; b.classList.toggle('btn-primary', on); b.setAttribute('aria-pressed', String(on)); });
-                state.part = step === 0 ? 0 : step === 1 ? 1 : step === 2 ? 3 : step === 6 ? 5 : 4;
+                state.part = lesson ? Math.min(5, step) : step === 0 ? 0 : step === 1 ? 1 : step === 2 ? 3 : step === 6 ? 5 : 4;
                 lastStep = step;
             }
             node.querySelectorAll('[data-novice-part]').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.novicePart === state.part)); });
             q('novice-part-explain').textContent = parts[state.part][0] + '：' + parts[state.part][1];
-            if (ctx)
-                drawInjection(ctx, step, f);
+            if (ctx) {
+                if (lesson)
+                    drawProcess(ctx, step, f);
+                else
+                    drawInjection(ctx, step, f);
+            }
         }
         function stop() { state.playing = false; last = Date.now(); }
         node.querySelectorAll('[data-novice-step]').forEach(function (b) { b.addEventListener('click', function () { stop(); state.time = +b.dataset.noviceStep * duration + duration * .6; update(); }); });
@@ -3555,7 +3618,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         q('novice-play').addEventListener('click', function () { if (state.time >= total - 1)
             state.time = 0; state.playing = !state.playing; last = Date.now(); update(); });
         q('novice-prev').addEventListener('click', function () { stop(); state.time = Math.max(0, Math.floor(state.time / duration) - 1) * duration + duration * .6; update(); });
-        q('novice-next').addEventListener('click', function () { stop(); state.time = Math.min(6, Math.floor(state.time / duration) + 1) * duration + duration * .6; update(); });
+        q('novice-next').addEventListener('click', function () { stop(); state.time = Math.min(story.length - 1, Math.floor(state.time / duration) + 1) * duration + duration * .6; update(); });
         q('novice-reset').addEventListener('click', function () { stop(); state.time = 0; update(); });
         q('novice-progress').addEventListener('input', function () { stop(); state.time = +this.value / 1000 * (total - 1); update(); });
         q('novice-speed').value = state.speed;
@@ -3692,6 +3755,359 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         var spots = [[180, 72], [354, 351], [380, 208], [595, 228], [730 + opening / 2, 139], [905, 353]];
         spots.forEach(function (v, i) { var p = project(v[0], v[1], 0); ctx.beginPath(); ctx.arc(p[0], p[1], 18, 0, Math.PI * 2); ctx.fillStyle = i === state.part ? '#ffba66' : '#234d6e'; ctx.fill(); ctx.strokeStyle = '#b9dfff'; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = i === state.part ? '#172d42' : '#ffffff'; ctx.font = 'bold 19px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(i + 1), p[0], p[1]); });
     }
+    function mountProcess(node, key, p, variant) { configureLesson(key, p, variant); mountInjection(node); }
+    function drawProcess(ctx, step, f) {
+        var family = lesson.p.family, key = lesson.key, t = Math.min(1, f * 1.65), warm = '#ffad65', cold = '#83ceff', air = '#55dfd6', steel = '#426986', spots = [];
+        var angle = state.angle / 100, zoom = state.close ? 1.85 : 1, center = state.close ? (drawProcess.centers && drawProcess.centers[state.part] || [500, 250]) : [500, 250];
+        ctx.clearRect(0, 0, 1000, 500);
+        ctx.fillStyle = '#102b46';
+        ctx.fillRect(0, 0, 1000, 500);
+        function project(v) { return [(v[0] + (v[2] || 0) * (.22 + angle * .32) - center[0]) * zoom + 500, (v[1] - (v[2] || 0) * (.16 + angle * .3) - center[1]) * zoom + 250]; }
+        function path(points, color, stroke, width, closed) { ctx.beginPath(); points.forEach(function (v, i) { var p = project(v); if (i)
+            ctx.lineTo(p[0], p[1]);
+        else
+            ctx.moveTo(p[0], p[1]); }); if (closed)
+            ctx.closePath(); if (color) {
+            ctx.fillStyle = color;
+            ctx.fill();
+        } if (stroke) {
+            ctx.strokeStyle = stroke;
+            ctx.lineWidth = (width || 2) * zoom;
+            ctx.stroke();
+        } }
+        function line(points, color, width) { path(points, null, color, width, false); }
+        function poly(points, color, stroke) { path(points, color, stroke || '#8eb8d3', 2, true); }
+        function box(x, y, w, h, d, color) { poly([[x, y, 0], [x + w, y, 0], [x + w, y + h, 0], [x, y + h, 0]], color); poly([[x, y, 0], [x, y, d], [x + w, y, d], [x + w, y, 0]], '#668aa3'); poly([[x + w, y, 0], [x + w, y, d], [x + w, y + h, d], [x + w, y + h, 0]], '#294e69'); }
+        function dot(x, y, z, r, color) { var p = project([x, y, z]); ctx.beginPath(); ctx.arc(p[0], p[1], r * zoom, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill(); }
+        function ring(x, y, z, rx, ry, color, width) { var points = []; for (var i = 0; i <= 48; i++) {
+            var a = i / 48 * Math.PI * 2;
+            points.push([x + rx * Math.cos(a), y + ry * Math.sin(a), z]);
+        } line(points, color, width || 3); }
+        function arrow(x, y, dx, dy, color) { line([[x, y, 0], [x + dx, y + dy, 0]], color, 4); var a = Math.atan2(dy, dx); poly([[x + dx, y + dy, 0], [x + dx - 15 * Math.cos(a - .48), y + dy - 15 * Math.sin(a - .48), 0], [x + dx - 15 * Math.cos(a + .48), y + dy - 15 * Math.sin(a + .48), 0]], color, color); }
+        function roll(x, y, r, z) { var face = []; for (var n = 0; n <= 48; n++) {
+            var a = n / 48 * Math.PI * 2;
+            face.push([x + r * Math.cos(a), y + r * Math.sin(a), z]);
+        } poly(face, '#527d98'); poly([[x - r, y, 0], [x - r, y, z], [x + r, y, z], [x + r, y, 0]], '#416b86'); face = face.map(function (v) { return [v[0], v[1], 0]; }); poly(face, '#365e79'); ring(x, y, 0, r, r, '#b5d4e5', 3); var a = f * Math.PI * 2; line([[x, y, 0], [x + Math.cos(a) * r * .8, y + Math.sin(a) * r * .8, 0]], air, 3); }
+        function strip(points, color, width) { line(points.map(function (v) { return [v[0], v[1], 0]; }), color, width || 10); line(points.map(function (v) { return [v[0], v[1], 68]; }), color, width || 10); for (var i = 1; i < points.length; i++)
+            poly([[points[i - 1][0], points[i - 1][1], 0], [points[i][0], points[i][1], 0], [points[i][0], points[i][1], 68], [points[i - 1][0], points[i - 1][1], 68]], color, color); }
+        function feed(x, y, hot) { box(x, y, 310, 64, 52, state.inside ? '#254c68' : steel); poly([[x + 20, y - 96, 0], [x + 89, y - 96, 0], [x + 66, y, 0], [x + 44, y, 0]], steel); for (var n = 0; n < 14; n++)
+            dot(x + 31 + n % 4 * 12, y - 85 + Math.floor(n / 4) * 14, 0, 4, cold); if (state.inside) {
+            line([[x + 8, y + 29, 23], [x + 298, y + 29, 23]], '#d4e2eb', 6);
+            var helix = [];
+            for (var j = 0; j <= 120; j++) {
+                var a = j / 12 * Math.PI * 2 + f * 4 * Math.PI;
+                helix.push([x + 15 + j * 2.3, y + 29 + 13 * Math.cos(a), 23 + 13 * Math.sin(a)]);
+            }
+            line(helix, '#ccdee7', 3);
+            if (hot)
+                line([[x + 127, y + 48, 6], [x + 300, y + 48, 6]], warm, 11);
+        } for (var k = 0; k < 3; k++)
+            box(x + 117 + k * 58, y - 5, 18, 74, 52, hot ? '#bd6540' : steel); arrow(x + 177, y + 95, 70, 0, hot ? warm : cold); }
+        function progress() { return (step + t) / story.length; }
+        if (family === 'extrusion') {
+            spots = [[131, 141], [234, 303], [292, 215], [445, 237], [606, 206], [845, 329]];
+            feed(80, 247, step >= 1);
+            box(408, 238, 42, 86, 66, steel);
+            var end = step < 2 ? 450 : step === 2 ? 450 + t * 368 : 818, color = step >= 3 ? cold : warm;
+            if (step >= 2) {
+                if (key === 'profile') {
+                    poly([[450, 262, 0], [end, 262, 0], [end, 289, 0], [450, 289, 0]], color);
+                    poly([[450, 262, 0], [end, 262, 0], [end, 262, 48], [450, 262, 48]], color);
+                    line([[450, 275, 4], [end, 275, 4]], '#153c57', 7);
+                }
+                else {
+                    var rim = [], hole = [];
+                    poly([[450, 267, 23], [end, 267, 23], [end, 309, 23], [450, 309, 23]], color);
+                    poly([[450, 267, 23], [end, 267, 23], [end, 288, 44], [450, 288, 44]], color);
+                    for (var c = 0; c <= 48; c++) {
+                        var a = c / 48 * Math.PI * 2;
+                        rim.push([end, 288 + 21 * Math.cos(a), 23 + 21 * Math.sin(a)]);
+                        hole.push([end, 288 + 12 * Math.cos(a), 23 + 12 * Math.sin(a)]);
+                    }
+                    poly(rim, color);
+                    poly(hole, '#102b46');
+                }
+            }
+            box(521, 329, 200, 26, 65, steel);
+            if (step >= 3) {
+                arrow(575, 337, 0, -42, air);
+                arrow(651, 219, 0, 37, air);
+            }
+            roll(772, 255, 17, 46);
+            roll(772, 327, 17, 46);
+            if (step === 4) {
+                line([[853, 225 + t * 70, 0], [853, 290 + t * 70, 0]], '#e8eef2', 5);
+                arrow(812, 365, 88, 0, cold);
+            }
+        }
+        else if (family === 'cast') {
+            spots = [[192, 205], [428, 249], [517, 333], [650, 333], [748, 275], [870, 327]];
+            feed(68, 175, true);
+            box(397, 213, 46, 64, 110, steel);
+            roll(500, 327, 53, 110);
+            roll(636, 341, 22, 110);
+            roll(729, 341, 22, 110);
+            if (key !== 'cast') {
+                roll(500, 220, 43, 110);
+                roll(500, 420, 43, 110);
+            }
+            if (step >= 1) {
+                var end = step === 1 ? 443 + t * 55 : 500;
+                strip([[443, 270], [end, step === 1 ? 270 + t * 30 : 300]], warm, key === 'sheet' ? 15 : 7);
+            }
+            if (step >= 2) {
+                var end2 = step === 2 ? 500 + t * 229 : 795;
+                strip([[500, 275], [544, 312], [end2, 312]], step === 2 ? warm : cold, key === 'sheet' ? 15 : 7);
+                if (step === 2)
+                    arrow(536, 377, 0, -43, air);
+            }
+            if (step >= 3) {
+                line([[756, 295, 0], [756, 329, 0]], '#fff', 3);
+                line([[756, 295, 68], [756, 329, 68]], '#fff', 3);
+                arrow(627, 383, 86, 0, cold);
+            }
+            if (step === 4) {
+                if (key === 'sheet') {
+                    for (var z = 0; z < 4; z++)
+                        box(810, 330 + z * 12, 120, 8, 90, cold);
+                }
+                else {
+                    roll(857, 336, 40 + t * 15, 90);
+                    strip([[795, 312], [857, 281]], cold, 7);
+                }
+            }
+        }
+        else if (family === 'blow') {
+            spots = [[486, 101], [342, 238], [637, 238], [519, 144], [508, 277], [806, 341]];
+            var open = step === 0 ? 87 : step === 1 ? 87 * (1 - t) : step >= 4 ? 87 * t : 0;
+            box(300 - open, 180, 200, 200, 75, steel);
+            box(500 + open, 180, 200, 200, 75, steel);
+            poly([[403 - open, 216, 0], [500 - open, 216, 0], [500 - open, 359, 0], [403 - open, 359, 0]], '#18374e');
+            poly([[500 + open, 216, 0], [598 + open, 216, 0], [598 + open, 359, 0], [500 + open, 359, 0]], '#18374e');
+            var inflate = step < 2 ? 0 : step === 2 ? t : 1, w = 19 + inflate * 70, y = 193, h = 157;
+            var bottle = [[500 - w * .32, y, 0], [500 + w * .32, y, 0], [500 + w * .32, y + 31, 0], [500 + w, y + 55, 0], [500 + w, y + h, 0], [500 - w, y + h, 0], [500 - w, y + 55, 0], [500 - w * .32, y + 31, 0]];
+            var offset = step === 4 ? t * 235 : 0;
+            bottle = bottle.map(function (v) { return [v[0] + offset, v[1], v[2]]; });
+            poly(bottle, step >= 3 ? cold : warm);
+            if (state.inside) {
+                poly(bottle.map(function (v) { return [500 + offset + (v[0] - 500 - offset) * .82, y + 12 + (v[1] - y) * .84, 0]; }), '#102b46');
+            }
+            if (step === 2)
+                arrow(500, 116, 0, 116, air);
+            if (step === 3) {
+                arrow(357, 154, 0, 44, air);
+                arrow(679, 154, 0, 44, air);
+            }
+            if (step === 4)
+                arrow(714, 409, 113, 0, cold);
+        }
+        else if (family === 'blownfilm') {
+            spots = [[171, 359], [447, 398], [475, 245], [350, 361], [475, 107], [810, 230]];
+            feed(70, 355, true);
+            roll(448, 408, 33, 67);
+            var wide = step < 2 ? 24 : step === 2 ? 24 + t * 67 : 91, top = step < 1 ? 380 : step === 1 ? 380 - t * 140 : 139;
+            if (step >= 1) {
+                poly([[448 - 24, 386, 0], [448 - wide, top + 42, 0], [448 - wide * .52, top, 0], [448 + wide * .52, top, 0], [448 + wide, top + 42, 0], [448 + 24, 386, 0]], step >= 3 ? '#3785a7' : '#b88452');
+                ring(448, top + 42, 0, wide, 15, step >= 3 ? cold : warm, 4);
+                line([[448, 382, 0], [448, top + 45, 0]], air, 3);
+            }
+            if (step >= 2) {
+                arrow(336, 326, 56, 0, air);
+                arrow(556, 326, -56, 0, air);
+                arrow(448, 343, 0, -83, air);
+            }
+            line([[359, 163, 0], [428, 87, 0], [468, 87, 0], [537, 163, 0]], '#b8d4e7', 4);
+            roll(432, 83, 17, 65);
+            roll(474, 83, 17, 65);
+            roll(810, 223, 42, 65);
+            if (step >= 3)
+                strip([[448, 91], [615, 92], [810, 178]], cold, 6);
+            if (step === 4)
+                arrow(671, 141, 74, 40, cold);
+        }
+        else if (family === 'calender') {
+            spots = [[155, 167], [298, 157], [448, 211], [550, 323], [673, 343], [839, 329]];
+            box(87, 257, 110, 130, 70, steel);
+            if (step === 0) {
+                for (var c = 0; c < 24; c++)
+                    dot(107 + c % 6 * 13, 225 + Math.floor(c / 6) * 8, 0, 5, c % 3 ? cold : warm);
+            }
+            else
+                poly([[231, 165, 0], [302, 129, 0], [347, 155, 0], [327, 210, 0], [256, 214, 0]], warm);
+            roll(419, 195, 59, 95);
+            roll(419, 321, 59, 95);
+            roll(545, 321, 59, 95);
+            roll(671, 341, 22, 95);
+            roll(833, 339, 48, 95);
+            if (step >= 2) {
+                strip([[318, 213], [356, 253], [419, 258], [485, 275], [545, 263]], warm, step === 2 ? 16 - 9 * t : 7);
+                arrow(465, 226, 0, 45, warm);
+            }
+            if (step >= 3) {
+                strip([[545, 262], [593, 315], [726, 316], [833, 290]], step === 3 ? warm : cold, 7);
+                arrow(668, 400, 0, -50, air);
+            }
+            if (step === 4)
+                arrow(739, 251, 56, 0, cold);
+        }
+        else if (family === 'stretch') {
+            spots = [[123, 307], [279, 271], [416, 321], [582, 224], [746, 287], [873, 338]];
+            box(230, 208, 124, 148, 85, step === 1 ? '#a25c3d' : steel);
+            roll(384, 327, 21, 100);
+            roll(448, 327, 21, 100);
+            box(724, 221, 94, 135, 100, steel);
+            roll(867, 337, 42, 100);
+            var biax = lesson.variant !== 'uniaxial', spread = biax ? (step < 3 ? 0 : step === 3 ? t : 1) : 0, long = step < 2 ? 0 : step === 2 ? t : 1, w = 83 + spread * 81, end = step === 0 ? 216 : step === 1 ? 355 : step === 2 ? 448 + t * 256 : 829;
+            poly([[80, 298, 0], [448, 298, 0], [Math.max(449, end), 298 + spread * 28, 0], [Math.max(449, end), 298 + spread * 28, w], [448, 298, 83], [80, 298, 83]], step >= story.length - 1 ? cold : warm);
+            line([[491, 253, 0], [698, 225, 0]], '#b6d9ec', 4);
+            line([[491, 341, 90], [698, 370, 145]], '#b6d9ec', 4);
+            for (var m = 0; m < 9; m++) {
+                var x = 479 + m * 23;
+                box(x, 260 - m * 3, 10, 14, 0, steel);
+                box(x, 339 + m * 3, 10, 14, 0, steel);
+            }
+            if (step === 2) {
+                arrow(368, 389, 36, 0, air);
+                arrow(439, 389, 86, 0, air);
+            }
+            if (biax && step === 3) {
+                arrow(585, 272, 0, -48, air);
+                arrow(585, 364, 0, 48, air);
+            }
+            if (state.inside)
+                for (var n = 0; n < 18; n++) {
+                    var x = 106 + n % 9 * 63, y = 308 + Math.floor(n / 9) * 24;
+                    line([[x, y, 16], [x + 18 + long * 22, y + (1 - long) * 10, 16 + spread * 12]], '#fff4d6', 2);
+                }
+            if (step === story.length - 1)
+                strip([[817, 324], [867, 293]], cold, 5);
+        }
+        else if (family === 'thermo') {
+            spots = [[294, 220], [504, 220], [510, 105], [508, 375], [685, 345], [801, 307]];
+            box(285, 333, 400, 64, 110, steel);
+            poly([[343, 334, 0], [629, 334, 0], [603, 373, 0], [369, 373, 0]], '#17354b');
+            box(311, 92, 346, 22, 110, step === 1 ? '#bb6c45' : steel);
+            var draw = step < 2 ? 0 : step === 2 ? t : 1, cut = step === 4 ? t : 0, shift = cut * 230;
+            var sheet = [[292 + shift, 219, 0], [359 + shift, 219, 0], [388 + shift, 219 + draw * 145, 0], [582 + shift, 219 + draw * 145, 0], [611 + shift, 219, 0], [678 + shift, 219, 0]];
+            strip(sheet, step >= 3 ? cold : step === 0 ? cold : warm, 8);
+            if (step < 4) {
+                box(272, 215, 35, 24, 110, steel);
+                box(678, 215, 35, 24, 110, steel);
+            }
+            if (step === 1)
+                for (var h = 0; h < 4; h++)
+                    arrow(360 + h * 75, 123, 0, 60, warm);
+            if (step === 2) {
+                if (lesson.variant !== 'positive')
+                    arrow(506, 376, 0, 69, air);
+                if (lesson.variant === 'positive' || lesson.variant === 'combined')
+                    arrow(506, 132, 0, 73, air);
+            }
+            if (step === 4) {
+                line([[354 + shift, 199, 0], [354 + shift, 257, 0]], '#fff', 4);
+                line([[615 + shift, 199, 0], [615 + shift, 257, 0]], '#fff', 4);
+                arrow(725, 422, 107, 0, cold);
+            }
+        }
+        else if (family === 'compression' || family === 'lamination') {
+            spots = family === 'compression' ? [[495, 115], [495, 263], [505, 383], [315, 301], [516, 306], [776, 306]] : [[494, 246], [332, 241], [495, 115], [504, 383], [526, 298], [794, 306]];
+            var down = step === 0 ? 0 : step === 1 ? t * .55 : step === 2 ? .55 + t * .45 : step === 3 && family === 'compression' ? 1 - t : step === 4 ? 0 : 1;
+            box(326, 350, 350, 54, 110, steel);
+            box(326, 109 + down * 185, 350, 48, 110, steel);
+            if (family === 'compression') {
+                var expand = step === 0 ? .18 : step === 1 ? .18 + t * .82 : 1, shift = step >= 3 ? t * 240 : 0;
+                box(496 - expand * 125 + shift, 318, expand * 250, 30, 83, step >= 3 ? cold : warm);
+                if (step === 2 && state.inside)
+                    for (var n = 0; n < 8; n++) {
+                        line([[387 + n * 27, 324, 0], [401 + n * 27, 340, 0], [414 + n * 27, 324, 0]], '#ffe6bb', 2);
+                    }
+                if (step === 1)
+                    arrow(501, 168, 0, 82, warm);
+            }
+            else {
+                var gap = step < 2 ? 17 : step === 2 ? 17 - t * 11 : 6, offset = step === 4 ? t * 225 : 0;
+                for (var layer = 0; layer < 5; layer++) {
+                    var y = 340 - layer * gap;
+                    box(365 + offset, y, 265, 5, 88, step >= 3 ? cold : layer % 2 ? warm : '#8be0cc');
+                    if (state.inside)
+                        for (var fiber = 0; fiber < 8; fiber++)
+                            line([[380 + fiber * 29 + offset, y, 0], [391 + fiber * 29 + offset, y, 85]], '#dcf3eb', 1);
+                }
+                if (step === 2)
+                    arrow(503, 196, 0, 82, warm);
+            }
+            if (step === 2 || step === 3 && family === 'lamination') {
+                arrow(277, 298, 42, 0, warm);
+                arrow(723, 298, -42, 0, warm);
+            }
+            if (step === 4)
+                arrow(741, 428, 91, 0, cold);
+        }
+        else if (family === 'rotation') {
+            spots = [[508, 132], [449, 330], [510, 381], [277, 254], [751, 204], [775, 375]];
+            var theta = step === 1 ? f * Math.PI * 2 : step === 2 ? f * Math.PI * 2 : 0;
+            function rotated(x, y, z) { var dx = x - 490, dy = y - 268; return [490 + dx * Math.cos(theta) - dy * Math.sin(theta), 268 + dx * Math.sin(theta) + dy * Math.cos(theta), z]; }
+            var shell = [[359, 162, 0], [621, 162, 0], [621, 374, 0], [359, 374, 0]], depth = 93;
+            poly(shell.map(function (v) { return rotated(v[0], v[1], v[2]); }), steel);
+            poly([[359, 162, 0], [359, 162, depth], [621, 162, depth], [621, 162, 0]].map(function (v) { return rotated(v[0], v[1], v[2]); }), '#6f93ab');
+            if (state.inside) {
+                poly([[376, 180, 0], [604, 180, 0], [604, 357, 0], [376, 357, 0]].map(function (v) { return rotated(v[0], v[1], v[2]); }), '#15354d');
+                var cover = step === 0 ? 0 : step === 1 ? t : 1;
+                if (cover)
+                    line(shell.concat([shell[0]]).map(function (v) { return rotated(490 + (v[0] - 490) * .9, 268 + (v[1] - 268) * .9, 0); }), step === 1 ? warm : cold, 10 * cover);
+                if (step < 2)
+                    for (var n = 0; n < 23; n++)
+                        dot(398 + n % 8 * 23, 336 + Math.floor(n / 8) * 7, 0, 4, step === 0 ? cold : warm);
+            }
+            line([[239, 267, 0], [327, 267, 0]], '#c1dbea', 9);
+            line([[657, 267, 0], [750, 267, 0]], '#c1dbea', 9);
+            if (step === 1) {
+                arrow(302, 123, 57, 0, warm);
+                arrow(710, 387, -57, 0, warm);
+            }
+            if (step === 2) {
+                arrow(307, 126, 47, 0, air);
+                arrow(722, 387, -47, 0, air);
+            }
+            if (step === 3) {
+                box(725, 278, 155, 113, 65, cold);
+                poly([[741, 291, 0], [863, 291, 0], [863, 372, 0], [741, 372, 0]], '#15354d');
+                arrow(660, 427, 88, 0, cold);
+            }
+        }
+        else if (family === 'foam') {
+            spots = [[218, 269], [289, 170], [463, 269], [575, 194], [671, 356], [814, 312]];
+            var grow = step === 0 ? 0 : step === 1 ? t : 1;
+            var x = 150, y = 315 - grow * 96, w = 410 + grow * 150, h = 60 + grow * 96;
+            box(x, y, w, h, 83, step >= 2 ? cold : warm);
+            if (state.inside && step >= 1)
+                for (var n = 0; n < 55; n++) {
+                    var px = x + 22 + (n % 11) * (w - 44) / 10, py = y + 16 + Math.floor(n / 11) * (h - 32) / 4;
+                    dot(px, py, 0, Math.max(2, 4 + grow * 7 * (.6 + (n % 3) * .2)), '#143a53');
+                }
+            if (step === 1) {
+                arrow(368, 185, 0, -48, air);
+                arrow(705, 277, 61, 0, air);
+            }
+            if (step === 2)
+                arrow(640, 426, 0, -41, air);
+            if (step === 3) {
+                line([[731, 163 + t * 178, 0], [731, 254 + t * 178, 0]], '#fff', 5);
+                box(780, 283, 114, 93, 60, cold);
+                for (var c = 0; c < 12; c++)
+                    dot(797 + c % 4 * 25, 304 + Math.floor(c / 4) * 25, 0, 7, '#143a53');
+            }
+        }
+        drawProcess.centers = spots;
+        spots.forEach(function (v, i) { var p = project([v[0], v[1], 0]); ctx.beginPath(); ctx.arc(p[0], p[1], 17 * zoom, 0, Math.PI * 2); ctx.fillStyle = i === state.part ? '#ffba66' : '#234d6e'; ctx.fill(); ctx.fillStyle = i === state.part ? '#172d42' : '#fff'; ctx.font = 'bold ' + Math.round(18 * zoom) + 'px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(i + 1), p[0], p[1]); });
+        if (!state.close) {
+            ctx.fillStyle = '#c4dfed';
+            ctx.font = '18px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText(lesson.p.name + ' · ' + story[step][0], 32, 34);
+            ctx.fillText('常见产品：' + lesson.p.examples.split('、').slice(0, 3).join(' / '), 32, 466);
+        }
+    }
     function strengthMarkup() { return '<article class="card" id="strength-explorer"><h3>一样结实，哪种更轻？</h3><p>改变假设材料 A 的密度和强度，与材料 B 比较“单位重量的承载能力”。</p><div class="novice-controls"><label class="form-label">A 的密度：<strong id="strength-density-label"></strong><input class="form-range" id="strength-density" type="range" min="0.8" max="8" value="1" step="0.1"></label><label class="form-label">A 的拉伸强度：<strong id="strength-load-label"></strong><input class="form-range" id="strength-load" type="range" min="10" max="500" value="80" step="10"></label></div><div class="learning-bar-row"><span>材料 A</span><div class="learning-bar-track"><span id="strength-a-bar"></span></div><strong id="strength-a-result"></strong></div><div class="learning-bar-row"><span>材料 B</span><div class="learning-bar-track"><span id="strength-b-bar"></span></div><strong id="strength-b-result"></strong></div><p id="strength-verdict" aria-live="polite"></p><p class="text-small text-muted">示例 B：密度 2.7 g/cm³，强度 150 MPa。A、B 都是假设材料，不是具体树脂或金属牌号。比强度＝强度÷密度；数值大不代表所有用途都更好。</p></article>'; }
     function mountStrength(node) { if (!node)
         return; function get(id) { return node.querySelector('#' + id); } function render() { var density = +get('strength-density').value, load = +get('strength-load').value, a = load / density, b = 150 / 2.7, max = Math.max(a, b); get('strength-density-label').textContent = density.toFixed(1) + ' g/cm³'; get('strength-load-label').textContent = load + ' MPa'; get('strength-a-bar').style.width = a / max * 100 + '%'; get('strength-b-bar').style.width = b / max * 100 + '%'; get('strength-a-result').textContent = a.toFixed(1); get('strength-b-result').textContent = b.toFixed(1); get('strength-verdict').textContent = a > b ? 'A 的比强度较高：按这组假设数据，单位重量的承载能力更大。' : a < b ? 'B 的比强度较高。只看强度高低，可能会忽略重量的影响。' : '两者比强度相同，但尺寸、耐热、刚度等仍需另外比较。'; } get('strength-density').addEventListener('input', render); get('strength-load').addEventListener('input', render); render(); }
@@ -3705,7 +4121,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         q('novice-play').textContent = '播放动画';
         q('novice-play').setAttribute('aria-pressed', 'false');
     } });
-    window.PlasticVisualLab = { injectionMarkup: injectionMarkup, mountInjection: mountInjection, disposeInjection: disposeInjection, strengthMarkup: strengthMarkup, mountStrength: mountStrength, mixMarkup: mixMarkup, mountMix: mountMix };
+    window.PlasticVisualLab = { injectionMarkup: injectionMarkup, mountInjection: mountInjection, disposeInjection: disposeInjection, processMarkup: processMarkup, mountProcess: mountProcess, strengthMarkup: strengthMarkup, mountStrength: mountStrength, mixMarkup: mixMarkup, mountMix: mountMix };
 })();
 (function () {
     var root = document.getElementById('plastic-material-lab');
@@ -4384,7 +4800,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         return "<div class=\"forming-head\"><h3>\u6210\u578B\u5DE5\u827A \u00B7 \u52A8\u6001\u56FE\u89E3</h3><button type=\"button\" class=\"btn\" id=\"forming-open-beginner\">\u4ECE\u96F6\u770B\u6CE8\u5851\u52A8\u753B</button></div>\n          <p>".concat(p.family === 'injection' ? '第一次学注塑？先跟着一颗塑料，看它如何变成外壳。' : '先选产品形状，再逐步看材料如何变成制品。', "</p>\n          <div class=\"forming-selector\">\n            <label class=\"form-label\">\u6309\u4EA7\u54C1\u5F62\u72B6\u627E\u5DE5\u827A<select class=\"form-select\" id=\"forming-shape\">").concat(Object.entries(shapeLabels).map(function (_a) {
             var k = _a[0], v = _a[1];
             return "<option value=\"".concat(k, "\"").concat(k === formingShape ? ' selected' : '', ">").concat(v, "</option>");
-        }).join(''), "</select></label>\n            <label class=\"form-label\">\u9009\u62E9\u5DE5\u827A<select class=\"form-select\" id=\"forming-process\">").concat(available.map(function (k) { return "<option value=\"".concat(k, "\"").concat(k === activeProcess ? ' selected' : '', ">").concat(esc(processData[k].name), "</option>"); }).join(''), "</select></label>\n          </div>\n          ").concat(p.family === 'injection' && window.PlasticVisualLab ? window.PlasticVisualLab.injectionMarkup() : '', "\n          ").concat(p.family === 'injection' ? '<details class="forming-more"><summary>工艺步骤与质量检查（进阶）</summary>' : '', "<div id=\"forming-player\"></div>").concat(p.family === 'injection' ? '</details>' : '', "\n          <div class=\"knowledge-grid two forming-more\"><article class=\"card\"><h3>\u4F18\u52BF\u4E0E\u9002\u7528\u573A\u666F</h3><p>").concat(esc(p.advantage), "</p><p><strong>\u5E38\u89C1\u6750\u6599\uFF1A</strong>").concat(esc(p.resins), "</p><p><strong>\u4EA7\u54C1\uFF1A</strong>").concat(esc(p.examples), "</p></article>\n          <article class=\"card\"><h3>\u5C40\u9650\u4E0E\u5224\u65AD\u63D0\u9192</h3><p>").concat(esc(p.limitation), "</p><div class=\"note-line\">").concat(esc(p.caution), "</div></article></div>\n          <div class=\"forming-actions\"><button type=\"button\" class=\"btn\" id=\"forming-to-note\">\u628A\u672C\u5DE5\u827A\u8981\u70B9\u52A0\u5165\u7B14\u8BB0</button><button type=\"button\" class=\"btn btn-ghost\" id=\"forming-to-table\">\u6253\u5F00\u5DE5\u827A\u5BF9\u6BD4\u8868</button></div><p class=\"text-small\" id=\"forming-note-status\" role=\"status\"></p>\n          <details class=\"forming-more\"><summary>\u8584\u819C\u600E\u4E48\u9009\uFF1FCPP / BOPP / IPP \u5BF9\u7167</summary>").concat(filmTableMarkup(), "<button type=\"button\" class=\"btn\" id=\"forming-film-table\">\u5728\u52A8\u6001\u8868\u683C\u4E2D\u7B5B\u9009\u8584\u819C</button></details>\n          <details class=\"forming-more\"><summary>\u6750\u6599\u751F\u4EA7\u3001\u6210\u578B\u52A0\u5DE5\u4E0E\u4E8C\u6B21\u6210\u578B</summary><div class=\"industry-map\"><div><strong>\u6811\u8102\u751F\u4EA7</strong><span>\u539F\u6599 \u2192 \u5355\u4F53 \u2192 \u805A\u5408</span></div><b>\u2192</b><div><strong>\u5851\u6599\u914D\u6DF7</strong><span>\u6811\u8102 \uFF0B \u52A9\u5242 \u2192 \u914D\u6DF7\u6599</span></div><b>\u2192</b><div><strong>\u5851\u6599\u5236\u54C1\u751F\u4EA7</strong><span>\u6210\u578B \u2192 \u540E\u5904\u7406 \u2192 \u68C0\u6D4B</span></div></div><p>\u6CE8\u5851\u4E0E\u6324\u51FA\u662F\u5E38\u89C1\u7684\u7194\u4F53\u6210\u578B\u8DEF\u7EBF\uFF1B\u7247\u6750\u53EF\u518D\u70ED\u6210\u578B\uFF0C\u57FA\u819C\u53EF\u518D\u62C9\u4F38\u53D6\u5411\uFF0C\u578B\u576F\u53EF\u518D\u5439\u80C0\u3002\u4E0D\u540C\u8DEF\u7EBF\u53EF\u4EE5\u7EC4\u5408\uFF0C\u800C\u975E\u6240\u6709\u4EA7\u54C1\u90FD\u8D70\u540C\u4E00\u6761\u7EBF\u3002</p><p>\u6CE8\u5851\u5236\u4EF6\u6309\u9700\u8981\u8FDB\u884C\u9000\u706B\u3001\u8C03\u6E7F\u3001\u53BB\u6D47\u53E3\u3001\u4FEE\u8FB9\u6216\u88C5\u9970\uFF1B\u5E76\u975E\u6BCF\u4EF6\u4EA7\u54C1\u90FD\u8981\u505A\u5168\u90E8\u540E\u5904\u7406\u3002</p></details>\n          <details class=\"forming-more\"><summary>\u8D44\u6599\u6821\u6B63\u3001\u8303\u56F4\u8BF4\u660E\u4E0E\u6838\u5BF9\u6765\u6E90</summary><p>\u672C\u6A21\u5757\u4F9D\u636E\u4F60\u63D0\u4F9B\u7684\u300A\u5E38\u89C1\u5851\u6599\u6210\u578B\u5DE5\u827A\u57F9\u8BAD\u300B\u622A\u56FE\u5F52\u7EB3\u91CD\u7ED8\uFF0C\u6CA1\u6709\u516C\u5F00\u4E0A\u4F20\u539F\u59CB\u516C\u53F8\u622A\u56FE\u3002\u56FE\u662F\u539F\u7406\u793A\u610F\uFF0C\u4E0D\u662F\u8BBE\u5907\u64CD\u4F5C\u89C4\u7A0B\uFF0C\u4E5F\u4E0D\u63D0\u4F9B\u751F\u4EA7\u8BBE\u5B9A\u503C\u3002</p><ul><li>\u201C\u5EF6\u538B\u201D\u89C4\u8303\u5199\u4F5C\u201C\u538B\u5EF6\u201D\uFF1B\u5E73\u53E3\u6A21\u6324\u51FA\u540E\u7528\u4E09\u8F8A\u538B\u5149\uFF0C\u4E0D\u7B49\u4E8E\u4F20\u7EDF\u591A\u8F8A\u538B\u5EF6\u3002</li><li>\u819C / \u7247 / \u677F\u7684\u539A\u5EA6\u754C\u9650\u56E0\u884C\u4E1A\u4E0E\u6807\u51C6\u800C\u5F02\u3002\u8D44\u6599\u7684 0.25 mm\u30011 mm \u53EF\u4F5C\u901F\u8BB0\u793A\u4F8B\uFF1B\u53E6\u9875 0.025 mm \u5B58\u5728\u4E0D\u4E00\u81F4\uFF0C\u4E0D\u4F5C\u4E3A\u7EDF\u4E00\u6807\u51C6\u3002</li><li>\u8D44\u6599\u4E2D\u7684\u4EA7\u91CF\u5360\u6BD4\u3001\u6700\u5927\u5BBD\u5EA6\u3001\u901F\u5EA6\u548C\u539A\u5EA6\u8303\u56F4\u662F\u5386\u53F2\u6216\u7279\u5B9A\u8BBE\u5907\u793A\u4F8B\uFF0C\u672A\u5F53\u6210\u901A\u7528\u5DE5\u827A\u53C2\u6570\u3002</li><li>\u4E0D\u662F\u6240\u6709\u6C1F\u5851\u6599\u90FD\u4E0D\u80FD\u6324\u51FA\uFF1AFEP\u3001PFA \u53EF\u7194\u878D\u6324\u51FA\uFF1BPTFE \u901A\u5E38\u9700\u8981\u7279\u6B8A\u52A0\u5DE5\u8DEF\u5F84\u3002</li><li>CPP \u84B8\u716E\u6027\u80FD\u3001BOPP \u70ED\u5C01\u4E0E\u963B\u9694\u6027\u80FD\u90FD\u9700\u6838\u5BF9\u5177\u4F53\u724C\u53F7\u3001\u5C42\u7ED3\u6784\u53CA\u6D4B\u8BD5\u6761\u4EF6\u3002</li></ul><div class=\"source-links\">").concat(trainingReferences.map(function (r) { return "<a href=\"".concat(esc(r.url), "\" target=\"_blank\" rel=\"noopener noreferrer\">").concat(esc(r.label), "</a>"); }).join(''), "</div></details>");
+        }).join(''), "</select></label>\n            <label class=\"form-label\">\u9009\u62E9\u5DE5\u827A<select class=\"form-select\" id=\"forming-process\">").concat(available.map(function (k) { return "<option value=\"".concat(k, "\"").concat(k === activeProcess ? ' selected' : '', ">").concat(esc(processData[k].name), "</option>"); }).join(''), "</select></label>\n          </div>\n          ").concat(p.family === 'stretch' ? "<label class=\"form-label\">\u5165\u95E8\u52A8\u753B\u7684\u62C9\u4F38\u65B9\u5411<select class=\"form-select\" id=\"novice-variant\"><option value=\"biaxial\"".concat(formingVariant !== 'uniaxial' ? ' selected' : '', ">\u53CC\u5411\uFF1A\u7EB5\u5411 + \u6A2A\u5411</option><option value=\"uniaxial\"").concat(formingVariant === 'uniaxial' ? ' selected' : '', ">\u5355\u5411\uFF1A\u4EC5\u7EB5\u5411\uFF08\u793A\u4F8B\uFF09</option></select></label>") : p.family === 'thermo' ? "<label class=\"form-label\">\u5165\u95E8\u52A8\u753B\u7684\u65BD\u529B\u65B9\u5F0F<select class=\"form-select\" id=\"novice-variant\"><option value=\"vacuum\"".concat(['default', 'vacuum'].includes(formingVariant) ? ' selected' : '', ">\u771F\u7A7A\u5438\u5851\uFF1A\u4E0B\u65B9\u62BD\u6C14</option><option value=\"positive\"").concat(formingVariant === 'positive' ? ' selected' : '', ">\u6B63\u538B\uFF1A\u4E0A\u65B9\u52A0\u538B</option><option value=\"combined\"").concat(formingVariant === 'combined' ? ' selected' : '', ">\u6B63\u8D1F\u538B\uFF1A\u4E0A\u4E0B\u5F62\u6210\u538B\u5DEE</option></select></label>") : '', "\n          ").concat(window.PlasticVisualLab ? window.PlasticVisualLab.processMarkup(activeProcess, p, formingVariant) : '', "\n          <details class=\"forming-more\"><summary>\u5DE5\u827A\u6B65\u9AA4\u4E0E\u8D28\u91CF\u68C0\u67E5\uFF08\u8FDB\u9636\uFF09</summary><div id=\"forming-player\"></div></details>\n          <div class=\"knowledge-grid two forming-more\"><article class=\"card\"><h3>\u4F18\u52BF\u4E0E\u9002\u7528\u573A\u666F</h3><p>").concat(esc(p.advantage), "</p><p><strong>\u5E38\u89C1\u6750\u6599\uFF1A</strong>").concat(esc(p.resins), "</p><p><strong>\u4EA7\u54C1\uFF1A</strong>").concat(esc(p.examples), "</p></article>\n          <article class=\"card\"><h3>\u5C40\u9650\u4E0E\u5224\u65AD\u63D0\u9192</h3><p>").concat(esc(p.limitation), "</p><div class=\"note-line\">").concat(esc(p.caution), "</div></article></div>\n          <div class=\"forming-actions\"><button type=\"button\" class=\"btn\" id=\"forming-to-note\">\u628A\u672C\u5DE5\u827A\u8981\u70B9\u52A0\u5165\u7B14\u8BB0</button><button type=\"button\" class=\"btn btn-ghost\" id=\"forming-to-table\">\u6253\u5F00\u5DE5\u827A\u5BF9\u6BD4\u8868</button></div><p class=\"text-small\" id=\"forming-note-status\" role=\"status\"></p>\n          <details class=\"forming-more\"><summary>\u8584\u819C\u600E\u4E48\u9009\uFF1FCPP / BOPP / IPP \u5BF9\u7167</summary>").concat(filmTableMarkup(), "<button type=\"button\" class=\"btn\" id=\"forming-film-table\">\u5728\u52A8\u6001\u8868\u683C\u4E2D\u7B5B\u9009\u8584\u819C</button></details>\n          <details class=\"forming-more\"><summary>\u6750\u6599\u751F\u4EA7\u3001\u6210\u578B\u52A0\u5DE5\u4E0E\u4E8C\u6B21\u6210\u578B</summary><div class=\"industry-map\"><div><strong>\u6811\u8102\u751F\u4EA7</strong><span>\u539F\u6599 \u2192 \u5355\u4F53 \u2192 \u805A\u5408</span></div><b>\u2192</b><div><strong>\u5851\u6599\u914D\u6DF7</strong><span>\u6811\u8102 \uFF0B \u52A9\u5242 \u2192 \u914D\u6DF7\u6599</span></div><b>\u2192</b><div><strong>\u5851\u6599\u5236\u54C1\u751F\u4EA7</strong><span>\u6210\u578B \u2192 \u540E\u5904\u7406 \u2192 \u68C0\u6D4B</span></div></div><p>\u6CE8\u5851\u4E0E\u6324\u51FA\u662F\u5E38\u89C1\u7684\u7194\u4F53\u6210\u578B\u8DEF\u7EBF\uFF1B\u7247\u6750\u53EF\u518D\u70ED\u6210\u578B\uFF0C\u57FA\u819C\u53EF\u518D\u62C9\u4F38\u53D6\u5411\uFF0C\u578B\u576F\u53EF\u518D\u5439\u80C0\u3002\u4E0D\u540C\u8DEF\u7EBF\u53EF\u4EE5\u7EC4\u5408\uFF0C\u800C\u975E\u6240\u6709\u4EA7\u54C1\u90FD\u8D70\u540C\u4E00\u6761\u7EBF\u3002</p><p>\u6CE8\u5851\u5236\u4EF6\u6309\u9700\u8981\u8FDB\u884C\u9000\u706B\u3001\u8C03\u6E7F\u3001\u53BB\u6D47\u53E3\u3001\u4FEE\u8FB9\u6216\u88C5\u9970\uFF1B\u5E76\u975E\u6BCF\u4EF6\u4EA7\u54C1\u90FD\u8981\u505A\u5168\u90E8\u540E\u5904\u7406\u3002</p></details>\n          <details class=\"forming-more\"><summary>\u8D44\u6599\u6821\u6B63\u3001\u8303\u56F4\u8BF4\u660E\u4E0E\u6838\u5BF9\u6765\u6E90</summary><p>\u672C\u6A21\u5757\u4F9D\u636E\u4F60\u63D0\u4F9B\u7684\u300A\u5E38\u89C1\u5851\u6599\u6210\u578B\u5DE5\u827A\u57F9\u8BAD\u300B\u622A\u56FE\u5F52\u7EB3\u91CD\u7ED8\uFF0C\u6CA1\u6709\u516C\u5F00\u4E0A\u4F20\u539F\u59CB\u516C\u53F8\u622A\u56FE\u3002\u56FE\u662F\u539F\u7406\u793A\u610F\uFF0C\u4E0D\u662F\u8BBE\u5907\u64CD\u4F5C\u89C4\u7A0B\uFF0C\u4E5F\u4E0D\u63D0\u4F9B\u751F\u4EA7\u8BBE\u5B9A\u503C\u3002</p><ul><li>\u201C\u5EF6\u538B\u201D\u89C4\u8303\u5199\u4F5C\u201C\u538B\u5EF6\u201D\uFF1B\u5E73\u53E3\u6A21\u6324\u51FA\u540E\u7528\u4E09\u8F8A\u538B\u5149\uFF0C\u4E0D\u7B49\u4E8E\u4F20\u7EDF\u591A\u8F8A\u538B\u5EF6\u3002</li><li>\u819C / \u7247 / \u677F\u7684\u539A\u5EA6\u754C\u9650\u56E0\u884C\u4E1A\u4E0E\u6807\u51C6\u800C\u5F02\u3002\u8D44\u6599\u7684 0.25 mm\u30011 mm \u53EF\u4F5C\u901F\u8BB0\u793A\u4F8B\uFF1B\u53E6\u9875 0.025 mm \u5B58\u5728\u4E0D\u4E00\u81F4\uFF0C\u4E0D\u4F5C\u4E3A\u7EDF\u4E00\u6807\u51C6\u3002</li><li>\u8D44\u6599\u4E2D\u7684\u4EA7\u91CF\u5360\u6BD4\u3001\u6700\u5927\u5BBD\u5EA6\u3001\u901F\u5EA6\u548C\u539A\u5EA6\u8303\u56F4\u662F\u5386\u53F2\u6216\u7279\u5B9A\u8BBE\u5907\u793A\u4F8B\uFF0C\u672A\u5F53\u6210\u901A\u7528\u5DE5\u827A\u53C2\u6570\u3002</li><li>\u4E0D\u662F\u6240\u6709\u6C1F\u5851\u6599\u90FD\u4E0D\u80FD\u6324\u51FA\uFF1AFEP\u3001PFA \u53EF\u7194\u878D\u6324\u51FA\uFF1BPTFE \u901A\u5E38\u9700\u8981\u7279\u6B8A\u52A0\u5DE5\u8DEF\u5F84\u3002</li><li>CPP \u84B8\u716E\u6027\u80FD\u3001BOPP \u70ED\u5C01\u4E0E\u963B\u9694\u6027\u80FD\u90FD\u9700\u6838\u5BF9\u5177\u4F53\u724C\u53F7\u3001\u5C42\u7ED3\u6784\u53CA\u6D4B\u8BD5\u6761\u4EF6\u3002</li></ul><div class=\"source-links\">").concat(trainingReferences.map(function (r) { return "<a href=\"".concat(esc(r.url), "\" target=\"_blank\" rel=\"noopener noreferrer\">").concat(esc(r.label), "</a>"); }).join(''), "</div></details>");
     }
     var shapeLabels = { all: '全部工艺', complex: '复杂三维实体 / 外壳', continuous: '连续固定截面：管、型、板', hollow: '中空容器 / 大型水箱', film: '薄膜与连续片材', tray: '薄壁托盘 / 包装内托', thermoset: '热固性 / 增强复合材料' };
     var shapeRoutes = { complex: ['injection', 'compression'], continuous: ['extrusion', 'pipe', 'profile', 'sheet'], hollow: ['blow', 'rotation'], film: ['blownfilm', 'cast', 'haul', 'stretch', 'calender', 'sheet'], tray: ['thermo', 'injection'], thermoset: ['compression', 'lamination'] };
@@ -4483,7 +4899,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
             stopFormingPlay();
         else
             formingTimer = setInterval(function () { formingStep = (formingStep + 1) % p.steps.length; renderFormingPlayer(); saveLearningState(); }, 2800); renderFormingPlayer(); });
-        (_b = $('#forming-variant')) === null || _b === void 0 ? void 0 : _b.addEventListener('change', function (e) { stopFormingPlay(); formingVariant = e.target.value; formingStep = 0; renderFormingPlayer(); saveLearningState(); });
+        (_b = $('#forming-variant')) === null || _b === void 0 ? void 0 : _b.addEventListener('change', function (e) { stopFormingPlay(); formingVariant = e.target.value; formingStep = 0; renderKnowledge(); saveLearningState(); });
         if (focusSelector)
             (_c = container.querySelector(focusSelector)) === null || _c === void 0 ? void 0 : _c.focus({ preventScroll: true });
     }
@@ -4503,9 +4919,11 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         setMode('table');
     }
     function bindForming() {
+        var _a;
         renderFormingPlayer();
-        if (window.PlasticVisualLab && activeProcess === 'injection')
-            window.PlasticVisualLab.mountInjection($('#novice-injection'));
+        if (window.PlasticVisualLab)
+            window.PlasticVisualLab.mountProcess($('#novice-injection'), activeProcess, processData[activeProcess], formingVariant);
+        (_a = $('#novice-variant')) === null || _a === void 0 ? void 0 : _a.addEventListener('change', function (e) { formingVariant = e.target.value; formingStep = 0; renderKnowledge(); saveLearningState(); });
         $('#forming-open-beginner').addEventListener('click', function () { formingShape = 'all'; selectFormingProcess('injection'); });
         $('#forming-shape').addEventListener('change', function (e) { formingShape = e.target.value; var available = shapeRoutes[formingShape] || Object.keys(processData); selectFormingProcess(available.includes(activeProcess) ? activeProcess : available[0]); });
         $('#forming-process').addEventListener('change', function (e) { return selectFormingProcess(e.target.value); });
