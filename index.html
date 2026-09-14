@@ -4325,7 +4325,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     var stepIndex = 0;
     var selectedKey = 'PP';
     var timer = null;
-    var flowVisual = '3d', flowSpeed = 1, flowAngle = 55;
+    var flowVisual = '2d', flowSpeed = 1, flowAngle = 55;
     var $ = function (s) { return root.querySelector(s); };
     var $$ = function (s) { return __spreadArray([], root.querySelectorAll(s), true); };
     var esc = function (v) { return String(v).replace(/[&<>\"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]); }); };
@@ -4903,7 +4903,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     var formingTimer = null;
     var formingVariant = 'default';
     var formingShape = 'all';
-    var formingVisual = '3d';
+    var formingVisual = '2d';
     var quizIndex = 0;
     var quizAnswered = false;
     var activeMode = 'flow';
@@ -5326,6 +5326,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         knowledgeTopic = 'forming';
         activeProcess = 'injection';
         formingShape = 'all';
+        formingVisual = '3d';
     }
     if (location.hash === '#products') {
         activeMode = 'products';
