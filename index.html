@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>塑料材料与改性培训实验室</title>
 
-<meta name="application-version" content="20260914-visual2">
+<meta name="application-version" content="20260914-visual3">
 <style>#plastic-material-lab {
   color: #1a1c1f;
   width: 100%;
@@ -3321,6 +3321,10 @@ details > p {
 
     <div class="main-grid">
       <div class="visual-field">
+        <div class="novice-controls" aria-label="生产流程图的呈现方式"><button type="button" class="btn" data-flow-view="2d" aria-pressed="false">二维流程图</button><button type="button" class="btn btn-primary" data-flow-view="3d" aria-pressed="true">三维 / 立体动画</button></div>
+        <div id="lab-flow-3d" class="novice-stage"><canvas id="lab-flow-canvas" width="1000" height="500" role="img" aria-label="塑料生产流程立体剖面动画"></canvas></div>
+        <div id="lab-flow-3d-controls" class="novice-controls"><label class="form-label">本步动画进度<input id="lab-flow-progress" class="form-range" type="range" min="0" max="1000" value="600"></label><label class="form-label">立体视角<input id="lab-flow-angle" class="form-range" type="range" min="0" max="100" value="55"></label><label class="form-label">播放速度<select id="lab-flow-speed" class="form-select"><option value="0.5">慢放 ½ 倍</option><option value="1" selected>正常</option><option value="2">快放 2 倍</option></select></label></div>
+        <p id="lab-flow-3d-caption" class="text-small text-muted">立体剖面教学示意，不是完整 CAD 模型。蓝色表示材料，橙色表示热或作用，青色表示助剂或输送方向；球和连线不是分子结构式。用下方“自动播放”连续观看，或拖动本步进度。</p>
         <svg id="lab-process-scene" class="scene" viewBox="0 0 620 340" role="img" aria-labelledby="lab-scene-title lab-scene-desc">
           <title id="lab-scene-title">塑料生产动态示意</title>
           <desc id="lab-scene-desc">选择流程步骤后，这里显示相应的原料、反应、颗粒、成型、使用或回收过程。</desc>
@@ -4121,7 +4125,178 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         q('novice-play').textContent = '播放动画';
         q('novice-play').setAttribute('aria-pressed', 'false');
     } });
-    window.PlasticVisualLab = { injectionMarkup: injectionMarkup, mountInjection: mountInjection, disposeInjection: disposeInjection, processMarkup: processMarkup, mountProcess: mountProcess, strengthMarkup: strengthMarkup, mountStrength: mountStrength, mixMarkup: mixMarkup, mountMix: mountMix };
+    var flowTimer = null, flowPhase = .6, flowSceneKey = '';
+    function disposeFlow() { if (flowTimer !== null)
+        clearInterval(flowTimer); flowTimer = null; }
+    function mountFlow(canvas, step, m, playing, speed, angle, slider, fraction) {
+        disposeFlow();
+        if (!canvas || !canvas.getContext)
+            return;
+        var ctx;
+        try {
+            ctx = canvas.getContext('2d');
+        }
+        catch (ignore) { }
+        if (!ctx)
+            return;
+        var sceneKey = m.short + ':' + step, phase = typeof fraction === 'number' ? fraction : sceneKey === flowSceneKey ? flowPhase : playing ? 0 : .6, last = Date.now();
+        flowSceneKey = sceneKey;
+        if (playing && phase >= 1)
+            phase = 0;
+        function paint() { flowPhase = phase; drawFlow(ctx, step, m, phase, angle); if (slider)
+            slider.value = Math.round(phase * 1000); }
+        paint();
+        if (playing)
+            flowTimer = setInterval(function () { var now = Date.now(); if (!document.hidden) {
+                phase = Math.min(1, phase + Math.min(100, now - last) * speed / 2400);
+                paint();
+            } last = now; }, 40);
+    }
+    function drawFlow(ctx, step, m, f, angle) {
+        var blue = '#83ceff', orange = '#ffad65', green = '#57dfcf', a = (angle || 55) / 100, ink = '#102b46';
+        ctx.clearRect(0, 0, 1000, 500);
+        ctx.fillStyle = ink;
+        ctx.fillRect(0, 0, 1000, 500);
+        function point(x, y, z) { return [x + z * (.25 + a * .3), y - z * (.17 + a * .28)]; }
+        function path(v, color, stroke, width) { ctx.beginPath(); v.forEach(function (p, i) { p = point(p[0], p[1], p[2] || 0); if (i)
+            ctx.lineTo(p[0], p[1]);
+        else
+            ctx.moveTo(p[0], p[1]); }); if (color) {
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.fill();
+        } if (stroke) {
+            ctx.strokeStyle = stroke;
+            ctx.lineWidth = width || 3;
+            ctx.stroke();
+        } }
+        function box(x, y, w, h, z, c) { path([[x, y, 0], [x + w, y, 0], [x + w, y + h, 0], [x, y + h, 0]], c, '#a2c6de'); path([[x, y, 0], [x, y, z], [x + w, y, z], [x + w, y, 0]], '#688da6', '#a2c6de'); path([[x + w, y, 0], [x + w, y, z], [x + w, y + h, z], [x + w, y + h, 0]], '#2d536d', '#a2c6de'); }
+        function dot(x, y, z, r, c) { var p = point(x, y, z); ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, Math.PI * 2); ctx.fillStyle = c; ctx.fill(); ctx.beginPath(); ctx.arc(p[0] - r * .3, p[1] - r * .35, r * .26, 0, Math.PI * 2); ctx.fillStyle = '#d2f1ff'; ctx.fill(); }
+        function text(s, x, y, c) { ctx.fillStyle = c || '#dbedf6'; ctx.font = '22px Arial'; ctx.textAlign = 'center'; ctx.fillText(s, x, y); }
+        function arrow(x, y, dx, dy, c) { path([[x, y, 0], [x + dx, y + dy, 0]], null, c, 4); var t = Math.atan2(dy, dx); path([[x + dx, y + dy, 0], [x + dx - 18 * Math.cos(t - .45), y + dy - 18 * Math.sin(t - .45), 0], [x + dx - 18 * Math.cos(t + .45), y + dy - 18 * Math.sin(t + .45), 0]], c); }
+        function tank(x, y, w, h, c) { box(x, y, w, h, 82, '#355b76'); path([[x + 9, y + 28, 0], [x + w - 9, y + 28, 0], [x + w - 9, y + h - 9, 0], [x + 9, y + h - 9, 0]], c); }
+        var t = Math.min(1, f * 1.65);
+        if (step === 0) {
+            tank(98, 165, 180, 192, '#2d8993');
+            text('化工原料', 187, 409);
+            box(465, 211, 168, 128, 77, '#426c88');
+            text('分离 / 净化', 550, 385);
+            tank(774, 221, 99, 105, blue);
+            text('洁净原料', 825, 385);
+            arrow(309, 280, 116, 0, green);
+            arrow(657, 280, 86, 0, green);
+            dot(325 + f * 396, 280, 0, 9, blue);
+            text(m.feed, 480, 88);
+        }
+        else if (step === 1) {
+            tank(80, 198, 126, 132, blue);
+            box(353, 144, 217, 222, 90, '#426c88');
+            text('转化与分离', 463, 415);
+            arrow(236, 274, 80, 0, orange);
+            arrow(606, 274, 81, 0, green);
+            for (var n = 0; n < 7; n++) {
+                var x = 728 + n % 3 * 57, y = 212 + Math.floor(n / 3) * 55;
+                dot(x + Math.sin(f * 6 + n) * 7, y, 16, 14, blue);
+            }
+            text('小分子原料', 150, 391);
+            text('单体：' + m.monomer, 775, 418);
+            text('不同树脂的单体制备路线不同', 496, 80);
+        }
+        else if (step === 2) {
+            for (var n = 0; n < 6; n++)
+                dot(104 + n % 2 * 51 + f * 23, 199 + Math.floor(n / 2) * 59, 0, 14, blue);
+            arrow(212, 278, 103, 0, orange);
+            tank(369, 139, 282, 232, '#20475f');
+            text('聚合反应器 · 剖面示意', 511, 413);
+            var chain = [];
+            for (var n = 0; n < Math.floor(4 + t * 15); n++) {
+                var x = 394 + n * 12, y = 244 + Math.sin(n * .65) * 37;
+                chain.push([x, y, 12]);
+                dot(x, y, 12, 7, n % 3 ? blue : green);
+            }
+            path(chain, null, blue, 5);
+            arrow(694, 278, 89, 0, green);
+            text(m.reaction, 497, 92);
+            text(m.short + ' 树脂', 841, 410);
+            for (var n = 0; n < 13; n++)
+                dot(801 + n % 4 * 25, 244 + Math.floor(n / 4) * 25, 0, 8, blue);
+            text('球和连线只表示单体连接趋势，不是分子结构式', 500, 464);
+        }
+        else if (step === 3) {
+            box(175, 258, 438, 82, 78, '#355b76');
+            path([[215, 143, 0], [286, 143, 0], [270, 258, 0], [232, 258, 0]], '#4c7792', '#b0d0e4');
+            path([[398, 174, 0], [463, 174, 0], [449, 258, 0], [414, 258, 0]], '#4c7792', '#b0d0e4');
+            text('树脂', 244, 124);
+            text('助剂 / 填料', 430, 150);
+            for (var n = 0; n < 9; n++) {
+                dot(239 + n % 3 * 14, 161 + Math.floor(n / 3) * 20 + f * 32, 0, 6, blue);
+                dot(417 + n % 3 * 12, 189 + Math.floor(n / 3) * 15 + f * 23, 0, 5, green);
+            }
+            var screw = [];
+            for (var n = 0; n < 140; n++)
+                screw.push([189 + n * 2.85, 290 + 12 * Math.cos(n * .42 + f * 8), 30 + 12 * Math.sin(n * .42 + f * 8)]);
+            path(screw, null, '#d7e7ef', 4);
+            path([[348, 325, 6], [601, 325, 6]], null, orange, 12);
+            arrow(355, 379, 145, 0, orange);
+            box(658, 252, 56, 99, 75, '#4c7792');
+            text('混炼 → 冷却切粒', 526, 427);
+            for (var n = 0; n < 16; n++)
+                dot(754 + n % 4 * 30 + f * 15, 266 + Math.floor(n / 4) * 23, 0, 7, blue);
+            text('改性专用料', 816, 427);
+            text('按需要选择：并非所有树脂都必须改性或再造粒', 500, 69);
+        }
+        else if (step === 4) {
+            box(100, 245, 367, 79, 70, '#355b76');
+            path([[167, 147, 0], [238, 147, 0], [219, 245, 0], [189, 245, 0]], '#4c7792', '#adcfe5');
+            for (var n = 0; n < 8; n++)
+                dot(181 + n % 3 * 14, 167 + Math.floor(n / 3) * 20, 0, 6, blue);
+            path([[225, 294, 0], [445, 294, 0]], null, orange, 16);
+            arrow(278, 377, 115, 0, orange);
+            var open = f > .73 ? (f - .73) / .27 * 80 : 0;
+            box(510, 198, 130, 177, 80, '#416b86');
+            box(640 + open, 198, 116, 177, 80, '#416b86');
+            if (f > .28) {
+                box(592, 244, 94 * t, 99, 36, f > .65 ? blue : orange);
+                path([[606, 258, 0], [657, 258, 0], [657, 310, 0], [606, 310, 0]], ink);
+            }
+            arrow(467, 293, 35, 0, orange);
+            text('塑化 / 输送', 281, 428);
+            text('注塑模腔示例', 646, 428);
+            text('实际按产品选择：' + m.form, 495, 75);
+            text('产品：' + m.product, 500, 470);
+        }
+        else if (step === 5) {
+            box(342, 204, 277, 160, 100, blue);
+            path([[372, 227, 0], [589, 227, 0], [589, 334, 0], [372, 334, 0]], ink, '#afdaf3');
+            arrow(490, 106, 0, 63 + f * 17, orange);
+            arrow(737, 277, -65 - f * 15, 0, orange);
+            for (var n = 0; n < 6; n++)
+                dot(226 + n * 34, 157 + f * 24, 0, 4, orange);
+            text('温度 / 光 / 氧 / 时间', 489, 78);
+            text('载荷', 769, 272);
+            text('制品使用：' + m.product, 497, 437);
+            text('材料性能与结构、环境共同影响寿命；动画不预测实际寿命', 500, 474);
+        }
+        else {
+            box(72, 250, 162, 116, 70, '#416b86');
+            for (var n = 0; n < 5; n++)
+                box(94 + n % 3 * 39, 265 + Math.floor(n / 3) * 40, 25, 24, 13, blue);
+            box(359, 197, 211, 169, 80, '#416b86');
+            box(707, 258, 145, 86, 67, '#416b86');
+            arrow(257, 297, 65, 0, green);
+            arrow(602, 297, 69, 0, green);
+            for (var n = 0; n < 15; n++)
+                dot(744 + n % 4 * 27, 231 + Math.floor(n / 4) * 24 + f * 13, 0, 6, blue);
+            text('收集 / 分选', 158, 422);
+            text('清洗 / 粉碎', 464, 422);
+            text('再造粒', 796, 422);
+            text('以适用的机械回收料流为例；并非所有废塑料都能走这条线', 500, 80);
+            text('再生材料 → 新用途；不符合条件的料流需其他处理路线', 500, 471);
+        }
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden)
+        disposeFlow(); });
+    window.PlasticVisualLab = { injectionMarkup: injectionMarkup, mountInjection: mountInjection, disposeInjection: disposeInjection, processMarkup: processMarkup, mountProcess: mountProcess, drawFlow: drawFlow, mountFlow: mountFlow, disposeFlow: disposeFlow, strengthMarkup: strengthMarkup, mountStrength: mountStrength, mixMarkup: mixMarkup, mountMix: mountMix };
 })();
 (function () {
     var root = document.getElementById('plastic-material-lab');
@@ -4150,6 +4325,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     var stepIndex = 0;
     var selectedKey = 'PP';
     var timer = null;
+    var flowVisual = '3d', flowSpeed = 1, flowAngle = 55;
     var $ = function (s) { return root.querySelector(s); };
     var $$ = function (s) { return __spreadArray([], root.querySelectorAll(s), true); };
     var esc = function (v) { return String(v).replace(/[&<>\"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]); }); };
@@ -4180,6 +4356,14 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         var s = steps[stepIndex];
         renderSteps();
         $('#lab-scene-content').innerHTML = sceneMarkup(stepIndex, m);
+        $('#lab-process-scene').classList.toggle('hidden', flowVisual !== '2d');
+        ['#lab-flow-3d', '#lab-flow-3d-controls', '#lab-flow-3d-caption'].forEach(function (id) { return $(id).classList.toggle('hidden', flowVisual !== '3d'); });
+        $$('[data-flow-view]').forEach(function (b) { var on = b.dataset.flowView === flowVisual; b.classList.toggle('btn-primary', on); b.setAttribute('aria-pressed', String(on)); });
+        if (window.PlasticVisualLab) {
+            window.PlasticVisualLab.disposeFlow();
+            if (flowVisual === '3d')
+                window.PlasticVisualLab.mountFlow($('#lab-flow-canvas'), stepIndex, m, !!timer, flowSpeed, flowAngle, $('#lab-flow-progress'));
+        }
         $('#lab-step-kicker').textContent = s.kicker;
         $('#lab-step-title').textContent = s.title;
         $('#lab-step-explain').textContent = s.explain;
@@ -4195,6 +4379,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         if (timer)
             clearInterval(timer);
         timer = null;
+        if (window.PlasticVisualLab)
+            window.PlasticVisualLab.disposeFlow();
         var b = $('#lab-play');
         b.setAttribute('aria-pressed', 'false');
         b.innerHTML = '<i data-lucide="play" aria-hidden="true"></i> 自动播放';
@@ -4717,6 +4903,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     var formingTimer = null;
     var formingVariant = 'default';
     var formingShape = 'all';
+    var formingVisual = '3d';
     var quizIndex = 0;
     var quizAnswered = false;
     var activeMode = 'flow';
@@ -4800,7 +4987,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         return "<div class=\"forming-head\"><h3>\u6210\u578B\u5DE5\u827A \u00B7 \u52A8\u6001\u56FE\u89E3</h3><button type=\"button\" class=\"btn\" id=\"forming-open-beginner\">\u4ECE\u96F6\u770B\u6CE8\u5851\u52A8\u753B</button></div>\n          <p>".concat(p.family === 'injection' ? '第一次学注塑？先跟着一颗塑料，看它如何变成外壳。' : '先选产品形状，再逐步看材料如何变成制品。', "</p>\n          <div class=\"forming-selector\">\n            <label class=\"form-label\">\u6309\u4EA7\u54C1\u5F62\u72B6\u627E\u5DE5\u827A<select class=\"form-select\" id=\"forming-shape\">").concat(Object.entries(shapeLabels).map(function (_a) {
             var k = _a[0], v = _a[1];
             return "<option value=\"".concat(k, "\"").concat(k === formingShape ? ' selected' : '', ">").concat(v, "</option>");
-        }).join(''), "</select></label>\n            <label class=\"form-label\">\u9009\u62E9\u5DE5\u827A<select class=\"form-select\" id=\"forming-process\">").concat(available.map(function (k) { return "<option value=\"".concat(k, "\"").concat(k === activeProcess ? ' selected' : '', ">").concat(esc(processData[k].name), "</option>"); }).join(''), "</select></label>\n          </div>\n          ").concat(p.family === 'stretch' ? "<label class=\"form-label\">\u5165\u95E8\u52A8\u753B\u7684\u62C9\u4F38\u65B9\u5411<select class=\"form-select\" id=\"novice-variant\"><option value=\"biaxial\"".concat(formingVariant !== 'uniaxial' ? ' selected' : '', ">\u53CC\u5411\uFF1A\u7EB5\u5411 + \u6A2A\u5411</option><option value=\"uniaxial\"").concat(formingVariant === 'uniaxial' ? ' selected' : '', ">\u5355\u5411\uFF1A\u4EC5\u7EB5\u5411\uFF08\u793A\u4F8B\uFF09</option></select></label>") : p.family === 'thermo' ? "<label class=\"form-label\">\u5165\u95E8\u52A8\u753B\u7684\u65BD\u529B\u65B9\u5F0F<select class=\"form-select\" id=\"novice-variant\"><option value=\"vacuum\"".concat(['default', 'vacuum'].includes(formingVariant) ? ' selected' : '', ">\u771F\u7A7A\u5438\u5851\uFF1A\u4E0B\u65B9\u62BD\u6C14</option><option value=\"positive\"").concat(formingVariant === 'positive' ? ' selected' : '', ">\u6B63\u538B\uFF1A\u4E0A\u65B9\u52A0\u538B</option><option value=\"combined\"").concat(formingVariant === 'combined' ? ' selected' : '', ">\u6B63\u8D1F\u538B\uFF1A\u4E0A\u4E0B\u5F62\u6210\u538B\u5DEE</option></select></label>") : '', "\n          ").concat(window.PlasticVisualLab ? window.PlasticVisualLab.processMarkup(activeProcess, p, formingVariant) : '', "\n          <details class=\"forming-more\"><summary>\u5DE5\u827A\u6B65\u9AA4\u4E0E\u8D28\u91CF\u68C0\u67E5\uFF08\u8FDB\u9636\uFF09</summary><div id=\"forming-player\"></div></details>\n          <div class=\"knowledge-grid two forming-more\"><article class=\"card\"><h3>\u4F18\u52BF\u4E0E\u9002\u7528\u573A\u666F</h3><p>").concat(esc(p.advantage), "</p><p><strong>\u5E38\u89C1\u6750\u6599\uFF1A</strong>").concat(esc(p.resins), "</p><p><strong>\u4EA7\u54C1\uFF1A</strong>").concat(esc(p.examples), "</p></article>\n          <article class=\"card\"><h3>\u5C40\u9650\u4E0E\u5224\u65AD\u63D0\u9192</h3><p>").concat(esc(p.limitation), "</p><div class=\"note-line\">").concat(esc(p.caution), "</div></article></div>\n          <div class=\"forming-actions\"><button type=\"button\" class=\"btn\" id=\"forming-to-note\">\u628A\u672C\u5DE5\u827A\u8981\u70B9\u52A0\u5165\u7B14\u8BB0</button><button type=\"button\" class=\"btn btn-ghost\" id=\"forming-to-table\">\u6253\u5F00\u5DE5\u827A\u5BF9\u6BD4\u8868</button></div><p class=\"text-small\" id=\"forming-note-status\" role=\"status\"></p>\n          <details class=\"forming-more\"><summary>\u8584\u819C\u600E\u4E48\u9009\uFF1FCPP / BOPP / IPP \u5BF9\u7167</summary>").concat(filmTableMarkup(), "<button type=\"button\" class=\"btn\" id=\"forming-film-table\">\u5728\u52A8\u6001\u8868\u683C\u4E2D\u7B5B\u9009\u8584\u819C</button></details>\n          <details class=\"forming-more\"><summary>\u6750\u6599\u751F\u4EA7\u3001\u6210\u578B\u52A0\u5DE5\u4E0E\u4E8C\u6B21\u6210\u578B</summary><div class=\"industry-map\"><div><strong>\u6811\u8102\u751F\u4EA7</strong><span>\u539F\u6599 \u2192 \u5355\u4F53 \u2192 \u805A\u5408</span></div><b>\u2192</b><div><strong>\u5851\u6599\u914D\u6DF7</strong><span>\u6811\u8102 \uFF0B \u52A9\u5242 \u2192 \u914D\u6DF7\u6599</span></div><b>\u2192</b><div><strong>\u5851\u6599\u5236\u54C1\u751F\u4EA7</strong><span>\u6210\u578B \u2192 \u540E\u5904\u7406 \u2192 \u68C0\u6D4B</span></div></div><p>\u6CE8\u5851\u4E0E\u6324\u51FA\u662F\u5E38\u89C1\u7684\u7194\u4F53\u6210\u578B\u8DEF\u7EBF\uFF1B\u7247\u6750\u53EF\u518D\u70ED\u6210\u578B\uFF0C\u57FA\u819C\u53EF\u518D\u62C9\u4F38\u53D6\u5411\uFF0C\u578B\u576F\u53EF\u518D\u5439\u80C0\u3002\u4E0D\u540C\u8DEF\u7EBF\u53EF\u4EE5\u7EC4\u5408\uFF0C\u800C\u975E\u6240\u6709\u4EA7\u54C1\u90FD\u8D70\u540C\u4E00\u6761\u7EBF\u3002</p><p>\u6CE8\u5851\u5236\u4EF6\u6309\u9700\u8981\u8FDB\u884C\u9000\u706B\u3001\u8C03\u6E7F\u3001\u53BB\u6D47\u53E3\u3001\u4FEE\u8FB9\u6216\u88C5\u9970\uFF1B\u5E76\u975E\u6BCF\u4EF6\u4EA7\u54C1\u90FD\u8981\u505A\u5168\u90E8\u540E\u5904\u7406\u3002</p></details>\n          <details class=\"forming-more\"><summary>\u8D44\u6599\u6821\u6B63\u3001\u8303\u56F4\u8BF4\u660E\u4E0E\u6838\u5BF9\u6765\u6E90</summary><p>\u672C\u6A21\u5757\u4F9D\u636E\u4F60\u63D0\u4F9B\u7684\u300A\u5E38\u89C1\u5851\u6599\u6210\u578B\u5DE5\u827A\u57F9\u8BAD\u300B\u622A\u56FE\u5F52\u7EB3\u91CD\u7ED8\uFF0C\u6CA1\u6709\u516C\u5F00\u4E0A\u4F20\u539F\u59CB\u516C\u53F8\u622A\u56FE\u3002\u56FE\u662F\u539F\u7406\u793A\u610F\uFF0C\u4E0D\u662F\u8BBE\u5907\u64CD\u4F5C\u89C4\u7A0B\uFF0C\u4E5F\u4E0D\u63D0\u4F9B\u751F\u4EA7\u8BBE\u5B9A\u503C\u3002</p><ul><li>\u201C\u5EF6\u538B\u201D\u89C4\u8303\u5199\u4F5C\u201C\u538B\u5EF6\u201D\uFF1B\u5E73\u53E3\u6A21\u6324\u51FA\u540E\u7528\u4E09\u8F8A\u538B\u5149\uFF0C\u4E0D\u7B49\u4E8E\u4F20\u7EDF\u591A\u8F8A\u538B\u5EF6\u3002</li><li>\u819C / \u7247 / \u677F\u7684\u539A\u5EA6\u754C\u9650\u56E0\u884C\u4E1A\u4E0E\u6807\u51C6\u800C\u5F02\u3002\u8D44\u6599\u7684 0.25 mm\u30011 mm \u53EF\u4F5C\u901F\u8BB0\u793A\u4F8B\uFF1B\u53E6\u9875 0.025 mm \u5B58\u5728\u4E0D\u4E00\u81F4\uFF0C\u4E0D\u4F5C\u4E3A\u7EDF\u4E00\u6807\u51C6\u3002</li><li>\u8D44\u6599\u4E2D\u7684\u4EA7\u91CF\u5360\u6BD4\u3001\u6700\u5927\u5BBD\u5EA6\u3001\u901F\u5EA6\u548C\u539A\u5EA6\u8303\u56F4\u662F\u5386\u53F2\u6216\u7279\u5B9A\u8BBE\u5907\u793A\u4F8B\uFF0C\u672A\u5F53\u6210\u901A\u7528\u5DE5\u827A\u53C2\u6570\u3002</li><li>\u4E0D\u662F\u6240\u6709\u6C1F\u5851\u6599\u90FD\u4E0D\u80FD\u6324\u51FA\uFF1AFEP\u3001PFA \u53EF\u7194\u878D\u6324\u51FA\uFF1BPTFE \u901A\u5E38\u9700\u8981\u7279\u6B8A\u52A0\u5DE5\u8DEF\u5F84\u3002</li><li>CPP \u84B8\u716E\u6027\u80FD\u3001BOPP \u70ED\u5C01\u4E0E\u963B\u9694\u6027\u80FD\u90FD\u9700\u6838\u5BF9\u5177\u4F53\u724C\u53F7\u3001\u5C42\u7ED3\u6784\u53CA\u6D4B\u8BD5\u6761\u4EF6\u3002</li></ul><div class=\"source-links\">").concat(trainingReferences.map(function (r) { return "<a href=\"".concat(esc(r.url), "\" target=\"_blank\" rel=\"noopener noreferrer\">").concat(esc(r.label), "</a>"); }).join(''), "</div></details>");
+        }).join(''), "</select></label>\n            <label class=\"form-label\">\u9009\u62E9\u5DE5\u827A<select class=\"form-select\" id=\"forming-process\">").concat(available.map(function (k) { return "<option value=\"".concat(k, "\"").concat(k === activeProcess ? ' selected' : '', ">").concat(esc(processData[k].name), "</option>"); }).join(''), "</select></label>\n          </div>\n          ").concat(p.family === 'stretch' ? "<label class=\"form-label\">\u5165\u95E8\u52A8\u753B\u7684\u62C9\u4F38\u65B9\u5411<select class=\"form-select\" id=\"novice-variant\"><option value=\"biaxial\"".concat(formingVariant !== 'uniaxial' ? ' selected' : '', ">\u53CC\u5411\uFF1A\u7EB5\u5411 + \u6A2A\u5411</option><option value=\"uniaxial\"").concat(formingVariant === 'uniaxial' ? ' selected' : '', ">\u5355\u5411\uFF1A\u4EC5\u7EB5\u5411\uFF08\u793A\u4F8B\uFF09</option></select></label>") : p.family === 'thermo' ? "<label class=\"form-label\">\u5165\u95E8\u52A8\u753B\u7684\u65BD\u529B\u65B9\u5F0F<select class=\"form-select\" id=\"novice-variant\"><option value=\"vacuum\"".concat(['default', 'vacuum'].includes(formingVariant) ? ' selected' : '', ">\u771F\u7A7A\u5438\u5851\uFF1A\u4E0B\u65B9\u62BD\u6C14</option><option value=\"positive\"").concat(formingVariant === 'positive' ? ' selected' : '', ">\u6B63\u538B\uFF1A\u4E0A\u65B9\u52A0\u538B</option><option value=\"combined\"").concat(formingVariant === 'combined' ? ' selected' : '', ">\u6B63\u8D1F\u538B\uFF1A\u4E0A\u4E0B\u5F62\u6210\u538B\u5DEE</option></select></label>") : '', "\n          <div class=\"novice-controls\" aria-label=\"\u6210\u578B\u5DE5\u827A\u56FE\u7684\u5448\u73B0\u65B9\u5F0F\"><button type=\"button\" class=\"btn").concat(formingVisual === '2d' ? ' btn-primary' : '', "\" data-forming-view=\"2d\" aria-pressed=\"").concat(formingVisual === '2d', "\">\u4E8C\u7EF4\u5DE5\u827A\u56FE</button><button type=\"button\" class=\"btn").concat(formingVisual === '3d' ? ' btn-primary' : '', "\" data-forming-view=\"3d\" aria-pressed=\"").concat(formingVisual === '3d', "\">\u4E09\u7EF4 / \u7ACB\u4F53\u52A8\u753B</button></div>\n          <div class=\"").concat(formingVisual === '3d' ? '' : 'hidden', "\">").concat(window.PlasticVisualLab ? window.PlasticVisualLab.processMarkup(activeProcess, p, formingVariant) : '', "</div>\n          ").concat(formingVisual === '3d' ? '<details class="forming-more"><summary>二维工艺图与质量检查（进阶）</summary>' : '<section class="forming-more" aria-label="二维工艺图">', "<div id=\"forming-player\"></div>").concat(formingVisual === '3d' ? '</details>' : '</section>', "\n          <div class=\"knowledge-grid two forming-more\"><article class=\"card\"><h3>\u4F18\u52BF\u4E0E\u9002\u7528\u573A\u666F</h3><p>").concat(esc(p.advantage), "</p><p><strong>\u5E38\u89C1\u6750\u6599\uFF1A</strong>").concat(esc(p.resins), "</p><p><strong>\u4EA7\u54C1\uFF1A</strong>").concat(esc(p.examples), "</p></article>\n          <article class=\"card\"><h3>\u5C40\u9650\u4E0E\u5224\u65AD\u63D0\u9192</h3><p>").concat(esc(p.limitation), "</p><div class=\"note-line\">").concat(esc(p.caution), "</div></article></div>\n          <div class=\"forming-actions\"><button type=\"button\" class=\"btn\" id=\"forming-to-note\">\u628A\u672C\u5DE5\u827A\u8981\u70B9\u52A0\u5165\u7B14\u8BB0</button><button type=\"button\" class=\"btn btn-ghost\" id=\"forming-to-table\">\u6253\u5F00\u5DE5\u827A\u5BF9\u6BD4\u8868</button></div><p class=\"text-small\" id=\"forming-note-status\" role=\"status\"></p>\n          <details class=\"forming-more\"><summary>\u8584\u819C\u600E\u4E48\u9009\uFF1FCPP / BOPP / IPP \u5BF9\u7167</summary>").concat(filmTableMarkup(), "<button type=\"button\" class=\"btn\" id=\"forming-film-table\">\u5728\u52A8\u6001\u8868\u683C\u4E2D\u7B5B\u9009\u8584\u819C</button></details>\n          <details class=\"forming-more\"><summary>\u6750\u6599\u751F\u4EA7\u3001\u6210\u578B\u52A0\u5DE5\u4E0E\u4E8C\u6B21\u6210\u578B</summary><div class=\"industry-map\"><div><strong>\u6811\u8102\u751F\u4EA7</strong><span>\u539F\u6599 \u2192 \u5355\u4F53 \u2192 \u805A\u5408</span></div><b>\u2192</b><div><strong>\u5851\u6599\u914D\u6DF7</strong><span>\u6811\u8102 \uFF0B \u52A9\u5242 \u2192 \u914D\u6DF7\u6599</span></div><b>\u2192</b><div><strong>\u5851\u6599\u5236\u54C1\u751F\u4EA7</strong><span>\u6210\u578B \u2192 \u540E\u5904\u7406 \u2192 \u68C0\u6D4B</span></div></div><p>\u6CE8\u5851\u4E0E\u6324\u51FA\u662F\u5E38\u89C1\u7684\u7194\u4F53\u6210\u578B\u8DEF\u7EBF\uFF1B\u7247\u6750\u53EF\u518D\u70ED\u6210\u578B\uFF0C\u57FA\u819C\u53EF\u518D\u62C9\u4F38\u53D6\u5411\uFF0C\u578B\u576F\u53EF\u518D\u5439\u80C0\u3002\u4E0D\u540C\u8DEF\u7EBF\u53EF\u4EE5\u7EC4\u5408\uFF0C\u800C\u975E\u6240\u6709\u4EA7\u54C1\u90FD\u8D70\u540C\u4E00\u6761\u7EBF\u3002</p><p>\u6CE8\u5851\u5236\u4EF6\u6309\u9700\u8981\u8FDB\u884C\u9000\u706B\u3001\u8C03\u6E7F\u3001\u53BB\u6D47\u53E3\u3001\u4FEE\u8FB9\u6216\u88C5\u9970\uFF1B\u5E76\u975E\u6BCF\u4EF6\u4EA7\u54C1\u90FD\u8981\u505A\u5168\u90E8\u540E\u5904\u7406\u3002</p></details>\n          <details class=\"forming-more\"><summary>\u8D44\u6599\u6821\u6B63\u3001\u8303\u56F4\u8BF4\u660E\u4E0E\u6838\u5BF9\u6765\u6E90</summary><p>\u672C\u6A21\u5757\u4F9D\u636E\u4F60\u63D0\u4F9B\u7684\u300A\u5E38\u89C1\u5851\u6599\u6210\u578B\u5DE5\u827A\u57F9\u8BAD\u300B\u622A\u56FE\u5F52\u7EB3\u91CD\u7ED8\uFF0C\u6CA1\u6709\u516C\u5F00\u4E0A\u4F20\u539F\u59CB\u516C\u53F8\u622A\u56FE\u3002\u56FE\u662F\u539F\u7406\u793A\u610F\uFF0C\u4E0D\u662F\u8BBE\u5907\u64CD\u4F5C\u89C4\u7A0B\uFF0C\u4E5F\u4E0D\u63D0\u4F9B\u751F\u4EA7\u8BBE\u5B9A\u503C\u3002</p><ul><li>\u201C\u5EF6\u538B\u201D\u89C4\u8303\u5199\u4F5C\u201C\u538B\u5EF6\u201D\uFF1B\u5E73\u53E3\u6A21\u6324\u51FA\u540E\u7528\u4E09\u8F8A\u538B\u5149\uFF0C\u4E0D\u7B49\u4E8E\u4F20\u7EDF\u591A\u8F8A\u538B\u5EF6\u3002</li><li>\u819C / \u7247 / \u677F\u7684\u539A\u5EA6\u754C\u9650\u56E0\u884C\u4E1A\u4E0E\u6807\u51C6\u800C\u5F02\u3002\u8D44\u6599\u7684 0.25 mm\u30011 mm \u53EF\u4F5C\u901F\u8BB0\u793A\u4F8B\uFF1B\u53E6\u9875 0.025 mm \u5B58\u5728\u4E0D\u4E00\u81F4\uFF0C\u4E0D\u4F5C\u4E3A\u7EDF\u4E00\u6807\u51C6\u3002</li><li>\u8D44\u6599\u4E2D\u7684\u4EA7\u91CF\u5360\u6BD4\u3001\u6700\u5927\u5BBD\u5EA6\u3001\u901F\u5EA6\u548C\u539A\u5EA6\u8303\u56F4\u662F\u5386\u53F2\u6216\u7279\u5B9A\u8BBE\u5907\u793A\u4F8B\uFF0C\u672A\u5F53\u6210\u901A\u7528\u5DE5\u827A\u53C2\u6570\u3002</li><li>\u4E0D\u662F\u6240\u6709\u6C1F\u5851\u6599\u90FD\u4E0D\u80FD\u6324\u51FA\uFF1AFEP\u3001PFA \u53EF\u7194\u878D\u6324\u51FA\uFF1BPTFE \u901A\u5E38\u9700\u8981\u7279\u6B8A\u52A0\u5DE5\u8DEF\u5F84\u3002</li><li>CPP \u84B8\u716E\u6027\u80FD\u3001BOPP \u70ED\u5C01\u4E0E\u963B\u9694\u6027\u80FD\u90FD\u9700\u6838\u5BF9\u5177\u4F53\u724C\u53F7\u3001\u5C42\u7ED3\u6784\u53CA\u6D4B\u8BD5\u6761\u4EF6\u3002</li></ul><div class=\"source-links\">").concat(trainingReferences.map(function (r) { return "<a href=\"".concat(esc(r.url), "\" target=\"_blank\" rel=\"noopener noreferrer\">").concat(esc(r.label), "</a>"); }).join(''), "</div></details>");
     }
     var shapeLabels = { all: '全部工艺', complex: '复杂三维实体 / 外壳', continuous: '连续固定截面：管、型、板', hollow: '中空容器 / 大型水箱', film: '薄膜与连续片材', tray: '薄壁托盘 / 包装内托', thermoset: '热固性 / 增强复合材料' };
     var shapeRoutes = { complex: ['injection', 'compression'], continuous: ['extrusion', 'pipe', 'profile', 'sheet'], hollow: ['blow', 'rotation'], film: ['blownfilm', 'cast', 'haul', 'stretch', 'calender', 'sheet'], tray: ['thermo', 'injection'], thermoset: ['compression', 'lamination'] };
@@ -4921,8 +5108,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     function bindForming() {
         var _a;
         renderFormingPlayer();
-        if (window.PlasticVisualLab)
+        if (window.PlasticVisualLab && formingVisual === '3d')
             window.PlasticVisualLab.mountProcess($('#novice-injection'), activeProcess, processData[activeProcess], formingVariant);
+        $$('[data-forming-view]').forEach(function (b) { return b.addEventListener('click', function () { formingVisual = b.dataset.formingView; renderKnowledge(); }); });
         (_a = $('#novice-variant')) === null || _a === void 0 ? void 0 : _a.addEventListener('change', function (e) { formingVariant = e.target.value; formingStep = 0; renderKnowledge(); saveLearningState(); });
         $('#forming-open-beginner').addEventListener('click', function () { formingShape = 'all'; selectFormingProcess('injection'); });
         $('#forming-shape').addEventListener('change', function (e) { formingShape = e.target.value; var available = shapeRoutes[formingShape] || Object.keys(processData); selectFormingProcess(available.includes(activeProcess) ? activeProcess : available[0]); });
@@ -5014,6 +5202,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         if (persist === void 0) { persist = true; }
         if (preserveTopic === void 0) { preserveTopic = false; }
         if (window.PlasticVisualLab)
+            window.PlasticVisualLab.disposeFlow();
+        if (window.PlasticVisualLab)
             window.PlasticVisualLab.disposeInjection();
         stopFormingPlay();
         activeMode = mode;
@@ -5031,6 +5221,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         $('#lab-training-view').classList.toggle('hidden', mode !== 'training');
         if (mode !== 'flow')
             stopPlay();
+        if (mode === 'flow')
+            renderFlow();
         if (persist)
             saveLearningState();
     }
@@ -5043,6 +5235,12 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
             renderFormingPlayer();
     } });
     $('#lab-route-material').addEventListener('change', function (e) { routeKey = e.target.value; renderFlow(); saveLearningState(); });
+    $$('[data-flow-view]').forEach(function (b) { return b.addEventListener('click', function () { stopPlay(); flowVisual = b.dataset.flowView; renderFlow(); }); });
+    $('#lab-flow-angle').addEventListener('input', function (e) { flowAngle = +e.target.value; renderFlow(); });
+    $('#lab-flow-progress').addEventListener('input', function (e) { stopPlay(); if (window.PlasticVisualLab)
+        window.PlasticVisualLab.mountFlow($('#lab-flow-canvas'), stepIndex, materials[routeKey], false, flowSpeed, flowAngle, $('#lab-flow-progress'), +e.target.value / 1000); });
+    $('#lab-flow-speed').addEventListener('change', function (e) { var playing = !!timer; stopPlay(); flowSpeed = +e.target.value; if (playing)
+        $('#lab-play').click(); });
     $('#lab-prev').addEventListener('click', function () { stopPlay(); stepIndex = Math.max(0, stepIndex - 1); renderFlow(); saveLearningState(); });
     $('#lab-next').addEventListener('click', function () { stopPlay(); stepIndex = (stepIndex + 1) % steps.length; renderFlow(); saveLearningState(); });
     $('#lab-play').addEventListener('click', function () {
@@ -5055,7 +5253,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
         b.innerHTML = '<i data-lucide="pause" aria-hidden="true"></i> 暂停';
         if (window.lucide)
             lucide.createIcons({ attrs: { width: 16, height: 16 } });
-        timer = setInterval(function () { stepIndex = (stepIndex + 1) % steps.length; renderFlow(); }, 2400);
+        timer = setInterval(function () { stepIndex = (stepIndex + 1) % steps.length; renderFlow(); }, 2400 / flowSpeed);
+        renderFlow();
     });
     $('#lab-temp').addEventListener('input', function () { renderProperties(); saveLearningState(); });
     $('#lab-load').addEventListener('input', function () { renderProperties(); saveLearningState(); });
@@ -5118,6 +5317,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (location.hash === '#forming') {
         activeMode = 'forming';
         knowledgeTopic = 'forming';
+    }
+    if (location.hash === '#flow') {
+        activeMode = 'flow';
     }
     if (location.hash === '#beginner') {
         activeMode = 'forming';
